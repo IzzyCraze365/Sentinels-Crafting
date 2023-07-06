@@ -20,8 +20,8 @@ let pokemonAbility = document.querySelector(".ability");
 addButton.addEventListener("click", async (itemSearcher) => {
   itemSearcher.preventDefault();
 
-  let data = await fetchCraftingInfo(itemChosen.value.toLowerCase());
-  //console.log(data); //! TEST
+  let data = await fetchCraftingInfo(itemChosen.value.toLowerCase(), craftingItems);
+  console.log(data); //! TEST
   populateTable(data);
 });
 
@@ -34,12 +34,12 @@ function populateTable(data) {
   pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
 }
 
-async function fetchCraftingInfo(pokemon) {
-  let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
-  console.log("URL Here", url); //! TEST
+async function fetchCraftingInfo(itemChosen, craftingItems) {
+  let item = craftingItems
+  console.log("Item", item); //! TEST
 
   try {
-    let response = await fetch(url);
+    let response = await fetch(item);
     let data = await response.json();
     return data;
   } catch (error) {

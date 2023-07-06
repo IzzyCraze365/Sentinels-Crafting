@@ -11,11 +11,11 @@ console.log("User Input =", itemChosen);
 let addButton = document.querySelector(".addItem-btn"); //Going Fishing
 
 // TODO Get rid of all Pokemon Stuff
-let pokemonName = document.querySelector(".nameLARP");
-let pokemonHitPoints = document.querySelector(".cardType");
-let pokemonWeight = document.querySelector(".weight");
-let pokemonPicture = document.querySelector("img");
-let pokemonAbility = document.querySelector(".ability");
+let pokemonName = document.querySelector(".nameLARP"); //Index Card Header
+let pokemonHitPoints = document.querySelector(".cardType"); // Index Card Header
+let pokemonWeight = document.querySelector(".weight"); //TODO New
+let pokemonPicture = document.querySelector("img"); //TODO New
+let pokemonAbility = document.querySelector(".ability"); //TODO New
 
 addButton.addEventListener("click", async (itemSearcher) => {
   itemSearcher.preventDefault();

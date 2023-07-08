@@ -111,7 +111,8 @@ body {
   font-weight: bold;
 }
 
-#craftingNumber {
+.craftingNumber {
+  display: inline;
   font-size: 2.5rem;
   color: black;
 }
@@ -128,7 +129,8 @@ body {
   color: black;
 }
 
-#itemUses {
+.itemUses {
+  display: inline;
   font-size: 2rem;
   margin-top: 2rem;
   color: black;
@@ -160,7 +162,16 @@ span {
   text-align: center;
 }
 
+.tag{
+  display: inline;
+}
+
 #tags {
+  display: block;
+  margin: auto;
+  font-size: 2rem;
+  align-items: center;
+  text-align: center;
   font-size: 2rem;
   margin-top: 2rem;
   color: black;

@@ -46,14 +46,32 @@ Crafting Aid -->
           </div>
 
           <div class="card-bulk">
-            <p id="itemDescription">This Item does a Thing</p>
-            <p id="itemUses">Uses: X per combat</p>
-            <p id="tags">[]</p>
+            <div>
+              <p id="itemDescription">This Item does a Thing</p>
+            </div>
+            <div>
+              <p class="itemUses">Uses:</p>
+              <p class="itemUses" id="itemUsesValue">X</p>
+              <p class="itemUses">per</p>
+              <p class="itemUses" id="itemUsesTime">combat</p>
+            </div>
+          </div>
+          <div id="tags">
+            <p class="tag">[Combat,</p>
+            <p class="tag" id="tag3">Tag 3,</p>
+            <!-- Ability Speed: Ongoing, Power, Start, End, Reaction -->
+            <p class="tag" id="tag4">Tag 4,</p>
+            <!-- Ability Type: Melee, Projectile, Energy, Fire, Cold, Lightning, Psychic, Toxic, Infernal, Radiant, Sonic, Healing, Redirect -->
+            <p class="tag" id="tag5">Tag 5</p>
+            <!-- Other Tags, usually: Backlash, Heavy -->
+            <p class="tag">]</p>
           </div>
         </div>
 
         <div class="card-footer">
-          <p id="craftingNumber">(Item: 10)</p>
+          <p class="craftingNumber">(Item:</p>
+          <p class="craftingNumber" id="craftingNumberValue">10</p>
+          <p class="craftingNumber">)</p>
         </div>
       </div>
     </div>

@@ -1,8 +1,81 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid
 
-import craftingItems from "./crafting-words"; // Pulls our Crafting Matrix from another file.
-// Reference Jeopardy game
+/*  //TODO Fix Import Statement
+console.log("Crafting Items Import");
+import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file. 
+*/
+
+const craftingItems = [
+  {
+    itemName: "Coffee",
+    craftingWord: "Active",
+    craftingType: "Chemical",
+    itemType: "Solution",
+    craftingNumber: 1,
+    actionTime: "Power",
+    damageType: "",
+    uses: 0,
+    potency: 0,
+    targets: 1,
+    backlash: 0,
+    collateralDamage: 0,
+    extra: "",
+  },
+  {
+    itemName: "Amazonian Flowers",
+    craftingWord: "Continuous",
+    craftingType: "Chemical",
+    itemType: "Solution",
+    craftingNumber: 3,
+    actionTime: "Ongoing",
+    damageType: "Buff",
+    uses: 0,
+    potency: 1,
+    targets: 1,
+    backlash: 0,
+    collateralDamage: 0,
+    extra: "",
+  },
+  {
+    itemName: "Sodium",
+    craftingWord: "Crystalized",
+    craftingType: "Chemical",
+    itemType: "Solution",
+    craftingNumber: 2,
+    actionTime: "Power",
+    damageType: "Armor",
+    uses: 0,
+    potency: 1,
+    targets: 0,
+    backlash: 0,
+    turns: 2,
+    collateralDamage: 0,
+    extra: "active for 2 turns",
+  },
+  {
+    itemName: "Sodium",
+    craftingWord: "Lubricant",
+    craftingType: "Chemical",
+    itemType: "Solution",
+    craftingNumber: 5,
+    actionTime: "Power",
+    damageType: "Buff",
+    uses: 0,
+    potency: 1,
+    targets: 1,
+    backlash: 0,
+    turns: 2,
+    collateralDamage: 0,
+    extra: "active for 2 turns",
+  },
+];
+
+console.log("Crafting Items Import", craftingItems); //! TEST
+let craftingWordMatrix = craftingItems.map(
+  (craftWords) => craftWords.craftingWord
+);
+console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 
 console.log("Crafting a new Item");
 let itemChosen = document.querySelector(".search-input"); //Going Fishing
@@ -20,7 +93,10 @@ let pokemonAbility = document.querySelector(".ability"); //TODO New
 addButton.addEventListener("click", async (itemSearcher) => {
   itemSearcher.preventDefault();
 
-  let data = await fetchCraftingInfo(itemChosen.value.toLowerCase(), craftingItems);
+  let data = await fetchCraftingInfo(
+    itemChosen.value.toLowerCase(),
+    craftingItems
+  );
   console.log(data); //! TEST
   populateTable(data);
 });
@@ -35,7 +111,7 @@ function populateTable(data) {
 }
 
 async function fetchCraftingInfo(itemChosen, craftingItems) {
-  let item = craftingItems
+  let item = craftingItems;
   console.log("Item", item); //! TEST
 
   try {
@@ -59,3 +135,15 @@ function titleCase(myString) {
     })
     .join(" ");
 }
+
+//TODO get the dropdown menu to work
+function addOption(selectbox, text, value) {
+  var optn = document.createElement("OPTION");
+  optn.text = text;
+  optn.value = value;
+  selectbox.options.add(optn);
+}
+
+for (var i=0; i < craftingWordMatrix.length;++i){
+  addOption(document.drop_list.craftingWordMatrix, craftingWordMatrix[i], craftingWordMatrix[i]); 
+  }

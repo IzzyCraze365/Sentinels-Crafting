@@ -13,12 +13,20 @@ Crafting Aid -->
   <body>
     <div class="container">
       <form action="" class="search-form">
+        <div>
         <input
           type="text"
-          class="search-input"
-          placeholder="Enter Crafting Word"
+          class="search-input dropdownMenu" placeholder="Enter Crafting Word"
         />
+        <!-- id country-input class autocomplete-input -->
         <button class="addItem-btn">Add Item</button>
+      </div>
+        <ul class="autocompleteList" id="dropdownList">
+          <!-- id country-list class autocomplete-list -->
+          <li>Active</li>
+          <li>Continuous</li>
+          <li>Crystalized</li>
+        </ul>
       </form>
 
       <!--  Storage of all the Crafting information -->

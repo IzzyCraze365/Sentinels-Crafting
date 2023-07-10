@@ -28,6 +28,24 @@ body {
   border-radius: 0 5px 5px 0;
 }
 
+.autocompleteList{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocompleteList li{
+  color: black;
+  padding: 15px;
+  width: calc(100%-30px);
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .card {
   /* We are trying to mimic a 3" by 5" index card*/
   background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png);

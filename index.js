@@ -1,6 +1,18 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid
 
+const readline = require("readline");
+const readlineInterface = readline.createInterface(
+  process.stdin,
+  process.stdout
+);
+
+function ask(questionText) {
+  return new Promise((resolve, reject) => {
+    readlineInterface.question(questionText, resolve);
+  });
+}
+
 /*  //TODO Fix Import Statement
 console.log("Crafting Items Import");
 import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file. 
@@ -78,14 +90,16 @@ let craftingWordMatrix = craftingItems.map(
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 
 console.log("Crafting a new Item");
+
+// Going Fishing
 let itemChosen = document.querySelector(".search-input"); //Going Fishing
 console.log("User Input =", itemChosen);
 
 let addButton = document.querySelector(".addItem-btn"); //Going Fishing
 
 // TODO Get rid of all Pokemon Stuff
-let pokemonName = document.querySelector(".nameLARP"); //Index Card Header
-let pokemonHitPoints = document.querySelector(".cardType"); // Index Card Header
+let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
+let cardType = document.querySelector(".cardType"); // Index Card Header
 let pokemonWeight = document.querySelector(".weight"); //TODO New
 let pokemonPicture = document.querySelector("img"); //TODO New
 let pokemonAbility = document.querySelector(".ability"); //TODO New
@@ -103,8 +117,8 @@ addButton.addEventListener("click", async (itemSearcher) => {
 
 function populateTable(data) {
   console.log(data);
-  pokemonName.innerText = titleCase(data.name);
-  pokemonHitPoints.innerHTML = `<h3 class="hp"><span>HP</span> ${data.stats[0].base_stat}</h3>`; //New way to change the template
+  nameLarp.innerText = titleCase(data.name);
+  cardType.innerHTML = `<h3 class="hp"><span>HP</span> ${data.stats[0].base_stat}</h3>`; //New way to change the template
   pokemonWeight.innerText = Math.round(data.weight / 0.453592) / 10;
   pokemonPicture.src = data.sprites.front_default;
   pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
@@ -136,7 +150,7 @@ function titleCase(myString) {
     .join(" ");
 }
 
-//TODO get the dropdown menu to work
+/* //TODO get the dropdown menu to work
 function addOption(selectbox, text, value) {
   var optn = document.createElement("OPTION");
   optn.text = text;
@@ -146,4 +160,26 @@ function addOption(selectbox, text, value) {
 
 for (var i=0; i < craftingWordMatrix.length;++i){
   addOption(document.drop_list.craftingWordMatrix, craftingWordMatrix[i], craftingWordMatrix[i]); 
+  } */
+
+  /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = itemChosen
+  filter = input.value.toUpperCase();
+  div = document.getElementById("dropdownMenu");
+  a = craftingWordMatrix;
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
   }
+}

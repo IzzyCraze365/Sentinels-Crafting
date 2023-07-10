@@ -87,7 +87,21 @@ console.log("Crafting Items Import", craftingItems); //! TEST
 let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
 );
+craftingWordMatrix = craftingWordMatrix.sort();
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
+
+function dropdownList(data, element){
+  if(data){
+    element.innerHTML= "";
+    data.forEach((item) => {
+      innerElement += 
+      <li>${item}</li>;
+    });
+    element.innerHTML= innerElement;
+  }
+}
+
+dropdownList(craftingWordMatrix, craftingItems)
 
 console.log("Crafting a new Item");
 

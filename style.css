@@ -18,16 +18,32 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-.addItem-btn {
+.button {
   border: none;
-  padding: 0.4rem;
+  padding: 0.5rem;
   font-size: 1rem;
   min-width: 60px;
-  background: #2e66b9;
+  background: red;
   color: white;
-  /*   border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px; */
-  border-radius: 0 5px 5px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#addItem-btn{
+  border-radius: 0px 5px 5px 0px;
+  background: #2e66b9;
+}
+
+#createButton{
+  border-radius: 5px 0px 0px 5px;
+  background: green;
+  min-width: 25%;
+}
+
+#resetButton{
+  border-radius: 0px 5px 5px 0px;
+  background: red;
+  min-width: 25%;
 }
 
 .autocompleteList {
@@ -178,21 +194,24 @@ span {
   font-size: 0.7rem;
 }
 
-table, th, td{
+table,
+th,
+td {
   border: 1px solid white;
   border-collapse: collapse;
-  text-align: center;  
+  padding: 5px 10px;
+  text-align: center;
 }
 
-table{
+table {
   width: 100%;
 }
 
-th, td{
-  padding: 5px 10px;
+th{
+  text-decoration: underline;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
   background-color: skyblue;
 }
 

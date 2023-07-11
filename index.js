@@ -1,18 +1,6 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid
 
-const readline = require("readline");
-const readlineInterface = readline.createInterface(
-  process.stdin,
-  process.stdout
-);
-
-function ask(questionText) {
-  return new Promise((resolve, reject) => {
-    readlineInterface.question(questionText, resolve);
-  });
-}
-
 /*  //TODO Fix Import Statement
 console.log("Crafting Items Import");
 import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file. 
@@ -651,24 +639,13 @@ const craftingItems = [
   },
 ];
 
+
 console.log("Crafting Items Import", craftingItems); //! TEST
 let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
 );
 craftingWordMatrix = craftingWordMatrix.sort();
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
-
-function dropdownList(data, element) {
-  if (data) {
-    element.innerHTML = "";
-    data.forEach((item) => {
-      innerElement += <li>${item}</li>;
-    });
-    element.innerHTML = innerElement;
-  }
-}
-
-dropdownList(craftingWordMatrix, craftingItems);
 
 console.log("Crafting a new Item");
 
@@ -677,6 +654,8 @@ let itemChosen = document.querySelector(".search-input"); //Going Fishing
 console.log("User Input =", itemChosen);
 
 let addButton = document.querySelector(".addItem-btn"); //Going Fishing
+
+dropdownMenu(); //Call the drop down
 
 // TODO Get rid of all Pokemon Stuff
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -705,6 +684,17 @@ function populateTable(data) {
   pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
 }
 
+function dropdownMenu() {
+  craftingWordMatrix.forEach((craftWord) =>{
+    let dropdownWords = document.createElement("option");
+    dropdownWords.value = craftWord;
+    console.log("Drop Down Words",dropdownWords); //! TEST
+    let dropdownList = document.getElementById("crafting-words");
+    dropdownList.appendChild(dropdownWords);
+    console.log("Drop Down List",dropdownList); //! TEST
+  });
+}
+
 async function fetchCraftingInfo(itemChosen, craftingItems) {
   let item = craftingItems;
   console.log("Item", item); //! TEST
@@ -729,38 +719,4 @@ function titleCase(myString) {
       return firstLetter1 + restOfWord1;
     })
     .join(" ");
-}
-
-/* //TODO get the dropdown menu to work
-function addOption(selectbox, text, value) {
-  var optn = document.createElement("OPTION");
-  optn.text = text;
-  optn.value = value;
-  selectbox.options.add(optn);
-}
-
-for (var i=0; i < craftingWordMatrix.length;++i){
-  addOption(document.drop_list.craftingWordMatrix, craftingWordMatrix[i], craftingWordMatrix[i]); 
-  } */
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = itemChosen;
-  filter = input.value.toUpperCase();
-  div = document.getElementById("dropdownMenu");
-  a = craftingWordMatrix;
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
 }

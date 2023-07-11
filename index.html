@@ -14,21 +14,14 @@ Crafting Aid -->
     <div class="container">
       <form action="" class="search-form">
         <div>
-        <input
-          type="text"
-          class="search-input dropdownMenu" placeholder="Enter Crafting Word"
-        />
-        <!-- id country-input class autocomplete-input -->
-        <!-- https://www.youtube.com/watch?v=OPnPqc9YWSA
-        This youtube video messed me up -->
-        <button class="addItem-btn">Add Item</button>
-      </div>
-        <ul class="autocompleteList" id="dropdownList">
-          <!-- id country-list class autocomplete-list -->
-          <li>Active</li>
-          <li>Continuous</li>
-          <li>Crystalized</li>
-        </ul>
+          <input
+            list="crafting-words"
+            class="search-input dropdownMenu"
+            placeholder="Enter Crafting Word"
+          />
+          <datalist id="crafting-words"></datalist>
+          <button class="addItem-btn">Add Item</button>
+        </div>
       </form>
 
       <!--  Storage of all the Crafting information -->
@@ -46,31 +39,41 @@ Crafting Aid -->
             <td class="craftingWord" id="cWord1">Active</td>
             <td class="craftItemName" id="cItem1">Coffee</td>
             <td class="craftNum" id="cNum1">1</td>
-            <td class="addedItemEffect" id="cEffect1">Power – Direct (1 effect to 1 target)</td>
+            <td class="addedItemEffect" id="cEffect1">
+              Power – Direct (1 effect to 1 target)
+            </td>
           </tr>
           <tr class="item2">
             <td class="craftingWord" id="cWord2">Active</td>
             <td class="craftItemName" id="cItem2">Coffee</td>
             <td class="craftNum" id="cNum2">1</td>
-            <td class="addedItemEffect" id="cEffect2">Power – Direct (1 effect to 1 target)</td>
+            <td class="addedItemEffect" id="cEffect2">
+              Power – Direct (1 effect to 1 target)
+            </td>
           </tr>
           <tr class="item3">
             <td class="craftingWord" id="cWord3">Active</td>
             <td class="craftItemName" id="cItem">Coffee</td>
             <td class="craftNum" id="cNum3">1</td>
-            <td class="addedItemEffect" id="cEffect3">Power – Direct (1 effect to 1 target)</td>
+            <td class="addedItemEffect" id="cEffect3">
+              Power – Direct (1 effect to 1 target)
+            </td>
           </tr>
           <tr class="item4">
             <td class="craftingWord" id="cWord4">Active</td>
             <td class="craftItemName" id="cItem">Coffee</td>
             <td class="craftNum" id="cNum4">1</td>
-            <td class="addedItemEffect" id="cEffect4">Power – Direct (1 effect to 1 target)</td>
+            <td class="addedItemEffect" id="cEffect4">
+              Power – Direct (1 effect to 1 target)
+            </td>
           </tr>
           <tr class="item5">
             <td class="craftingWord" id="cWord5">Active</td>
             <td class="craftItemName" id="cItem5">Coffee</td>
             <td class="craftNum" id="cNum5">1</td>
-            <td class="addedItemEffect" id="cEffect5">Power – Direct (1 effect to 1 target)</td>
+            <td class="addedItemEffect" id="cEffect5">
+              Power – Direct (1 effect to 1 target)
+            </td>
           </tr>
         </table>
       </div>

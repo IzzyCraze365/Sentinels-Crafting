@@ -10,7 +10,9 @@ Crafting Aid
 }
 
 body {
-  background: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w);
+  /* background: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w); */
+  /* Online Image (above) vs Locally Saved Image (below)*/
+  background: url(./Sentinels-Wallpaper.jpg);
   overflow: hidden;
   background-size: cover;
   font-family: "Lato", sans-serif;
@@ -28,7 +30,7 @@ body {
   border-radius: 0 5px 5px 0;
 }
 
-.autocompleteList{
+.autocompleteList {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -38,7 +40,7 @@ body {
   overflow-y: auto;
 }
 
-.autocompleteList li{
+.autocompleteList li {
   color: black;
   padding: 15px;
   width: calc(100%-30px);
@@ -119,7 +121,7 @@ body {
   align-items: center;
 }
 
-.crafting-table{
+.crafting-table {
   background-color: white;
   padding: 1rem;
   min-width: 100px;
@@ -176,11 +178,29 @@ span {
   font-size: 0.7rem;
 }
 
-.tabletop{
+table, th, td{
+  border: 1px solid white;
+  border-collapse: collapse;
+  text-align: center;  
+}
+
+table{
+  width: 100%;
+}
+
+th, td{
+  padding: 2px;
+}
+
+tr:nth-child(even){
+  background-color: skyblue;
+}
+
+.tabletop {
   text-align: center;
 }
 
-.tag{
+.tag {
   display: inline;
 }
 
@@ -196,6 +216,6 @@ span {
 }
 
 /* This is for the Table Item List */
-ul{
+ul {
   text-align: center;
 }

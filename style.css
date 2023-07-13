@@ -67,6 +67,7 @@ body {
 .card {
   /* We are trying to mimic a 3" by 5" index card*/
   background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png);
+  /* TODO Make this with CSS, don't use an image OR save image locally*/
   background-size: cover;
   background-color: black;
   padding: 1rem;

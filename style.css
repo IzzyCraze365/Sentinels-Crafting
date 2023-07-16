@@ -29,18 +29,18 @@ body {
   margin-right: auto;
 }
 
-#addItem-btn{
+#addItem-btn {
   border-radius: 0px 5px 5px 0px;
   background: #2e66b9;
 }
 
-#createButton{
+#createButton {
   border-radius: 5px 0px 0px 5px;
   background: green;
   min-width: 25%;
 }
 
-#resetButton{
+#resetButton {
   border-radius: 0px 5px 5px 0px;
   background: red;
   min-width: 25%;
@@ -208,7 +208,7 @@ table {
   width: 100%;
 }
 
-th{
+th {
   text-decoration: underline;
 }
 

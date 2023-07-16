@@ -1,6 +1,8 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid
 
+//! CORS policy will not import this file, you will need to run in a "LIVE SERVER"
+
 const craftingItems = [
   //! Chemical Crafting
   {
@@ -374,7 +376,8 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "Special! Player may add any 1 Crafting Word of their choice to the Mixture",
+    effect:
+      "Special! Player may add any 1 Crafting Word of their choice to the Mixture",
   },
   {
     itemName: "Honey",
@@ -767,7 +770,8 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "Reaction - Redirect (Redirect the next 2+potency effect to target)",
+    effect:
+      "Reaction - Redirect (Redirect the next 2+potency effect to target)",
   },
   {
     itemName: "Duct Tape",
@@ -954,7 +958,8 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "Special! Player may add any 1 Crafting Word of their choice to the Device",
+    effect:
+      "Special! Player may add any 1 Crafting Word of their choice to the Device",
   },
   {
     itemName: "Speaker",
@@ -1124,7 +1129,8 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "Unity instead can make a Golem with Health = number of Uses that can Device can be used before it dies (does not work for healing)",
+    effect:
+      "Unity instead can make a Golem with Health = number of Uses that can Device can be used before it dies (does not work for healing)",
   },
   {
     itemName: "Broken Laser Turret",

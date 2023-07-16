@@ -52,7 +52,7 @@ Crafting Aid -->
             <td class="craftingWord" id="cWord2">Active</td>
             <td class="craftItemName" id="cItem2">Coffee</td>
             <td class="craftItemType" id="cItemType2">Catalyst</td>
-             <td class="craftNum" id="cNum2">1</td>
+            <td class="craftNum" id="cNum2">1</td>
             <td class="addedItemEffect" id="cEffect2">
               Power – Direct (1 effect to 1 target)
             </td>
@@ -92,7 +92,7 @@ Crafting Aid -->
       <div>
         <button class="button" id="createButton">Craft Item</button>
         <button class="button" id="resetButton">Reset</button>
-        </div>
+      </div>
       <!--  Below displays the finished Item Card -->
       <div class="card">
         <div class="card-header">
@@ -135,6 +135,7 @@ Crafting Aid -->
         </div>
       </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
+    <!-- This needs to be a module otherwise system will not load Crafting Words, It needs to be run in a LIVE SERVER because of CORS policy -->
   </body>
 </html>

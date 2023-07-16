@@ -1450,6 +1450,7 @@ let pokemonWeight = document.querySelector(".weight"); //TODO New
 let pokemonPicture = document.querySelector("img"); //TODO New
 let pokemonAbility = document.querySelector(".ability"); //TODO New
 
+// TODO there is a problem with this button click
 addButton.addEventListener("click", async (itemSearcher) => {
   itemSearcher.preventDefault();
 
@@ -1457,12 +1458,12 @@ addButton.addEventListener("click", async (itemSearcher) => {
     itemChosen.value.toLowerCase(),
     craftingItems
   );
-  console.log(data); //! TEST
+  console.log("addButton Data", data); //! TEST
   populateTable(data);
 });
 
 function populateTable(data) {
-  console.log(data);
+  console.log("In Populate Table",data); //! TEST
   nameLarp.innerText = titleCase(data.name);
   cardType.innerHTML = `<h3 class="hp"><span>HP</span> ${data.stats[0].base_stat}</h3>`; //New way to change the template
   pokemonWeight.innerText = Math.round(data.weight / 0.453592) / 10;

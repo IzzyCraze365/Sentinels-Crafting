@@ -5,8 +5,6 @@
 console.log("Crafting Items Import");
 import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file.
 
-// TODO Delete the below "craftingItems" Object once the import statement above works
-
 console.log("Crafting Items Import", craftingItems); //! TEST
 let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
@@ -22,7 +20,7 @@ console.log("User Input =", itemChosen);
 
 let addButton = document.querySelector(".addItem-btn"); //Going Fishing
 
-dropdownMenu(); //Call the drop down
+// dropdownMenu(); //Call the drop down
 
 // TODO Get rid of all Pokemon Stuff
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -33,12 +31,14 @@ let pokemonAbility = document.querySelector(".ability"); //TODO New
 
 // TODO there is a problem with this button click
 addButton.addEventListener("click", async (itemSearcher) => {
-  itemSearcher.preventDefault();
-
+    itemSearcher.preventDefault();
+    
+    console.log("addButton Function"); //! TEST
   let data = await fetchCraftingInfo(
     itemChosen.value.toLowerCase(),
     craftingItems
   );
+  
   console.log("addButton Data", data); //! TEST
   populateTable(data);
 });

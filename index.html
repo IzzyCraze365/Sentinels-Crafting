@@ -5,139 +5,27 @@ Crafting Aid -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sentinels Crafting</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <form action="" class="search-form">
-        <div>
-          <input
-          type="search"  
-          list="crafting-words"
-            id="searched-item"
-            class="search-input dropdownMenu"
-            placeholder="Enter Crafting Word"
-          />
-          <datalist id="crafting-words"></datalist>
-          <button id="addItem-btn" class="button" onclick="addItem()">Add Item</button>
-        </div><!--  Nick suggested adding the onclick -->
-      </form>
-
-      <!--  Storage of all the Crafting information -->
-      <div class="crafting-table">
-        <h2 class="tabletop">Added Items</h2>
-        <table>
-          <tr>
-            <th>Crafting Type</th>
-            <th>Crafting Word</th>
-            <th>Item Name</th>
-            <th>Item Type</th>
-            <th>Crafting Number</th>
-            <th>Effect Description</th>
-          </tr>
-          <!--  TODO Make it so These are Appended and not always there -->
-<!--           <tr class="item1">
-            <td class="craftingType" id="cType1">Chemical</td>
-            <td class="craftingWord" id="cWord1">Active</td>
-            <td class="craftItemName" id="cItem1">Coffee</td>
-            <td class="craftItemType" id="cItemType1">Catalyst</td>
-            <td class="craftNum" id="cNum1">1</td>
-            <td class="addedItemEffect" id="cEffect1">
-              Power – Direct (1 effect to 1 target)
-            </td>
-          </tr>
-          <tr class="item2">
-            <td class="craftingType" id="cType2">Chemical</td>
-            <td class="craftingWord" id="cWord2">Active</td>
-            <td class="craftItemName" id="cItem2">Coffee</td>
-            <td class="craftItemType" id="cItemType2">Catalyst</td>
-            <td class="craftNum" id="cNum2">1</td>
-            <td class="addedItemEffect" id="cEffect2">
-              Power – Direct (1 effect to 1 target)
-            </td>
-          </tr>
-          <tr class="item3">
-            <td class="craftingType" id="cType3">Chemical</td>
-            <td class="craftingWord" id="cWord3">Active</td>
-            <td class="craftItemName" id="cItem3">Coffee</td>
-            <td class="craftItemType" id="cItemType3">Catalyst</td>
-            <td class="craftNum" id="cNum3">1</td>
-            <td class="addedItemEffect" id="cEffect3">
-              Power – Direct (1 effect to 1 target)
-            </td>
-          </tr>
-          <tr class="item4">
-            <td class="craftingType" id="cType4">Chemical</td>
-            <td class="craftingWord" id="cWord4">Active</td>
-            <td class="craftItemName" id="cItem4">Coffee</td>
-            <td class="craftItemType" id="cItemType4">Catalyst</td>
-            <td class="craftNum" id="cNum4">1</td>
-            <td class="addedItemEffect" id="cEffect4">
-              Power – Direct (1 effect to 1 target)
-            </td>
-          </tr>
-          <tr class="item5">
-            <td class="craftingType" id="cType5">Chemical</td>
-            <td class="craftingWord" id="cWord5">Active</td>
-            <td class="craftItemName" id="cItem5">Coffee</td>
-            <td class="craftItemType" id="cItemType5">Catalyst</td>
-            <td class="craftNum" id="cNum5">1</td>
-            <td class="addedItemEffect" id="cEffect5">
-              Power – Direct (1 effect to 1 target)
-            </td>
-          </tr> -->
-        </table>
-      </div>
-      <div>
-        <button class="button" id="createButton">Craft Item</button>
-        <button class="button" id="resetButton">Reset</button>
-      </div>
-      <!--  Below displays the finished Item Card -->
-      <div class="card">
-        <div class="card-header">
-          <h1 class="nameLARP">Sentinel Comics Issue #404: Lock Down</h1>
-          <h1 class="cardType">Item Card</h1>
-        </div>
-
-        <div class="card-body">
-          <div class="card-body-header">
-            <h2 id="itemName">Item Name</h2>
-          </div>
-
-          <div class="card-bulk">
-            <div>
-              <p id="itemDescription">This Item does a Thing</p>
-            </div>
-            <div>
-              <p class="itemUses">Uses:</p>
-              <p class="itemUses" id="itemUsesValue">X</p>
-              <p class="itemUses">per</p>
-              <p class="itemUses" id="itemUsesTime">combat</p>
-            </div>
-          </div>
-          <div id="tags">
-            <p class="tag">[Combat,</p>
-            <p class="tag" id="tag3">Tag 3,</p>
-            <!-- Ability Speed: Ongoing, Power, Start, End, Reaction -->
-            <p class="tag" id="tag4">Tag 4,</p>
-            <!-- Ability Type: Melee, Projectile, Energy, Fire, Cold, Lightning, Psychic, Toxic, Infernal, Radiant, Sonic, Healing, Redirect -->
-            <p class="tag" id="tag5">Tag 5</p>
-            <!-- Other Tags, usually: Backlash, Heavy -->
-            <p class="tag">]</p>
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <p class="craftingNumber">(Item:</p>
-          <p class="craftingNumber" id="craftingNumberValue">10</p>
-          <p class="craftingNumber">)</p>
-        </div>
-      </div>
+    <div class="search-wrapper">
+      <label for="search">Search users</label>
+      <input type="search" id="search" data-search=""/>
     </div>
-    <script src="./index.js" type="module"></script>
-    <!-- This needs to be a module otherwise system will not load Crafting Words, It needs to be run in a LIVE SERVER because of CORS policy -->
+    <div class="user-cards" data-user-cards-container>
+<!--       <div class="card">
+        <div class="header">My Name</div>
+        <div class="body">email@gmail.com</div>
+      </div>
+    </div> -->
+    <template data-user-template>
+      <div class="card">
+        <div class="header" data-header></div>
+        <div class="body" data-body></div>
+      </div>
+    </template>
+    <script src="./index.js"></script>
   </body>
 </html>

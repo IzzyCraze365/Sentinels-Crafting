@@ -11,7 +11,7 @@ let craftingWordMatrix = craftingItems.map(
 );
 craftingWordMatrix = craftingWordMatrix.sort();
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
-console.log("Crafting a new Item");
+console.log("Crafting a new Item"); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table
@@ -44,26 +44,17 @@ function dropdownMenu() {
 }
 
 // TODO there is a problem with this button click
-addButton.addEventListener("click", addItem());
-    
-function addItem(){
-console.log("Inside Add Item"); //! TEST
-/* let selectedWord = itemSearcher.options[itemSearcher.selectedIndex].text(); */
-console.log("itemSearcher", itemSearcher.value); //! TEST
-console.log("selectedWord", selectedWord); //! TEST
+//addButton.addEventListener("click", addItem());
 
+function addItem() {
+  console.log("Inside Add Item"); //! TEST
+  let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar
+  console.log("itemSearcher", itemSearcher2.value); //! TEST
+  console.log("addButton Function"); //! TEST
+  //itemSearcher.preventDefault();
+}
 
-    
-    console.log("addButton Function"); //! TEST
-/*   let data = await fetchCraftingInfo(
-    itemChosen.value.toLowerCase(),
-    craftingItems
-  ); */
-  
-  //populateTable(data);
-  itemSearcher.preventDefault();
-};
-
+/* 
 function populateTable(data) {
   console.log("In Populate Table", data); //! TEST
   nameLarp.innerText = titleCase(data.name);
@@ -72,8 +63,6 @@ function populateTable(data) {
   pokemonPicture.src = data.sprites.front_default;
   pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
 }
-
-
 
 async function fetchCraftingInfo(itemChosen, craftingItems) {
   let item = craftingItems;
@@ -99,4 +88,7 @@ function titleCase(myString) {
       return firstLetter1 + restOfWord1;
     })
     .join(" ");
-}
+} 
+*/
+
+export { addItem };

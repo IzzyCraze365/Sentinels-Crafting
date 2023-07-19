@@ -29,6 +29,8 @@ let pokemonWeight = document.querySelector(".weight"); //TODO New
 let pokemonPicture = document.querySelector("img"); //TODO New
 let pokemonAbility = document.querySelector(".ability"); //TODO New
 
+dropdownMenu();
+
 // TODO there is a problem with this button click
 addButton.addEventListener("click", async (itemSearcher) => {
     itemSearcher.preventDefault();

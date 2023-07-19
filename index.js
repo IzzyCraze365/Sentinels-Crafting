@@ -4,46 +4,65 @@
 //TODO Fix Import Statement
 console.log("Crafting Items Import");
 import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file.
-
 console.log("Crafting Items Import", craftingItems); //! TEST
+
 let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
 );
 craftingWordMatrix = craftingWordMatrix.sort();
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
-
 console.log("Crafting a new Item");
+
+let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
+let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table
 
 // Going Fishing
 let itemChosen = document.querySelector(".search-input"); //Going Fishing
 console.log("User Input =", itemChosen);
 
-let addButton = document.querySelector(".addItem-btn"); //Going Fishing
+let addButton = document.querySelector("#addItem-btn"); //Going Fishing
+let itemSearcher = document.querySelector("#searched-item"); // Search Bar
 
-// dropdownMenu(); //Call the drop down
-
-// TODO Get rid of all Pokemon Stuff
+//! Index Card Queries
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
 let cardType = document.querySelector(".cardType"); // Index Card Header
-let pokemonWeight = document.querySelector(".weight"); //TODO New
-let pokemonPicture = document.querySelector("img"); //TODO New
-let pokemonAbility = document.querySelector(".ability"); //TODO New
+let itemName = document.querySelector("#itemName"); // Probably will just be "New Device" or "Created Mixture"
+let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
+let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
+let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
-dropdownMenu();
+dropdownMenu(); //Call the drop down
+
+function dropdownMenu() {
+  searchCraftingWords.forEach((craftWord) => {
+    let dropdownWords = document.createElement("option");
+    dropdownWords.value = craftWord;
+    let dropdownList = document.getElementById("crafting-words");
+    dropdownList.appendChild(dropdownWords);
+    //console.log("Drop Down List", dropdownList); //! TEST
+  });
+}
 
 // TODO there is a problem with this button click
-addButton.addEventListener("click", async (itemSearcher) => {
-    itemSearcher.preventDefault();
+addButton.addEventListener("click", addItem());
+    
+function addItem(){
+console.log("Inside Add Item"); //! TEST
+/* let selectedWord = itemSearcher.options[itemSearcher.selectedIndex].text(); */
+console.log("itemSearcher", itemSearcher.value); //! TEST
+console.log("selectedWord", selectedWord); //! TEST
+
+
     
     console.log("addButton Function"); //! TEST
-  let data = await fetchCraftingInfo(
+/*   let data = await fetchCraftingInfo(
     itemChosen.value.toLowerCase(),
     craftingItems
-  );
+  ); */
   
-  console.log("addButton Data", data); //! TEST
-  populateTable(data);
-});
+  //populateTable(data);
+  itemSearcher.preventDefault();
+};
 
 function populateTable(data) {
   console.log("In Populate Table", data); //! TEST
@@ -54,16 +73,7 @@ function populateTable(data) {
   pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
 }
 
-function dropdownMenu() {
-  craftingWordMatrix.forEach((craftWord) => {
-    let dropdownWords = document.createElement("option");
-    dropdownWords.value = craftWord;
-    console.log("Drop Down Words", dropdownWords); //! TEST
-    let dropdownList = document.getElementById("crafting-words");
-    dropdownList.appendChild(dropdownWords);
-    console.log("Drop Down List", dropdownList); //! TEST
-  });
-}
+
 
 async function fetchCraftingInfo(itemChosen, craftingItems) {
   let item = craftingItems;

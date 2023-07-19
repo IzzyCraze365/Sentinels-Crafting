@@ -3,7 +3,7 @@
 
 //TODO Fix Import Statement
 console.log("Crafting Items Import");
-import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file.
+import craftingItems from "../crafting-words.js"; // Pulls our Crafting Matrix from another file.
 console.log("Crafting Items Import", craftingItems); //! TEST
 
 let craftingWordMatrix = craftingItems.map(
@@ -12,6 +12,7 @@ let craftingWordMatrix = craftingItems.map(
 craftingWordMatrix = craftingWordMatrix.sort();
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 console.log("Crafting a new Item"); //! TEST
+
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table
@@ -23,6 +24,7 @@ console.log("User Input =", itemChosen);
 let addButton = document.querySelector("#addItem-btn"); //Going Fishing
 let itemSearcher = document.querySelector("#searched-item"); // Search Bar
 
+
 //! Index Card Queries
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
 let cardType = document.querySelector(".cardType"); // Index Card Header
@@ -30,6 +32,7 @@ let itemName = document.querySelector("#itemName"); // Probably will just be "Ne
 let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
+
 
 dropdownMenu(); //Call the drop down
 
@@ -44,16 +47,19 @@ function dropdownMenu() {
 }
 
 // TODO there is a problem with this button click
-//addButton.addEventListener("click", addItem());
+addButton.addEventListener("click", addItem());
 
 function addItem() {
+console.log("sup");}
+  /* 
+  preventDefault();
   console.log("Inside Add Item"); //! TEST
   let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar
   console.log("itemSearcher", itemSearcher2.value); //! TEST
   console.log("addButton Function"); //! TEST
   //itemSearcher.preventDefault();
 }
-
+ */
 /* 
 function populateTable(data) {
   console.log("In Populate Table", data); //! TEST

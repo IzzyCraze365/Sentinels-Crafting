@@ -1,0 +1,31 @@
+<!--  Sentinel Comics Issue #404: Lock Down
+Crafting Aid -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentinels Crafting</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="search-wrapper">
+      <label for="search">Search users</label>
+      <input type="search" id="search" data-search=""/>
+    </div>
+    <div class="user-cards" data-user-cards-container>
+<!--       <div class="card">
+        <div class="header">My Name</div>
+        <div class="body">email@gmail.com</div>
+      </div>
+    </div> -->
+    <template data-user-template>
+      <div class="card">
+        <div class="header" data-header></div>
+        <div class="body" data-body></div>
+      </div>
+    </template>
+    <script src="./practice.js"></script>
+  </body>
+</html>

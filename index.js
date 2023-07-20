@@ -1,40 +1,95 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid
 
-//! Proof Practice
+//TODO Fix Import Statement
+console.log("Crafting Items Import");  //! TEST
+import craftingItems from "../crafting-words.js"; // Pulls our Crafting Matrix from another file.
+console.log("Crafting Items Import", craftingItems); //! TEST
 
-const userCardTemplate = document.querySelector("[data-user-template]");
-const userCardContainer = document.querySelector(
-  "[data-user-template-container]"
+let craftingWordMatrix = craftingItems.map(
+  (craftWords) => craftWords.craftingWord
 );
-const searchInput = document.querySelector("[data-search]");
+craftingWordMatrix = craftingWordMatrix.sort();
+console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
+console.log("Crafting a new Item"); //! TEST
 
-let users = [];
+let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
+let craftIngredients = [Active, Acidic, Debilitating, Violent, Precision]; // This is the matrix that will store the Crafting Words we are adding to the table.
+//TODO "craftIngredients" should be an empty array, words there are just to test for now
 
-searchInput.addEventListener("input", e => {
-  const value = e.target.value.toLowerCase();
-  console.log("Value", value);
-  console.log("Users", users);
-  user.forEach(user => {
-    const isVisible = user.name.toLowerCase().includes(value) || user.email.toLowerCase().includes(value);
-    user.element.classList.toggle("hide",!isVisible);
-  })
-})
+// Query Selectors
+let itemChosen = document.querySelector(".search-input");
+console.log("User Input =", itemChosen); //! TEST
+let addButton = document.querySelector("#addItem-btn");
+let itemSearcher = document.querySelector("#searched-item"); // Search Bar
 
+//! Index Card Queries
+let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
+let cardType = document.querySelector(".cardType"); // Index Card Header
+let itemName = document.querySelector("#itemName"); // Probably will just be "New Device" or "Created Mixture"
+let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
+let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
+let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
-fetch("http://jsonplaceholder.typicode.com/users")
-  .then((res) => res.json())
-  .then((data) => {
-    user = data.map((user) => {
-      const card = userCardTemplate.content.cloneNode(true).children[0];
-      const header = card.querySelector("[data-header]");
-      const body = card.querySelector("[data-body]");
-      header.textContent = user.name;
-      body.textContent = user.email;
-      userCardContainer.append(card);
-      return {name: user.name, email: user.email, element: card}
-    });
+dropdownMenu(); //Call the drop down
+
+function dropdownMenu() {
+  searchCraftingWords.forEach((craftWord) => {
+    let dropdownWords = document.createElement("option");
+    dropdownWords.value = craftWord;
+    let dropdownList = document.getElementById("crafting-words");
+    dropdownList.appendChild(dropdownWords);
+    //console.log("Drop Down List", dropdownList); //! TEST
   });
+}
 
-//Tutorial Help
-// https://www.youtube.com/watch?v=TlP5WIxVirU
+// TODO there is a problem with this button click
+addButton.addEventListener("click", addItem());
+
+function addItem() {
+  console.log("sup");  //! TEST
+
+  preventDefault();
+  console.log("Inside Add Item"); //! TEST
+  let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar
+  console.log("itemSearcher", itemSearcher2.value); //! TEST
+  console.log("addButton Function"); //! TEST
+  //itemSearcher.preventDefault();
+}
+
+function populateTable(data) {
+  console.log("In Populate Table", data); //! TEST
+  nameLarp.innerText = titleCase(data.name);
+  cardType.innerHTML = `<h3 class="hp"><span>HP</span> ${data.stats[0].base_stat}</h3>`; //New way to change the template
+  pokemonWeight.innerText = Math.round(data.weight / 0.453592) / 10;
+  pokemonPicture.src = data.sprites.front_default;
+  pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
+}
+
+async function fetchCraftingInfo(itemChosen, craftingItems) {
+  let item = craftingItems;
+  console.log("Item", item); //! TEST
+
+  try {
+    let response = await fetch(item);
+    let data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Capitalize the Player's Input
+function titleCase(myString) {
+  return myString
+    .split(" ")
+    .map((word) => {
+      word = word.trim();
+      let firstLetter1 = word.charAt(0).toUpperCase();
+      let restOfWord1 = word.slice(1).toLowerCase();
+      return firstLetter1 + restOfWord1;
+    })
+    .join(" ");
+}
+
+export { addItem };

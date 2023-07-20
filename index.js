@@ -1,7 +1,7 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid
 
-//TODO Fix Import Statement
+//TODO Fix Import Statement Otherwise all Crafting words will have to be copied HERE!!!
 console.log("Crafting Items Import");  //! TEST
 import craftingItems from "../crafting-words.js"; // Pulls our Crafting Matrix from another file.
 console.log("Crafting Items Import", craftingItems); //! TEST

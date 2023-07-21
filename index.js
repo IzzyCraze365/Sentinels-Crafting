@@ -14,11 +14,11 @@ console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = [
-  craftingItems[15],
-  craftingItems[7],
-  craftingItems[22],
-  craftingItems[33],
-  craftingItems[28],
+  craftingItems[47],
+  craftingItems[42],
+  craftingItems[48],
+  craftingItems[59],
+  craftingItems[61],
 ]; // This is the matrix that will store the Crafting Words we are adding to the table.
 //TODO "craftIngredients" should be an empty array, words there are just to test for now
 
@@ -32,13 +32,16 @@ let itemSearcher = document.querySelector("#searched-item"); // Search Bar
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
 let cardType = document.querySelector(".cardType"); // Index Card Header
 let itemName = document.querySelector("#itemName"); // Probably will just be "New Device" or "Created Mixture"
+let cardFooterItemType = document.querySelector("#cardFooterItemType"); // Probably will just be "Device" or "Mixture"
+let craftingNumberValue = document.querySelector("#craftingNumberValue");
 let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
 dropdownMenu(); //Call the drop down
-populateTable(craftIngredients); // Poopulates the Table with the Crafting Words in our craftIngredients Matrix
+populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
+// This displays all the Crafting Words in the Search Bar's drop down menu.
 function dropdownMenu() {
   searchCraftingWords.forEach((craftWord) => {
     let dropdownWords = document.createElement("option");
@@ -71,25 +74,29 @@ function removeLine(itemLine) {
   console.log("Test 1", itemLine);
 }
 
+// This function populates the table
 function populateTable(craftWords) {
   let table = document.querySelector("#tableAdd");
   console.log("In Populate Table", craftWords, "Length =", craftWords.length); //! TEST
-  
-  //This section automatically sorts the table by its Item Type
+
+  // This section automatically sorts the table by its Item Type
   craftIngredients.sort((a, b) => {
     const itemA = a.itemType.toUpperCase();
     const itemB = b.itemType.toUpperCase();
-    if (itemA < itemB) {
+    if (a.itemType < b.itemType) {
+      //no constants needed with these variables
       return -1;
     }
     if (itemA > itemB) {
+      //if you want to use the constants
       return 1;
     }
     return 0;
   });
 
+  // This loops through the craftWords Matrix and builds the table
   for (let i = 0; i < craftWords.length; i++) {
-    //console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
+    // console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
     let template = `<tr>
   <td class="craftingType" id="cType${i + 1}">${craftWords[i].craftingType}</td>
   <td class="craftingWord" id="cWord${i + 1}">${craftWords[i].craftingWord}</td>
@@ -107,6 +114,7 @@ function populateTable(craftWords) {
   }
 }
 
+// This is to find the crafting word from the drop Down // TODO Broken
 async function fetchCraftingInfo(itemChosen, craftingItems) {
   let item = craftingItems;
   console.log("Item", item); //! TEST
@@ -120,7 +128,73 @@ async function fetchCraftingInfo(itemChosen, craftingItems) {
   }
 }
 
-// Capitalize the Player's Input
+itemCardBuilder(); //TODO This will need to be linked to the Craft Item Button
+function itemCardBuilder() {
+  let chemCT = 0; //Chemical Crafting Type
+  let mechCT = 0; //Mechanical Crafting Type
+  for (let i = 0; i < craftIngredients.length; i++) {
+    if (craftIngredients[i].craftingType == "Chemical") {
+      console.log(
+        craftIngredients[i].craftingWord,
+        "is a Chemical crafting type."
+      );
+      chemCT++;
+    } else if (craftIngredients[i].craftingType == "Mechanical") {
+      console.log(
+        craftIngredients[i].craftingWord,
+        "is a Mechanical crafting type."
+      );
+      mechCT++;
+    } else {
+      console.log(
+        `There is an error with ${craftIngredients[i].craftingWord}'s crafting type`
+      );
+    }
+    console.log("chemCT =", chemCT, "& mechCT =", mechCT); //! TEST
+  }
+  identifyDeviceOrMixture(chemCT, mechCT); // Mixture or Device
+  identifyCraftingNumber(); // Adds up Crafting Number
+}
+
+// This function checks to make sure proper items are being mixed.
+function identifyDeviceOrMixture(chemCT, mechCT) {
+  console.log("Inside fucntion deviceOrMixture"); //! TEST
+  if (chemCT >= 2 && mechCT == 0) {
+    console.log("This is a crafted Chemical Mixture"); //! TEST
+    itemName.innerHTML = `Crafted Chemical Mixture`;
+    cardFooterItemType.innerHTML = `(Mixture:`;
+    numberOfUses.innerHTML = "";
+    itemUses.innerHTML = craftIngredients[0].uses;
+  } else if (mechCT >= 2 && chemCT == 0) {
+    console.log("This is a crafted Mechanical Device"); //! TEST
+    itemName.innerHTML = `Crafted Mechanical Device`;
+    cardFooterItemType.innerHTML = `(Device:`;
+    deviceUses(); // Adds up Item Uses
+  } else {
+    alert("This item is not viable to be crafted."); // ALERT
+  }
+}
+
+function identifyCraftingNumber() {
+  let craftNumber = 0;
+  for (let i = 0; i < craftIngredients.length; i++) {
+    craftNumber += craftIngredients[i].craftingNumber;
+    console.log(craftNumber, "CraftNumber)"); //! TEST
+  }
+  craftingNumberValue.innerHTML = craftNumber;
+}
+
+function deviceUses() {
+  let uses = 0;
+  for (let i = 0; i < craftIngredients.length; i++) {
+    uses += craftIngredients[i].uses;
+    console.log(uses, "Item Uses)"); //! TEST
+  }
+  numberOfUses.innerHTML = uses;
+  itemUses.innerHTML = `in total before device breaks`; //TODO This is to switch it to combat from special cards.
+}
+
+// Capitalize the User's Input
 function titleCase(myString) {
   return myString
     .split(" ")

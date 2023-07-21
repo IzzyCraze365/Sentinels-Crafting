@@ -172,7 +172,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Toxic Damage",
   },
   {
     itemName: "Growth Hormones",
@@ -189,7 +189,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Melee Damage",
   },
   {
     itemName: "Abiotic",
@@ -206,7 +206,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Infernal Damage",
   },
   {
     itemName: "Paint Thinner",
@@ -240,7 +240,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Radiant Damage",
   },
   {
     itemName: "AntiFreeze",
@@ -257,7 +257,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Cold Damage",
   },
   {
     itemName: "Glycerol",
@@ -274,7 +274,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Energy Damage",
   },
   {
     itemName: "Tobacco",
@@ -291,7 +291,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Fire Damage",
   },
   {
     itemName: "Iodine",
@@ -308,7 +308,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Lightning Damage",
   },
   {
     itemName: "Ink",
@@ -325,7 +325,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Projectile Damage",
   },
   {
     itemName: "Crystalized Myelin",
@@ -342,7 +342,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Psychic Damage",
   },
   {
     itemName: "Acitone",
@@ -359,7 +359,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Sonic Damage",
   },
   {
     itemName: "Chemical X",
@@ -394,7 +394,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Healing",
   },
   {
     itemName: "Industrial Cleaner",
@@ -805,7 +805,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Cold Damage",
   },
   {
     itemName: "Car Battery",
@@ -822,7 +822,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Toxic Damage",
   },
   {
     itemName: "Circuit Board",
@@ -839,7 +839,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Energy Damage",
   },
   {
     itemName: "Laser Pointer",
@@ -856,7 +856,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Radiant Damage",
   },
   {
     itemName: "Capacitor",
@@ -890,7 +890,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Infernal Damage",
   },
   {
     itemName: "Battery",
@@ -907,7 +907,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Lightning Damage",
   },
   {
     itemName: "Air Horn",
@@ -924,7 +924,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Projectile Damage",
   },
   {
     itemName: "Superglue",
@@ -941,7 +941,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Healing",
   },
   {
     itemName: "Rubber Ducky",
@@ -976,7 +976,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Sonic Damage",
   },
   {
     itemName: "Metal Shards",
@@ -993,7 +993,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Melee Damage",
   },
   {
     itemName: "Bunsen Burner",
@@ -1010,7 +1010,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Fire Damage",
   },
   {
     itemName: "V.R. Helmet",
@@ -1027,7 +1027,7 @@ const craftingItems = [
     turns: 0,
     collateralDamage: 0,
     consumedBacklash: 0,
-    effect: "",
+    effect: "Psychic Damage",
   },
   {
     itemName: "Barrel",

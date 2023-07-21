@@ -8,16 +8,15 @@ console.log("Crafting Items Import", craftingItems); //! TEST
 
 let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
-);
-craftingWordMatrix = craftingWordMatrix.sort();
+); // This just pulls the Crafting Words for the Drop Down Menu
+craftingWordMatrix = craftingWordMatrix.sort(); // This sorts the Crafting Words Alphabetically
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
-console.log("Crafting a new Item"); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = [
   craftingItems[15],
   craftingItems[7],
-  craftingItems[16],
+  craftingItems[22],
   craftingItems[33],
   craftingItems[28],
 ]; // This is the matrix that will store the Crafting Words we are adding to the table.
@@ -65,7 +64,7 @@ function addItem() {
    */
 }
 
-//TODO This entire section does not work
+//TODO This entire section does not work REMOVING ITEM LINE
 let craftTable = document.querySelector(".craftTable");
 craftTable.addEventListener("click", removeLine());
 function removeLine(itemLine) {
@@ -75,6 +74,19 @@ function removeLine(itemLine) {
 function populateTable(craftWords) {
   let table = document.querySelector("#tableAdd");
   console.log("In Populate Table", craftWords, "Length =", craftWords.length); //! TEST
+  
+  //This section automatically sorts the table by its Item Type
+  craftIngredients.sort((a, b) => {
+    const itemA = a.itemType.toUpperCase();
+    const itemB = b.itemType.toUpperCase();
+    if (itemA < itemB) {
+      return -1;
+    }
+    if (itemA > itemB) {
+      return 1;
+    }
+    return 0;
+  });
 
   for (let i = 0; i < craftWords.length; i++) {
     //console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST

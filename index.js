@@ -2,8 +2,8 @@
 // Crafting Aid
 
 //TODO Fix Import Statement Otherwise all Crafting words will have to be copied HERE!!!
-console.log("Crafting Items Import");  //! TEST
-import craftingItems from "../crafting-words.js"; // Pulls our Crafting Matrix from another file.
+console.log("Crafting Items Import"); //! TEST
+import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix from another file.
 console.log("Crafting Items Import", craftingItems); //! TEST
 
 let craftingWordMatrix = craftingItems.map(
@@ -14,7 +14,13 @@ console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 console.log("Crafting a new Item"); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
-let craftIngredients = [Active, Acidic, Debilitating, Violent, Precision]; // This is the matrix that will store the Crafting Words we are adding to the table.
+let craftIngredients = [
+  craftingItems[15],
+  craftingItems[7],
+  craftingItems[16],
+  craftingItems[33],
+  craftingItems[28],
+]; // This is the matrix that will store the Crafting Words we are adding to the table.
 //TODO "craftIngredients" should be an empty array, words there are just to test for now
 
 // Query Selectors
@@ -32,6 +38,7 @@ let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times ca
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
 dropdownMenu(); //Call the drop down
+populateTable(craftIngredients); // Poopulates the Table with the Crafting Words in our craftIngredients Matrix
 
 function dropdownMenu() {
   searchCraftingWords.forEach((craftWord) => {
@@ -47,23 +54,38 @@ function dropdownMenu() {
 addButton.addEventListener("click", addItem());
 
 function addItem() {
-  console.log("sup");  //! TEST
-
+  console.log("sup"); //! TEST
+  /* 
   preventDefault();
   console.log("Inside Add Item"); //! TEST
   let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar
   console.log("itemSearcher", itemSearcher2.value); //! TEST
   console.log("addButton Function"); //! TEST
   //itemSearcher.preventDefault();
+   */
 }
 
-function populateTable(data) {
-  console.log("In Populate Table", data); //! TEST
-  nameLarp.innerText = titleCase(data.name);
-  cardType.innerHTML = `<h3 class="hp"><span>HP</span> ${data.stats[0].base_stat}</h3>`; //New way to change the template
-  pokemonWeight.innerText = Math.round(data.weight / 0.453592) / 10;
-  pokemonPicture.src = data.sprites.front_default;
-  pokemonAbility.innerText = titleCase(data.abilities[0].ability.name);
+function populateTable(craftWords) {
+  let table = document.querySelector("#tableAdd");
+  console.log("In Populate Table", craftWords, "Length =", craftWords.length); //! TEST
+
+  for (let i = 0; i < craftWords.length; i++) {
+    console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
+    let template = `<tr>
+  <td class="craftingType" id="cType${i + 1}">${craftWords[i].craftingType}</td>
+  <td class="craftingWord" id="cWord${i + 1}">${craftWords[i].craftingWord}</td>
+  <td class="craftItemName" id="cItem${i + 1}">${craftWords[i].itemName}</td>
+  <td class="craftItemType" id="cItemType${i + 1}">${
+      craftWords[i].itemType
+    }</td>
+  <td class="craftNum" id="cNum${i + 1}">${craftWords[i].craftingNumber}</td>
+  <td class="addedItemEffect" id="cEffect${i + 1}">${craftWords[i].effect}</td>
+  <td><button class="button lineBTN" id="removeItemBtn${
+    i + 1
+  }">Remove</button></td>
+  </tr>`;
+    table.innerHTML += template;
+  }
 }
 
 async function fetchCraftingInfo(itemChosen, craftingItems) {

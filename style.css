@@ -40,6 +40,16 @@ body {
   min-width: 25%;
 }
 
+.lineBTN {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  min-width: 30px;
+  background: purple;
+  color: yellow;
+  border-radius: 15px;
+}
+
 #resetButton {
   border-radius: 0px 5px 5px 0px;
   background: red;

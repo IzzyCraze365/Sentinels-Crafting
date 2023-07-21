@@ -65,12 +65,19 @@ function addItem() {
    */
 }
 
+//TODO This entire section does not work
+let craftTable = document.querySelector(".craftTable");
+craftTable.addEventListener("click", removeLine());
+function removeLine(itemLine) {
+  console.log("Test 1", itemLine);
+}
+
 function populateTable(craftWords) {
   let table = document.querySelector("#tableAdd");
   console.log("In Populate Table", craftWords, "Length =", craftWords.length); //! TEST
 
   for (let i = 0; i < craftWords.length; i++) {
-    console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
+    //console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
     let template = `<tr>
   <td class="craftingType" id="cType${i + 1}">${craftWords[i].craftingType}</td>
   <td class="craftingWord" id="cWord${i + 1}">${craftWords[i].craftingWord}</td>
@@ -82,9 +89,9 @@ function populateTable(craftWords) {
   <td class="addedItemEffect" id="cEffect${i + 1}">${craftWords[i].effect}</td>
   <td><button class="button lineBTN" id="removeItemBtn${
     i + 1
-  }">Remove</button></td>
+  }" >Remove</button></td>
   </tr>`;
-    table.innerHTML += template;
+    table.innerHTML += template; //onclick="removeLine(i)"
   }
 }
 
@@ -114,4 +121,4 @@ function titleCase(myString) {
     .join(" ");
 }
 
-export { addItem };
+export { addItem, removeLine };

@@ -15,7 +15,7 @@ body {
   background: url(./Sentinels-Wallpaper.jpg);
   overflow: hidden;
   background-size: cover;
-  font-family: "Lato", sans-serif;
+  font-family: "Brush Script MT", cursive;
 }
 
 .button {
@@ -76,7 +76,7 @@ body {
 
 .card {
   /* We are trying to mimic a 3" by 5" index card*/
-  background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png);
+  /* background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png); */
   /* TODO Make this with CSS, don't use an image OR save image locally*/
   background-size: cover;
   background-color: white;
@@ -89,7 +89,7 @@ body {
 }
 
 .card-body {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   justify-content: space-around;
   text-align: center;
 }
@@ -135,11 +135,13 @@ body {
   height: 60px;
   align-items: top;
   justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 3px solid red;
 }
 
 .cardType {
   font-size: 2rem;
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
 }
 
 .container {
@@ -187,7 +189,7 @@ body {
 .nameLARP {
   font-size: 2rem;
   margin-left: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
 }
 
 .search-form {

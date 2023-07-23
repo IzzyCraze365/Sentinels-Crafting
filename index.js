@@ -1453,7 +1453,7 @@ let itemSearcher = document.querySelector("#searched-item"); // Search Bar
  */
 
 //! Buttons
-let addButton = document.querySelector("#addItem-btn");
+let addButton = document.querySelector("#addItemButton");
 let createButton = document.querySelector("#createButton");
 let resetButton = document.querySelector("#resetButton");
 
@@ -1486,7 +1486,7 @@ function dropdownMenu() {
 // TODO there is a problem with this button click
 addButton.addEventListener("click", addItem);
 
-function addItem() {
+async function addItem() {
   console.log("sup"); //! TEST
   populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
   /* 

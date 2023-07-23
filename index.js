@@ -1485,10 +1485,11 @@ function dropdownMenu() {
 
 // TODO there is a problem with this button click
 addButton.addEventListener("click", addItem);
+populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
 async function addItem() {
   console.log("sup"); //! TEST
-  populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
+  
   /* 
   preventDefault();
   console.log("Inside Add Item"); //! TEST

@@ -1433,7 +1433,7 @@ let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
 ); // This just pulls the Crafting Words for the Drop Down Menu
 craftingWordMatrix = craftingWordMatrix.sort(); // This sorts the Crafting Words Alphabetically
-console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
+//console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = [
@@ -1445,10 +1445,12 @@ let craftIngredients = [
 ]; // This is the matrix that will store the Crafting Words we are adding to the table.
 //TODO "craftIngredients" should be an empty array, words there are just to test for now
 
+/* 
 // Query Selectors
 let itemChosen = document.querySelector(".search-input");
 console.log("User Input =", itemChosen); //! TEST
 let itemSearcher = document.querySelector("#searched-item"); // Search Bar
+ */
 
 //! Buttons
 let addButton = document.querySelector("#addItem-btn");
@@ -1466,7 +1468,7 @@ let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times ca
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
 dropdownMenu(); //Call the drop down
-populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
+
 
 
 
@@ -1482,10 +1484,11 @@ function dropdownMenu() {
 }
 
 // TODO there is a problem with this button click
-addButton.addEventListener("click", addItem());
+addButton.addEventListener("click", addItem);
 
 function addItem() {
   console.log("sup"); //! TEST
+  populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
   /* 
   preventDefault();
   console.log("Inside Add Item"); //! TEST
@@ -1498,7 +1501,7 @@ function addItem() {
 
 //TODO This entire section does not work REMOVING ITEM LINE
 let craftTable = document.querySelector(".craftTable");
-craftTable.addEventListener("click", removeLine());
+craftTable.addEventListener("click", removeLine);
 function removeLine(itemLine) {
   console.log("Test 1", itemLine);
 }
@@ -1557,16 +1560,20 @@ async function fetchCraftingInfo(itemChosen, craftingItems) {
   }
 }
 
-// resetButton.addEventListener("click", resetTable());
+resetButton.addEventListener("click", resetTable);
 //todo why is this automatically running
 function resetTable(){ // This function will reset the table.
+  console.log("Reset Button Clicked"); //! TEST
+  console.log("Before",craftIngredients); //! TEST
   craftIngredients = [];
   searchCraftingWords = craftingWordMatrix;
+  console.log("After",craftIngredients); //! TEST
 }
 
 
-createButton.addEventListener("click", itemCardBuilder()); //TODO This will need to be linked to the Craft Item Button
+createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
 function itemCardBuilder() {
+  console.log("Craft item Button Clicked"); //! TEST
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
   for (let i = 0; i < craftIngredients.length; i++) {

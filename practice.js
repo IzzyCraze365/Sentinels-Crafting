@@ -23,7 +23,7 @@ searchInput.addEventListener("input", (e) => {
   });
 });
 
-fetch("http://jsonplaceholder.typicode.com/users")
+/* fetch("http://jsonplaceholder.typicode.com/users")
   .then((res) => res.json())
   .then((data) => {
     user = data.map((user) => {
@@ -35,7 +35,11 @@ fetch("http://jsonplaceholder.typicode.com/users")
       userCardContainer.append(card);
       return { name: user.name, email: user.email, element: card };
     });
-  });
+  }); */
 
+  createButton.addEventListener("onclick", itemCardBuilder());
+  function itemCardBuilder() {
+    console.log("Craft item Button Clicked"); //! TEST
+  }
 //Tutorial Help
 // https://www.youtube.com/watch?v=TlP5WIxVirU

@@ -1616,6 +1616,7 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     cardFooterItemType.innerHTML = `(Device:`;
     deviceUses(); // Adds up Item Uses
   } else {
+    console.log("This is Item cannot be crafted"); //! TEST
     alert("This item is not viable to be crafted."); // ALERT
   }
 }

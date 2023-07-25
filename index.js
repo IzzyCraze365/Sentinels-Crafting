@@ -8,6 +8,8 @@ import craftingItems from "./crafting-words.js"; // Pulls our Crafting Matrix fr
 console.log("Crafting Items Import", craftingItems); //! TEST
  */
 
+//TODO part of me is wondering if I should have made all the crafting Items into Constructors (Classes - see Dorkington)
+
 const craftingItems = [
   //! Chemical Crafting
   {

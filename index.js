@@ -1568,8 +1568,8 @@ resetButton.addEventListener("click", resetTable);
 function resetTable(){ // This function will reset the table.
   console.log("Reset Button Clicked"); //! TEST
   console.log("Before",craftIngredients); //! TEST
-  craftIngredients = [];
-  searchCraftingWords = craftingWordMatrix;
+  craftIngredients = []; // This should empty the table
+  searchCraftingWords = craftingWordMatrix; // This should reset the dropdown menu
   console.log("After",craftIngredients); //! TEST
 }
 

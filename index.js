@@ -1551,7 +1551,7 @@ function populateTable(craftWords) {
 
 // This is to find the crafting word from the drop Down // TODO Broken
 async function fetchCraftingInfo(itemChosen, craftingItems) {
-  let item = craftingItems;
+  let item = craftingItems; //This is supposed to select the item from the drop down menu
   console.log("Item", item); //! TEST
 
   try {

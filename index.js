@@ -1,5 +1,5 @@
 // Sentinel Comics Issue #404: Lock Down
-// Crafting Aid
+// Crafting Aid Helper Tool
 
 /* 
 //TODO Fix Import Statement Otherwise all Crafting words will have to be copied HERE!!!

@@ -1469,7 +1469,7 @@ let itemDescription = document.querySelector("#itemDescription"); //TODO This is
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
-dropdownMenu(); //Call the drop down
+//dropdownMenu(); //Call the drop down
 
 
 
@@ -1489,7 +1489,7 @@ function dropdownMenu() {
 addButton.addEventListener("click", addItem);
 populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
-async function addItem() {
+function addItem() {
   console.log("sup"); //! TEST
   
   /* 
@@ -1550,7 +1550,7 @@ function populateTable(craftWords) {
 }
 
 // This is to find the crafting word from the drop Down // TODO Broken
-async function fetchCraftingInfo(itemChosen, craftingItems) {
+/* async function fetchCraftingInfo(itemChosen, craftingItems) {
   let item = craftingItems; //This is supposed to select the item from the drop down menu
   console.log("Item", item); //! TEST
 
@@ -1561,7 +1561,7 @@ async function fetchCraftingInfo(itemChosen, craftingItems) {
   } catch (error) {
     console.error(error);
   }
-}
+} */
 
 resetButton.addEventListener("click", resetTable);
 //todo why is this automatically running

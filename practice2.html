@@ -1,0 +1,11 @@
+<input id="test" list="words" />
+<datalist id="words">
+  <option value="a">a</option>
+  <option value="b">b</option>
+</datalist>
+<button id="add" onclick="AddItem()">Add</button>
+<script>
+  function AddItem() {
+    console.log(document.querySelector("#test").value);
+  }
+</script>

@@ -1430,7 +1430,6 @@ const craftingItems = [
   },
 ];
 
-
 let craftingWordMatrix = craftingItems.map(
   (craftWords) => craftWords.craftingWord
 ); // This just pulls the Crafting Words for the Drop Down Menu
@@ -1456,6 +1455,7 @@ let itemSearcher = document.querySelector("#searched-item"); // Search Bar
 
 //! Buttons
 let addButton = document.querySelector("#addItemButton");
+const searchInput = document.querySelector("[data-search]"); // Search Field
 let createButton = document.querySelector("#createButton");
 let resetButton = document.querySelector("#resetButton");
 
@@ -1469,10 +1469,7 @@ let itemDescription = document.querySelector("#itemDescription"); //TODO This is
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
-//dropdownMenu(); //Call the drop down
-
-
-
+dropdownMenu(); //Call the drop down
 
 // This displays all the Crafting Words in the Search Bar's drop down menu.
 function dropdownMenu() {
@@ -1485,21 +1482,25 @@ function dropdownMenu() {
   });
 }
 
-// TODO there is a problem with this button click
 addButton.addEventListener("click", addItem);
 populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
+// Input field value is read here.
+searchInput.addEventListener("input", (e) => {
+  let value = e.target.value; // This find the value of the input field
+  console.log("Value 1", value); //! TEST
+  value = titleCase(value);
+  console.log("Value 2", value); //! TEST
+  console.log("craft Ingredients 1", craftIngredients);
+});
+
 function addItem() {
-  console.log("sup"); //! TEST
-  
-  /* 
-  preventDefault();
+  //preventDefault();
   console.log("Inside Add Item"); //! TEST
   let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar
   console.log("itemSearcher", itemSearcher2.value); //! TEST
   console.log("addButton Function"); //! TEST
   //itemSearcher.preventDefault();
-   */
 }
 
 //TODO This entire section does not work REMOVING ITEM LINE
@@ -1549,30 +1550,16 @@ function populateTable(craftWords) {
   }
 }
 
-// This is to find the crafting word from the drop Down // TODO Broken
-/* async function fetchCraftingInfo(itemChosen, craftingItems) {
-  let item = craftingItems; //This is supposed to select the item from the drop down menu
-  console.log("Item", item); //! TEST
-
-  try {
-    let response = await fetch(item);
-    let data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-} */
-
 resetButton.addEventListener("click", resetTable);
-//todo why is this automatically running
-function resetTable(){ // This function will reset the table.
+
+function resetTable() {
+  // This function will reset the table.
   console.log("Reset Button Clicked"); //! TEST
-  console.log("Before",craftIngredients); //! TEST
+  console.log("Before", craftIngredients); //! TEST
   craftIngredients = []; // This should empty the table
   searchCraftingWords = craftingWordMatrix; // This should reset the dropdown menu
-  console.log("After",craftIngredients); //! TEST
+  console.log("After", craftIngredients); //! TEST
 }
-
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
 function itemCardBuilder() {

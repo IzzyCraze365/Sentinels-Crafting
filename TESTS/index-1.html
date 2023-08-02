@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,15 +12,18 @@
       <form action="" class="search-form">
         <div>
           <input
-          type="search"  
-          list="crafting-words"
+            type="search"
+            list="crafting-words"
             id="searched-item"
             class="search-input dropdownMenu"
             placeholder="Enter Crafting Word"
           />
           <datalist id="crafting-words"></datalist>
-          <button id="addItem-btn" class="button" onclick="addItem()">Add Item</button>
-        </div><!--  Nick suggested adding the onclick -->
+          <button id="addItem-btn" class="button" onclick="addItem()">
+            Add Item
+          </button>
+        </div>
+        <!--  Nick suggested adding the onclick -->
       </form>
 
       <!--  Storage of all the Crafting information -->
@@ -38,7 +39,7 @@
             <th>Effect Description</th>
           </tr>
           <!--  TODO Make it so These are Appended and not always there -->
-<!--           <tr class="item1">
+          <!--           <tr class="item1">
             <td class="craftingType" id="cType1">Chemical</td>
             <td class="craftingWord" id="cWord1">Active</td>
             <td class="craftItemName" id="cItem1">Coffee</td>

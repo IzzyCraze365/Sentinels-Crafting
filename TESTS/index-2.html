@@ -9,7 +9,8 @@
   </head>
   <body>
     <div class="container">
-     <!--  <form action="" class="search-form"> -->
+      <form action="" class="search-form">
+        <!-- This is the problem -->
         <div>
           <input
             type="search"
@@ -19,12 +20,10 @@
             placeholder="Enter Crafting Word"
           />
           <datalist id="crafting-words"></datalist>
-          <button id="addItemButton" class="button">
-            Add Item
-          </button>
+          <button id="addItemButton" class="button">Add Item</button>
         </div>
         <!--  Nick suggested adding the onclick -->
-<!--       </form> -->
+      </form>
 
       <!--  Storage of all the Crafting information -->
       <div class="crafting-table">
@@ -88,7 +87,7 @@
         </div>
       </div>
     </div>
-<!--     <script src="./fixAddButton.js"></script> -->
+    <!--     <script src="./fixAddButton.js"></script> -->
     <script src="./index.js"></script>
     <!-- <script src="./index.js" type="module"></script> -->
     <!-- This needs to be a module otherwise system will not load Crafting Words, It needs to be run in a LIVE SERVER because of CORS policy -->

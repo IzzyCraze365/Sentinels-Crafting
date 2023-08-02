@@ -37,9 +37,9 @@ searchInput.addEventListener("input", (e) => {
     });
   }); */
 
-  createButton.addEventListener("onclick", itemCardBuilder());
-  function itemCardBuilder() {
-    console.log("Craft item Button Clicked"); //! TEST
-  }
+createButton.addEventListener("onclick", itemCardBuilder());
+function itemCardBuilder() {
+  console.log("Craft item Button Clicked"); //! TEST
+}
 //Tutorial Help
 // https://www.youtube.com/watch?v=TlP5WIxVirU

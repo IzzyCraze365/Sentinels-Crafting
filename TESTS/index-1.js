@@ -13,7 +13,6 @@ craftingWordMatrix = craftingWordMatrix.sort();
 console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 console.log("Crafting a new Item"); //! TEST
 
-
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table
 
@@ -24,7 +23,6 @@ console.log("User Input =", itemChosen);
 let addButton = document.querySelector("#addItem-btn"); //Going Fishing
 let itemSearcher = document.querySelector("#searched-item"); // Search Bar
 
-
 //! Index Card Queries
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
 let cardType = document.querySelector(".cardType"); // Index Card Header
@@ -32,7 +30,6 @@ let itemName = document.querySelector("#itemName"); // Probably will just be "Ne
 let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
-
 
 dropdownMenu(); //Call the drop down
 
@@ -50,8 +47,9 @@ function dropdownMenu() {
 addButton.addEventListener("click", addItem());
 
 function addItem() {
-console.log("sup");}
-  /* 
+  console.log("sup");
+}
+/* 
   preventDefault();
   console.log("Inside Add Item"); //! TEST
   let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar

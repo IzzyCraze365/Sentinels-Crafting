@@ -1437,13 +1437,8 @@ craftingWordMatrix = craftingWordMatrix.sort(); // This sorts the Crafting Words
 //console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
-let craftIngredients = [
-  craftingItems[47],
-  craftingItems[42],
-  craftingItems[48],
-  craftingItems[59],
-  craftingItems[63],
-]; // This is the matrix that will store the Crafting Words we are adding to the table.
+let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table.
+//! craftingItems[47], craftingItems[42], craftingItems[48],craftingItems[59], craftingItems[63]
 //TODO "craftIngredients" should be an empty array, words there are just to test for now
 
 /* 

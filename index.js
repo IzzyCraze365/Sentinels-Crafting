@@ -52,7 +52,7 @@ const Active = new craftingWordAndItem({
   consumedBacklash: 4,
   effect: "Power – Direct (1 effect to 1 target)",
 });
-const Continuous = new item({
+const Continuous = new craftingWordAndItem({
   itemName: "Amazonian Flowers",
   craftingWord: "Continuous",
   craftingType: "Chemical",
@@ -1543,11 +1543,11 @@ const craftingWordList = {
 };
 
 //TODO Redo this to pull a newe Matrix now that I am using constructors
-let craftingWordMatrix = craftingItems.map(
-  (craftWords) => craftWords.craftingWord
-); // This just pulls the Crafting Words for the Drop Down Menu
-craftingWordMatrix = craftingWordMatrix.sort(); // This sorts the Crafting Words Alphabetically
-//console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
+console.log("Crafting Word List =", craftingWordList); //! TEST
+let craftingWordMatrix = craftingWordList.craftingWord
+//.map(  (craftWords) => craftWords.craftingWord); // This just pulls the Crafting Words for the Drop Down Menu
+//craftingWordMatrix = craftingWordMatrix.sort(); // This sorts the Crafting Words Alphabetically
+console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 
 let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
 let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table.

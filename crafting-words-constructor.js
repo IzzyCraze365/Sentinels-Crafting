@@ -54,7 +54,7 @@ const Active = new craftingWordAndItem({
   consumedBacklash: 4,
   effect: "Power – Direct (1 effect to 1 target)",
 });
-const Continuous = new item({
+const Continuous = new craftingWordAndItem({
   itemName: "Amazonian Flowers",
   craftingWord: "Continuous",
   craftingType: "Chemical",

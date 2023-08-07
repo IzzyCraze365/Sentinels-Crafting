@@ -1549,18 +1549,9 @@ const craftingWordMatrix = Object.entries(craftingWordList).map(
 );
 //console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 let searchCraftingWords = craftingWordMatrix.sort(); // Making a copy of the matrix that can be manipulated & sorting the Crafting Words Alphabetically
-let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table.
-//! craftingItems[47], craftingItems[42], craftingItems[48],craftingItems[59], craftingItems[63]
-//TODO "craftIngredients" should be an empty array, words there are just to test for now
+let craftIngredients = []; // This is the matrix that starts off empty and will store the Crafting Words we are adding to the table.
 
-/* 
-// Query Selectors
-let itemChosen = document.querySelector(".search-input");
-console.log("User Input =", itemChosen); //! TEST
-let itemSearcher = document.querySelector("#searched-item"); // Search Bar
- */
-
-//! Buttons
+//! Buttons - Query Selectors
 let addButton = document.querySelector("#addItemButton");
 const searchInput = document.querySelector("[data-search]"); // Search Field
 let createButton = document.querySelector("#createButton");
@@ -1578,39 +1569,69 @@ let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses 
 
 dropdownMenu(); //Call the drop down
 
+// Input field value is read here.
+searchInput.addEventListener("input", (e) => {
+  let value = e.target.value; // This find the value of the input field
+  //console.log("Value 1", value); //! TEST
+  value = titleCase(value);
+
+  //console.log("Value 2", value); //! TEST
+  //console.log("craft Ingredients inside Search Input", craftIngredients); //! TEST
+});
+
 // This displays all the Crafting Words in the Search Bar's drop down menu.
 function dropdownMenu() {
   //console.log("Search crafting words in drop down", searchCraftingWords); //! TEST
   searchCraftingWords.forEach((craftWord) => {
     let dropdownWords = document.createElement("option");
     dropdownWords.value = craftWord;
+    //console.log("Drop Down Words", dropdownWords); //! TEST
     let dropdownList = document.getElementById("crafting-words");
     dropdownList.appendChild(dropdownWords);
     //console.log("Drop Down List", dropdownList); //! TEST
   });
 }
 
+// This removes a single HTML element, so no Crafting Words can be doubled up on.
+function dropdownModify(removedItem) {
+  let dropdownList = document.getElementById("crafting-words");
+  //console.log("dropdown List", dropdownList.children); //! TEST
+  for (let i = 0; i < dropdownList.children.length; i++) {
+    //console.log("Removed Item", removedItem); //! TEST
+    //console.log("dropdownList", dropdownList.children[i]); //! TEST
+    if (removedItem === dropdownList.children[i].value) {
+      //console.log("Found It", removedItem); //! TEST
+      dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
+    }
+  }
+}
+
 addButton.addEventListener("click", addItem);
 populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
-// Input field value is read here.
-searchInput.addEventListener("input", (e) => {
-  let value = e.target.value; // This find the value of the input field
-  console.log("Value 1", value); //! TEST
-  value = titleCase(value);
-  console.log("Value 2", value); //! TEST
-  console.log("craft Ingredients 1", craftIngredients);
-});
-
 function addItem() {
-  //console.log("Inside Add Item"); //! TEST
-  let itemSearcher = document.querySelector("#searched-item"); // Search Bar
-  //console.log("itemSearcher", itemSearcher.value); //! TEST
-  craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
-  //console.log("craftIngredients", craftIngredients); //! TEST
-  //console.log("addButton Function"); //! TEST
-  itemSearcher.value = ""; // Resets the Search Bar
-  populateTable(craftIngredients); // Function Call to add item to the table
+  if (craftIngredients.length >= 5) {
+    alert(
+      `Sorry, a maximum of 5 items can be used when Crafting. Please remove an item before adding another.`
+    );
+  } else {
+    //console.log("Inside Add Item"); //! TEST
+    let itemSearcher = document.querySelector("#searched-item"); // Search Bar
+    //console.log("itemSearcher", itemSearcher.value); //! TEST
+
+    let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
+    console.log("Word Index", wordIndex);
+    if (wordIndex !== -1) {
+      searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
+      craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
+    }
+    console.log("searchCraftingWords", searchCraftingWords); //! TEST
+    console.log("craftIngredients", craftIngredients); //! TEST
+    //console.log("addButton Function"); //! TEST
+    dropdownModify(itemSearcher.value);
+    itemSearcher.value = ""; // Resets the Search Bar
+    populateTable(craftIngredients); // Function Call to add item to the table
+  }
 }
 
 //TODO This entire section does not work REMOVING ITEM LINE
@@ -1627,11 +1648,11 @@ function populateTable(craftWords) {
 
   // This section automatically sorts the table by its Item Type
   craftIngredients.sort((a, b) => {
-    const itemA = a.itemType;
-    const itemB = b.itemType;
+    const itemA = craftingWordList[a].itemType;
+    const itemB = craftingWordList[b].itemType;
     //const itemA = a.itemType.toUpperCase();
     //const itemB = b.itemType.toUpperCase();
-    if (a.itemType < b.itemType) {
+    if (craftingWordList[a].itemType < craftingWordList[b].itemType) {
       //no constants needed with these variables
       return -1;
     }
@@ -1646,14 +1667,24 @@ function populateTable(craftWords) {
   for (let i = 0; i < craftWords.length; i++) {
     // console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
     let template = `<tr>
-  <td class="craftingType" id="cType${i + 1}">${craftWords[i].craftingType}</td>
-  <td class="craftingWord" id="cWord${i + 1}">${craftWords[i].craftingWord}</td>
-  <td class="craftItemName" id="cItem${i + 1}">${craftWords[i].itemName}</td>
-  <td class="craftItemType" id="cItemType${i + 1}">${
-      craftWords[i].itemType
+  <td class="craftingType" id="cType${i + 1}">${
+      craftingWordList[craftWords[i]].craftingType
     }</td>
-  <td class="craftNum" id="cNum${i + 1}">${craftWords[i].craftingNumber}</td>
-  <td class="addedItemEffect" id="cEffect${i + 1}">${craftWords[i].effect}</td>
+  <td class="craftingWord" id="cWord${i + 1}">${
+      craftingWordList[craftWords[i]].craftingWord
+    }</td>
+  <td class="craftItemName" id="cItem${i + 1}">${
+      craftingWordList[craftWords[i]].itemName
+    }</td>
+  <td class="craftItemType" id="cItemType${i + 1}">${
+      craftingWordList[craftWords[i]].itemType
+    }</td>
+  <td class="craftNum" id="cNum${i + 1}">${
+      craftingWordList[craftWords[i]].craftingNumber
+    }</td>
+  <td class="addedItemEffect" id="cEffect${i + 1}">${
+      craftingWordList[craftWords[i]].effect
+    }</td>
   <td><button class="button lineBTN" id="removeItemBtn${
     i + 1
   }" >Remove</button></td>

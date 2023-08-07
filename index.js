@@ -2,7 +2,7 @@
 // Crafting Aid Helper Tool
 
 class craftingWordAndItem {
-  constructor(
+  constructor({
     itemName,
     craftingWord,
     craftingType,
@@ -16,8 +16,8 @@ class craftingWordAndItem {
     backlash,
     collateralDamage,
     consumedBacklash,
-    effect
-  ) {
+    effect,
+  }) {
     this.itemName = itemName;
     this.craftingWord = craftingWord;
     this.craftingType = craftingType;
@@ -1542,14 +1542,13 @@ const craftingWordList = {
   "Wind-Up": WindUp,
 };
 
-//TODO Redo this to pull a newe Matrix now that I am using constructors
-console.log("Crafting Word List =", craftingWordList); //! TEST
-let craftingWordMatrix = craftingWordList.craftingWord
-//.map(  (craftWords) => craftWords.craftingWord); // This just pulls the Crafting Words for the Drop Down Menu
-//craftingWordMatrix = craftingWordMatrix.sort(); // This sorts the Crafting Words Alphabetically
-console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
-
-let searchCraftingWords = craftingWordMatrix; // Making a copy of the matrix that can be manipulated
+// Created a new Matrix using the Constructors Crafting Words
+//console.log("Crafting Word List =", craftingWordList); //! TEST
+const craftingWordMatrix = Object.entries(craftingWordList).map(
+  (craftWords) => craftWords[1].craftingWord
+);
+//console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
+let searchCraftingWords = craftingWordMatrix.sort(); // Making a copy of the matrix that can be manipulated & sorting the Crafting Words Alphabetically
 let craftIngredients = []; // This is the matrix that will store the Crafting Words we are adding to the table.
 //! craftingItems[47], craftingItems[42], craftingItems[48],craftingItems[59], craftingItems[63]
 //TODO "craftIngredients" should be an empty array, words there are just to test for now
@@ -1581,6 +1580,7 @@ dropdownMenu(); //Call the drop down
 
 // This displays all the Crafting Words in the Search Bar's drop down menu.
 function dropdownMenu() {
+  //console.log("Search crafting words in drop down", searchCraftingWords); //! TEST
   searchCraftingWords.forEach((craftWord) => {
     let dropdownWords = document.createElement("option");
     dropdownWords.value = craftWord;
@@ -1603,12 +1603,14 @@ searchInput.addEventListener("input", (e) => {
 });
 
 function addItem() {
-  //preventDefault();
-  console.log("Inside Add Item"); //! TEST
-  let itemSearcher2 = document.querySelector("#searched-item"); // Search Bar
-  console.log("itemSearcher", itemSearcher2.value); //! TEST
-  console.log("addButton Function"); //! TEST
-  //itemSearcher.preventDefault();
+  //console.log("Inside Add Item"); //! TEST
+  let itemSearcher = document.querySelector("#searched-item"); // Search Bar
+  //console.log("itemSearcher", itemSearcher.value); //! TEST
+  craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
+  //console.log("craftIngredients", craftIngredients); //! TEST
+  //console.log("addButton Function"); //! TEST
+  itemSearcher.value = ""; // Resets the Search Bar
+  populateTable(craftIngredients); // Function Call to add item to the table
 }
 
 //TODO This entire section does not work REMOVING ITEM LINE
@@ -1625,8 +1627,10 @@ function populateTable(craftWords) {
 
   // This section automatically sorts the table by its Item Type
   craftIngredients.sort((a, b) => {
-    const itemA = a.itemType.toUpperCase();
-    const itemB = b.itemType.toUpperCase();
+    const itemA = a.itemType;
+    const itemB = b.itemType;
+    //const itemA = a.itemType.toUpperCase();
+    //const itemB = b.itemType.toUpperCase();
     if (a.itemType < b.itemType) {
       //no constants needed with these variables
       return -1;
@@ -1637,7 +1641,7 @@ function populateTable(craftWords) {
     }
     return 0;
   });
-
+  table.innerHTML = ""; // This resets the table before rebuilding it
   // This loops through the craftWords Matrix and builds the table
   for (let i = 0; i < craftWords.length; i++) {
     // console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST

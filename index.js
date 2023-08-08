@@ -1696,12 +1696,23 @@ function populateTable(craftWords) {
 resetButton.addEventListener("click", resetTable);
 
 function resetTable() {
-  // This function will reset the table.
+  // This function will reset the table and the item card.
+  location.reload()
   console.log("Reset Button Clicked"); //! TEST
-  console.log("Before", craftIngredients); //! TEST
-  craftIngredients = []; // This should empty the table
+  console.log("Before", craftIngredients, craftIngredients.length); //! TEST
+/*   for (let i = 0; i<craftIngredients.length; i++){
+    let dropdownWords = document.createElement("option");
+    dropdownWords.value = craftIngredients[i];
+    //console.log("Drop Down Words", dropdownWords); //! TEST
+    let dropdownList = document.getElementById("crafting-words");
+    dropdownList.appendChild(dropdownWords);
+    dropdownList.sort();
+  } */
+  
+ /*  craftIngredients = []; // This should empty the table
   searchCraftingWords = craftingWordMatrix; // This should reset the dropdown menu
-  console.log("After", craftIngredients); //! TEST
+  dropdownMenu();
+  console.log("After", craftIngredients, craftIngredients.length); //! TEST */
 }
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button

@@ -1548,7 +1548,9 @@ const craftingWordMatrix = Object.entries(craftingWordList).map(
   (craftWords) => craftWords[1].craftingWord
 );
 //console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
-let searchCraftingWords = craftingWordMatrix.sort(); // Making a copy of the matrix that can be manipulated & sorting the Crafting Words Alphabetically
+let searchCraftingWords = craftingWordMatrix.sort();
+//let searchCraftingWords = craftingWordMatrix.sort(); // Making a copy of the matrix that can be manipulated & sorting the Crafting Words Alphabetically
+//console.log("Search Crafting Words =", searchCraftingWords); //! TEST
 let craftIngredients = []; // This is the matrix that starts off empty and will store the Crafting Words we are adding to the table.
 
 //! Buttons - Query Selectors
@@ -1580,15 +1582,18 @@ searchInput.addEventListener("input", (e) => {
 });
 
 // This displays all the Crafting Words in the Search Bar's drop down menu.
-function dropdownMenu(searchCraftingWords) {
+function dropdownMenu(inputCraftingWords) {
   //console.log("Search crafting words in drop down", searchCraftingWords); //! TEST
-  searchCraftingWords.forEach((craftWord) => {
-    let dropdownWords = document.createElement("option");
+  let dropdownWords = [];
+  let dropdownList= [];
+  inputCraftingWords.forEach((craftWord) => {
+    dropdownWords = document.createElement("option");
     dropdownWords.value = craftWord;
     //console.log("Drop Down Words", dropdownWords); //! TEST
-    let dropdownList = document.getElementById("crafting-words");
+    dropdownList = document.getElementById("crafting-words");
     dropdownList.appendChild(dropdownWords);
     //console.log("Drop Down List", dropdownList); //! TEST
+    //console.log("Type Drop Down List", typeof dropdownList); //! TEST
   });
 }
 
@@ -1625,9 +1630,11 @@ function addItem() {
       searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
       craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
     }
+    console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
     console.log("searchCraftingWords", searchCraftingWords); //! TEST
     console.log("craftIngredients", craftIngredients); //! TEST
     //console.log("addButton Function"); //! TEST
+    dropdownModify();
     dropdownModify(itemSearcher.value);
     itemSearcher.value = ""; // Resets the Search Bar
     populateTable(craftIngredients); // Function Call to add item to the table
@@ -1696,12 +1703,12 @@ function populateTable(craftWords) {
 resetButton.addEventListener("click", resetTable);
 
 //TODO Fix this function
-function resetTable(craftingWordMatrix) {
+function resetTable() {
   // This function will reset the table and the item card.
-  //location.reload() //! Bad Practice but a quick fix TODO
-  console.log("Reset Button Clicked"); //! TEST
-  console.log("Before", craftIngredients, craftIngredients.length); //! TEST
-/*   for (let i = 0; i<craftIngredients.length; i++){
+  //TODO location.reload() //! Bad Practice but a quick fix TODO
+  //console.log("Reset Button Clicked"); //! TEST
+  //console.log("Before", craftIngredients, craftIngredients.length); //! TEST
+  /*   for (let i = 0; i<craftIngredients.length; i++){
     let dropdownWords = document.createElement("option");
     dropdownWords.value = craftIngredients[i];
     //console.log("Drop Down Words", dropdownWords); //! TEST
@@ -1710,12 +1717,18 @@ function resetTable(craftingWordMatrix) {
     dropdownList.sort();
   }
    */
-  console.log("Before",searchCraftingWords)
+  console.log("Before",searchCraftingWords) //! TEST
+  //console.log("Before Matrix",craftingWordMatrix) //! TEST
   craftIngredients = []; // This should empty the table
-  searchCraftingWords = craftingWordMatrix.sort(); // This should reset the dropdown menu
-  console.log("After",searchCraftingWords)
+  searchCraftingWords = Object.entries(craftingWordList).map(
+    (craftWords) => craftWords[1].craftingWord
+  ).sort(); // This should reset the dropdown menu
+  //searchCraftingWords = searchCraftingWords.sort();
+  console.log("After",searchCraftingWords) //! TEST
+  //console.log("After", craftIngredients, craftIngredients.length); //! TEST
   dropdownMenu(searchCraftingWords);
-  console.log("After", craftIngredients, craftIngredients.length); //! TEST
+  //dropdownModify();
+  populateTable(craftIngredients);
 }
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button

@@ -1567,7 +1567,7 @@ let itemDescription = document.querySelector("#itemDescription"); //TODO This is
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
-dropdownMenu(); //Call the drop down
+dropdownMenu(searchCraftingWords); //Call the drop down
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1580,7 +1580,7 @@ searchInput.addEventListener("input", (e) => {
 });
 
 // This displays all the Crafting Words in the Search Bar's drop down menu.
-function dropdownMenu() {
+function dropdownMenu(searchCraftingWords) {
   //console.log("Search crafting words in drop down", searchCraftingWords); //! TEST
   searchCraftingWords.forEach((craftWord) => {
     let dropdownWords = document.createElement("option");
@@ -1695,12 +1695,13 @@ function populateTable(craftWords) {
 
 resetButton.addEventListener("click", resetTable);
 
-function resetTable() {
+//TODO Fix this function
+function resetTable(craftingWordMatrix) {
   // This function will reset the table and the item card.
-  location.reload() //! Bad Practice but a quick fix TODO
-/*   console.log("Reset Button Clicked"); //! TEST
+  //location.reload() //! Bad Practice but a quick fix TODO
+  console.log("Reset Button Clicked"); //! TEST
   console.log("Before", craftIngredients, craftIngredients.length); //! TEST
-  for (let i = 0; i<craftIngredients.length; i++){
+/*   for (let i = 0; i<craftIngredients.length; i++){
     let dropdownWords = document.createElement("option");
     dropdownWords.value = craftIngredients[i];
     //console.log("Drop Down Words", dropdownWords); //! TEST
@@ -1708,11 +1709,13 @@ function resetTable() {
     dropdownList.appendChild(dropdownWords);
     dropdownList.sort();
   }
-  
+   */
+  console.log("Before",searchCraftingWords)
   craftIngredients = []; // This should empty the table
-  searchCraftingWords = craftingWordMatrix; // This should reset the dropdown menu
-  dropdownMenu();
-  console.log("After", craftIngredients, craftIngredients.length); //! TEST */
+  searchCraftingWords = craftingWordMatrix.sort(); // This should reset the dropdown menu
+  console.log("After",searchCraftingWords)
+  dropdownMenu(searchCraftingWords);
+  console.log("After", craftIngredients, craftIngredients.length); //! TEST
 }
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button

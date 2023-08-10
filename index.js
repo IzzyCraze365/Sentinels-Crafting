@@ -1614,7 +1614,7 @@ function dropdownModify(removedItem) {
 addButton.addEventListener("click", addItem);
 populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
-function addItem() {
+function addItem() { // This function adds an item
   if (craftIngredients.length >= 5) {
     alert(
       `Sorry, a maximum of 5 items can be used when Crafting. Please remove an item before adding another.`

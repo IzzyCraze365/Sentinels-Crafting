@@ -1717,7 +1717,7 @@ function resetTable() {
     dropdownList.sort();
   }
    */
-  //TODO HERE DOWN IS GOOD CODE
+/*   //TODO HERE DOWN IS GOOD CODE
   console.log("Before",searchCraftingWords) //! TEST
   //console.log("Before Matrix",craftingWordMatrix) //! TEST
   craftIngredients = []; // This should empty the table
@@ -1730,7 +1730,7 @@ function resetTable() {
   dropdownMenu(searchCraftingWords);
   //dropdownModify();
   populateTable(craftIngredients);
-  //TODO HERE UP IS GOOD CODE
+  //TODO HERE UP IS GOOD CODE */
 }
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button

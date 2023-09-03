@@ -1543,11 +1543,14 @@ const craftingWordList = {
 };
 
 // Created a new Matrix using the Constructors Crafting Words
+//console.log("Crafting Word List =", craftingWordList); //! TEST
 const craftingWordMatrix = Object.entries(craftingWordList).map(
   (craftWords) => craftWords[1].craftingWord
 );
-
+//console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
 let searchCraftingWords = craftingWordMatrix.sort();
+//let searchCraftingWords = craftingWordMatrix.sort(); // Making a copy of the matrix that can be manipulated & sorting the Crafting Words Alphabetically
+//console.log("Search Crafting Words =", searchCraftingWords); //! TEST
 let craftIngredients = []; // This is the matrix that starts off empty and will store the Crafting Words we are adding to the table.
 
 //! Buttons - Query Selectors
@@ -1571,11 +1574,16 @@ dropdownMenu(searchCraftingWords); //Call the drop down
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
   let value = e.target.value; // This find the value of the input field
+  //console.log("Value 1", value); //! TEST
   value = titleCase(value);
+
+  //console.log("Value 2", value); //! TEST
+  //console.log("craft Ingredients inside Search Input", craftIngredients); //! TEST
 });
 
 // This displays all the Crafting Words in the Search Bar's drop down menu.
 function dropdownMenu(inputCraftingWords) {
+  //console.log("Search crafting words in drop down", searchCraftingWords); //! TEST
   dropdownClear(); // This will clear the drop down so it can be rebuilt
   let dropdownWords = [];
   let dropdownList = [];
@@ -1598,8 +1606,12 @@ function dropdownClear() {
 // This removes a single HTML element, so no Crafting Words can be doubled up on.
 function dropdownModifyRemove(removedItem) {
   let dropdownList = document.getElementById("crafting-words");
+  //console.log("dropdown List", dropdownList.children); //! TEST
   for (let i = 0; i < dropdownList.children.length; i++) {
+    //console.log("Removed Item", removedItem); //! TEST
+    //console.log("dropdownList", dropdownList.children[i]); //! TEST
     if (removedItem === dropdownList.children[i].value) {
+      //console.log("Found It", removedItem); //! TEST
       dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
     }
   }
@@ -1615,13 +1627,20 @@ function addItem() {
       `Sorry, a maximum of 5 items can be used when Crafting. Please remove an item before adding another.`
     );
   } else {
+    //console.log("Inside Add Item"); //! TEST
     let itemSearcher = document.querySelector("#searched-item"); // Search Bar
+    //console.log("itemSearcher", itemSearcher.value); //! TEST
+
     let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
     console.log("Word Index", wordIndex);
     if (wordIndex !== -1) {
       searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
       craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
     }
+    console.log("Crafting Word Matrix =", craftingWordMatrix); //! TEST
+    console.log("searchCraftingWords", searchCraftingWords); //! TEST
+    console.log("craftIngredients", craftIngredients); //! TEST
+    //console.log("addButton Function"); //! TEST
     dropdownModifyRemove(itemSearcher.value);
     itemSearcher.value = ""; // Resets the Search Bar
     populateTable(craftIngredients); // Function Call to add item to the table
@@ -1659,29 +1678,30 @@ function populateTable(craftWords) {
   table.innerHTML = ""; // This resets the table before rebuilding it
   // This loops through the craftWords Matrix and builds the table
   for (let i = 0; i < craftWords.length; i++) {
+    // console.log("in for loop", i, "Crafting Word", craftWords[i]); //! TEST
     let template = `<tr>
-  <td class="craftingType" id="cType${i + 1}">${
+    <td class="craftingType" id="cType${i + 1}">${
       craftingWordList[craftWords[i]].craftingType
     }</td>
-  <td class="craftingWord" id="cWord${i + 1}">${
+    <td class="craftingWord" id="cWord${i + 1}">${
       craftingWordList[craftWords[i]].craftingWord
     }</td>
-  <td class="craftItemName" id="cItem${i + 1}">${
+    <td class="craftItemName" id="cItem${i + 1}">${
       craftingWordList[craftWords[i]].itemName
     }</td>
-  <td class="craftItemType" id="cItemType${i + 1}">${
+    <td class="craftItemType" id="cItemType${i + 1}">${
       craftingWordList[craftWords[i]].itemType
     }</td>
-  <td class="craftNum" id="cNum${i + 1}">${
+    <td class="craftNum" id="cNum${i + 1}">${
       craftingWordList[craftWords[i]].craftingNumber
     }</td>
-  <td class="addedItemEffect" id="cEffect${i + 1}">${
+    <td class="addedItemEffect" id="cEffect${i + 1}">${
       craftingWordList[craftWords[i]].effect
     }</td>
-  <td><button class="button lineBTN" id="removeItemBtn${
-    i + 1
-  }" >Remove</button></td>
-  </tr>`;
+    <td><button class="button lineBTN" id="removeItemBtn${
+      i + 1
+    }" >Remove</button></td>
+    </tr>`;
     table.innerHTML += template; //onclick="removeLine(i)"
   }
 }
@@ -1690,10 +1710,15 @@ resetButton.addEventListener("click", resetTable);
 
 //This resets the Working Table
 function resetTable() {
+  console.log("Before", searchCraftingWords); //! TEST
+  //console.log("Before Matrix",craftingWordMatrix) //! TEST
   craftIngredients = []; // This should empty the table
   searchCraftingWords = Object.entries(craftingWordList)
     .map((craftWords) => craftWords[1].craftingWord)
     .sort(); // This should reset the dropdown menu
+  //searchCraftingWords = searchCraftingWords.sort();
+  console.log("After", searchCraftingWords); //! TEST
+  //console.log("After", craftIngredients, craftIngredients.length); //! TEST
   dropdownMenu(craftIngredients);
   dropdownMenu(searchCraftingWords);
   populateTable(craftIngredients);
@@ -1701,6 +1726,7 @@ function resetTable() {
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
 function itemCardBuilder() {
+  console.log("Craft item Button Clicked"); //! TEST
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1729,7 +1755,7 @@ function itemCardBuilder() {
 
 // This function checks to make sure proper items are being mixed.
 function identifyDeviceOrMixture(chemCT, mechCT) {
-  console.log("Inside function deviceOrMixture"); //! TEST
+  console.log("Inside fucntion deviceOrMixture"); //! TEST
   if (chemCT >= 2 && mechCT == 0) {
     console.log("This is a crafted Chemical Mixture"); //! TEST
     itemName.innerHTML = `Crafted Chemical Mixture`;

@@ -1705,7 +1705,7 @@ resetButton.addEventListener("click", resetTable);
 //TODO Fix this function
 function resetTable() {
   // This function will reset the table and the item card.
-  location.reload() //! Bad Practice but a quick fix TODO
+  //location.reload() //! Bad Practice but a quick fix TODO
   //console.log("Reset Button Clicked"); //! TEST
   //console.log("Before", craftIngredients, craftIngredients.length); //! TEST
   /*   for (let i = 0; i<craftIngredients.length; i++){
@@ -1718,6 +1718,7 @@ function resetTable() {
   }
    */
   //TODO HERE DOWN IS GOOD CODE
+  //clearDisplay();
   console.log("Before",searchCraftingWords) //! TEST
   //console.log("Before Matrix",craftingWordMatrix) //! TEST
   craftIngredients = []; // This should empty the table
@@ -1727,6 +1728,7 @@ function resetTable() {
   //searchCraftingWords = searchCraftingWords.sort();
   console.log("After",searchCraftingWords) //! TEST
   //console.log("After", craftIngredients, craftIngredients.length); //! TEST
+  dropdownMenu(craftIngredients);
   dropdownMenu(searchCraftingWords);
   //dropdownModify();
   populateTable(craftIngredients);

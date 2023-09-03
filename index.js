@@ -1629,12 +1629,21 @@ function addItem() {
 }
 
 // This function removes the selected row in the Table
-function removeRow(index){
-    console.log("In function RemoveRow", index);
-    document.querySelector(".craftTable").deleteRow(index);
-    craftIngredients
-    //TODO need to pop the crafting word out of Craft ingredients, add it back to the drop down, and alphabetize the drop down.  then i need to repopulate the table
-    //populateTable(craftIngredients);
+function removeRow(index, selectedCW) {
+  console.log("In function RemoveRow", index);
+  document.querySelector(".craftTable").deleteRow(index);
+  craftIngredients;
+  let selectedWord = selectedCW.craftingWord;
+  console.log("selectedWord", selectedWord);
+  let indexWord = craftIngredients.indexOf(selectedWord);
+  console.log("indexWord", indexWord);
+  if (indexWord !== -1) {
+    craftIngredients.splice(indexWord, 1);
+    searchCraftingWords.push(selectedWord);
+    searchCraftingWords = searchCraftingWords.sort();
+    dropdownMenu(searchCraftingWords);
+  }
+  populateTable(craftIngredients);
 }
 
 // This function populates the table
@@ -1680,9 +1689,9 @@ function populateTable(craftWords) {
   <td class="addedItemEffect" id="cEffect${i + 1}">${
       craftingWordList[craftWords[i]].effect
     }</td>
-  <td><button onclick="removeRow(${i+1})" class="button lineBTN" id="removeItemBtn${
-    i + 1
-  }" >Remove</button></td>
+  <td><button onclick="removeRow(${i + 1}, ${
+      craftingWordList[craftWords[i]].craftingWord
+    })" class="button lineBTN" id="removeItemBtn${i + 1}" >Remove</button></td>
   </tr>`;
     table.innerHTML += template; //onclick="removeLine(i)"
   }

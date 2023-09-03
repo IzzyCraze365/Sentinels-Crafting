@@ -1584,17 +1584,28 @@ searchInput.addEventListener("input", (e) => {
 // This displays all the Crafting Words in the Search Bar's drop down menu.
 function dropdownMenu(inputCraftingWords) {
   //console.log("Search crafting words in drop down", searchCraftingWords); //! TEST
+  clearDropDown();
   let dropdownWords = [];
   let dropdownList= [];
   inputCraftingWords.forEach((craftWord) => {
     dropdownWords = document.createElement("option");
     dropdownWords.value = craftWord;
     //console.log("Drop Down Words", dropdownWords); //! TEST
+    //dropdownList.style.display= '';
+    //dropdownList.setAttribute("style","display: none");
     dropdownList = document.getElementById("crafting-words");
     dropdownList.appendChild(dropdownWords);
     //console.log("Drop Down List", dropdownList); //! TEST
     //console.log("Type Drop Down List", typeof dropdownList); //! TEST
   });
+}
+
+// This will clear the Drop Down Menu so it can be properly rebuilt
+function clearDropDown(){
+  let dropList = document.getElementById("crafting-words");
+  while (dropList.hasChildNodes()) {
+    dropList.removeChild(dropList.firstChild);
+  }
 }
 
 // This removes a single HTML element, so no Crafting Words can be doubled up on.
@@ -1718,7 +1729,6 @@ function resetTable() {
   }
    */
   //TODO HERE DOWN IS GOOD CODE
-  //clearDisplay();
   console.log("Before",searchCraftingWords) //! TEST
   //console.log("Before Matrix",craftingWordMatrix) //! TEST
   craftIngredients = []; // This should empty the table

@@ -1631,8 +1631,10 @@ function addItem() {
 //TODO This entire section does not work REMOVING ITEM LINE
 let craftTable = document.querySelector(".craftTable");
 craftTable.addEventListener("click", removeLine);
+
 function removeLine(itemLine) {
   console.log("Test 1", itemLine);
+  //itemLine.closest("tr").remove();
 }
 
 // This function populates the table
@@ -1659,7 +1661,7 @@ function populateTable(craftWords) {
   table.innerHTML = ""; // This resets the table before rebuilding it
   // This loops through the craftWords Matrix and builds the table
   for (let i = 0; i < craftWords.length; i++) {
-    let template = `<tr>
+    let template = `<tr id="tableRow${i + 1}">
   <td class="craftingType" id="cType${i + 1}">${
       craftingWordList[craftWords[i]].craftingType
     }</td>
@@ -1700,6 +1702,7 @@ function resetTable() {
 }
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
+
 function itemCardBuilder() {
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type

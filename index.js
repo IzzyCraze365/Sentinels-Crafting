@@ -1615,13 +1615,15 @@ function addItem() {
       `Sorry, a maximum of 5 items can be used when Crafting. Please remove an item before adding another.`
     );
   } else {
+    console.log("Add Item button clicked"); // Confirmation
     let itemSearcher = document.querySelector("#searched-item"); // Search Bar
     let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
-    //console.log("Word Index", wordIndex); //! Double Check
+    //console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
     if (wordIndex !== -1) {
       searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
       craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
     }
+    console.log("craftIngredients added to the Table", craftIngredients); //! Verify
     dropdownModifyRemove(itemSearcher.value);
     itemSearcher.value = ""; // Resets the Search Bar
     populateTable(craftIngredients); // Function Call to add item to the table
@@ -1630,6 +1632,7 @@ function addItem() {
 
 // This function removes the selected row in the Table
 function removeRow(index, selectedCW) {
+  console.log("Remove button clicked"); // Confirmation
   document.querySelector(".craftTable").deleteRow(index);
   craftIngredients;
   let selectedWord = selectedCW.craftingWord;
@@ -1700,6 +1703,7 @@ resetButton.addEventListener("click", resetTable);
 
 //This resets the Working Table
 function resetTable() {
+  console.log("Reset button clicked"); // Confirmation
   craftIngredients = []; // This should empty the table
   searchCraftingWords = Object.entries(craftingWordList)
     .map((craftWords) => craftWords[1].craftingWord)
@@ -1711,11 +1715,17 @@ function resetTable() {
 
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
 
+//TODO Need to pull the objects values based off of what is in the table.
+
 function itemCardBuilder() {
+  console.log("Craft Item button clicked"); // Confirmation
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
+
+  console.log(craftingWordMatrix);
+  //console.log("craftIngredients", craftIngredients, craftIngredients.length, craftIngredients[0].craftingType);
   for (let i = 0; i < craftIngredients.length; i++) {
-    if (craftIngredients[i].craftingType == "Chemical") {
+    if ((craftIngredients[i].craftingType = "Chemical")) {
       console.log(
         craftIngredients[i].craftingWord,
         "is a Chemical crafting type."

@@ -1,5 +1,6 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid Helper Tool
+//! All the Search Features are working, just need to properly build the item card
 
 class craftingWordAndItem {
   constructor({
@@ -1670,28 +1671,28 @@ function populateTable(craftWords) {
   // This loops through the craftWords Matrix and builds the table
   for (let i = 0; i < craftWords.length; i++) {
     let template = `<tr id="tableRow${i + 1}" class="tableRow">
-  <td class="craftingType" id="cType${i + 1}">${
+    <td class="craftingType" id="cType${i + 1}">${
       craftingWordList[craftWords[i]].craftingType
     }</td>
-  <td class="craftingWord" id="cWord${i + 1}">${
+    <td class="craftingWord" id="cWord${i + 1}">${
       craftingWordList[craftWords[i]].craftingWord
     }</td>
-  <td class="craftItemName" id="cItem${i + 1}">${
+    <td class="craftItemName" id="cItem${i + 1}">${
       craftingWordList[craftWords[i]].itemName
     }</td>
-  <td class="craftItemType" id="cItemType${i + 1}">${
+    <td class="craftItemType" id="cItemType${i + 1}">${
       craftingWordList[craftWords[i]].itemType
     }</td>
-  <td class="craftNum" id="cNum${i + 1}">${
+    <td class="craftNum" id="cNum${i + 1}">${
       craftingWordList[craftWords[i]].craftingNumber
     }</td>
-  <td class="addedItemEffect" id="cEffect${i + 1}">${
+    <td class="addedItemEffect" id="cEffect${i + 1}">${
       craftingWordList[craftWords[i]].effect
     }</td>
-  <td><button onclick="removeRow(${i + 1}, ${
+    <td><button onclick="removeRow(${i + 1}, ${
       craftingWordList[craftWords[i]].craftingWord
     })" class="button lineBTN" id="removeItemBtn${i + 1}" >Remove</button></td>
-  </tr>`;
+    </tr>`;
     table.innerHTML += template; //onclick="removeLine(i)"
   }
 }

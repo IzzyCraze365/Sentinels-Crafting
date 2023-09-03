@@ -1628,53 +1628,14 @@ function addItem() {
   }
 }
 
-
+// This function removes the selected row in the Table
 function removeRow(index){
-/*   let thisRow = this.rowIndex
-  let table = document.querySelector(".tabletop");
-  table.deleteRow(thisRow); */
-
-    // event.target will be the input element.
-
     console.log("In function RemoveRow", index);
-    document.querySelector(".crafting-table").deleteRow(index);
-
-/*     let td = event.target.parentNode; 
-    let tr = td.parentNode; // the row to be removed
-    tr.parentNode.removeChild(tr); */
-
+    document.querySelector(".craftTable").deleteRow(index);
+    craftIngredients
+    //TODO need to pop the crafting word out of Craft ingredients, add it back to the drop down, and alphabetize the drop down.  then i need to repopulate the table
+    //populateTable(craftIngredients);
 }
-
-/* //TODO This entire section does not work REMOVING ITEM LINE
-let craftTable = document.querySelector(".craftTable");
-craftTable.addEventListener("click", ()=> {
-
-  let rowNumber = document.querySelector(".tableRow");
-  console.log("rowNumber",rowNumber);
- let selectedRow = rowSearch(rowNumber);
-  console.log("selectedRow", selectedRow);
-  //itemLine.closest("tr").remove();
-  document.getElementsByTagName("tr")[selectedRow].remove()
-//  table.deleteRow(itemLine);
-
-});
-
-function rowSearch(){
-  for (let i = 1; i < 7; i++) {
-    if (rowNumber.className.split(" ").includes(`rowNumber${i}`)) {
-      let selection = i-1;
-      return selection; // This gives me the correct key
-    }
-}} */
-
-
-/* function removeLine(itemLine) {
-  let table = document.querySelector(".tabletop");
-  console.log("Test 1", itemLine);
-  //itemLine.closest("tr").remove();
-  document.getElementsByTagName("tr")[itemLine].remove()
-//  table.deleteRow(itemLine);
-} */
 
 // This function populates the table
 function populateTable(craftWords) {
@@ -1719,7 +1680,7 @@ function populateTable(craftWords) {
   <td class="addedItemEffect" id="cEffect${i + 1}">${
       craftingWordList[craftWords[i]].effect
     }</td>
-  <td><button onclick="removeRow(${i})" class="button lineBTN" id="removeItemBtn${
+  <td><button onclick="removeRow(${i+1})" class="button lineBTN" id="removeItemBtn${
     i + 1
   }" >Remove</button></td>
   </tr>`;
@@ -1735,7 +1696,7 @@ function resetTable() {
   searchCraftingWords = Object.entries(craftingWordList)
     .map((craftWords) => craftWords[1].craftingWord)
     .sort(); // This should reset the dropdown menu
-  dropdownMenu(craftIngredients);
+  //dropdownMenu(craftIngredients);
   dropdownMenu(searchCraftingWords);
   populateTable(craftIngredients);
 }

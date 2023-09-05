@@ -1605,7 +1605,7 @@ function dropdownModifyRemove(removedItem) {
   }
 }
 
-addButton.addEventListener("click", addItem);
+addButton.addEventListener("click", addItem); //! "Add Item" BUTTON
 populateTable(craftIngredients); // Populates the Table with the Crafting Words in our craftIngredients Matrix
 
 function addItem() {
@@ -1630,6 +1630,7 @@ function addItem() {
   }
 }
 
+//! "Remove" Button
 // This function removes the selected row in the Table
 function removeRow(index, selectedCW) {
   console.log("Remove button clicked"); // Confirmation
@@ -1699,7 +1700,7 @@ function populateTable(craftWords) {
   }
 }
 
-resetButton.addEventListener("click", resetTable);
+resetButton.addEventListener("click", resetTable); //! "Reset" Button
 
 //This resets the Working Table
 function resetTable() {
@@ -1713,7 +1714,8 @@ function resetTable() {
   populateTable(craftIngredients);
 }
 
-createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
+createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
+//TODO This will need to be linked to the Craft Item Button
 
 //TODO Need to pull the objects values based off of what is in the table.
 //TODO there is something going on here
@@ -1722,8 +1724,10 @@ function itemCardBuilder() {
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
 
-  console.log(craftingWordMatrix);
-  //console.log("craftIngredients", craftIngredients, craftIngredients.length, craftIngredients[0].craftingType);
+  console.log("craftingWordMatrix", craftingWordMatrix);
+  console.log("craftIngredients", craftIngredients, craftIngredients.length, craftIngredients[0]);//! TEST
+  console.log("craftingWordList", craftingWordList);//! TEST
+  //TOdo The issue is that I need to check the object and not the matrix that only contains the word.  Use Zork inventory management as an example.
   for (let i = 0; i < craftIngredients.length; i++) {
     if ((craftIngredients[i].craftingType = "Chemical")) {
       console.log(

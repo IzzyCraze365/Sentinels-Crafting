@@ -1716,7 +1716,7 @@ function resetTable() {
 createButton.addEventListener("click", itemCardBuilder); //TODO This will need to be linked to the Craft Item Button
 
 //TODO Need to pull the objects values based off of what is in the table.
-
+//TODO there is something going on here
 function itemCardBuilder() {
   console.log("Craft Item button clicked"); // Confirmation
   let chemCT = 0; //Chemical Crafting Type

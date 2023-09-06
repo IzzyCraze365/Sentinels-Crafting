@@ -1723,6 +1723,7 @@ function itemCardBuilder() {
   console.log("Craft Item button clicked"); // Confirmation
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
+  console.log("chemCT",chemCT,"mechCT",mechCT); // Confirmation
 
   console.log("craftingWordMatrix", craftingWordMatrix);
   console.log("craftIngredients", craftIngredients, craftIngredients.length, craftIngredients[0]);//! TEST

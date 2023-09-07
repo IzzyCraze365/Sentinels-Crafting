@@ -1715,39 +1715,33 @@ function resetTable() {
 }
 
 createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
-//TODO This will need to be linked to the Craft Item Button
 
-//TODO Need to pull the objects values based off of what is in the table.
-//TODO there is something going on here
 function itemCardBuilder() {
   console.log("Craft Item button clicked"); // Confirmation
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
-  console.log("chemCT",chemCT,"mechCT",mechCT); // Confirmation
+  console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
 
-  console.log("craftingWordMatrix", craftingWordMatrix);
-  console.log("craftIngredients", craftIngredients, craftIngredients.length, craftIngredients[0]);//! TEST
-  console.log("craftingWordList", craftingWordList);//! TEST
-  //TOdo The issue is that I need to check the object and not the matrix that only contains the word.  Use Zork inventory management as an example.
   for (let i = 0; i < craftIngredients.length; i++) {
-    if ((craftIngredients[i].craftingType = "Chemical")) {
+    console.log(craftingWordList[craftIngredients[i]].craftingWord, ": Index", i+1, "of", craftIngredients.length); // This will Verify the Crafting Word in the Console Log
+    if ((craftingWordList[craftIngredients[i]].craftingType == "Chemical")) {
       console.log(
-        craftIngredients[i].craftingWord,
+        craftingWordList[craftIngredients[i]].craftingWord,
         "is a Chemical crafting type."
       );
-      chemCT++;
-    } else if (craftIngredients[i].craftingType == "Mechanical") {
+      chemCT++; // Adds 1 to the Chemical Crafting Type
+    } else if (craftingWordList[craftIngredients[i]].craftingType == "Mechanical") {
       console.log(
-        craftIngredients[i].craftingWord,
+        craftingWordList[craftIngredients[i]].craftingWord,
         "is a Mechanical crafting type."
       );
-      mechCT++;
+      mechCT++; // Adds 1 to the Mechanical Crafting Type
     } else {
       console.log(
-        `There is an error with ${craftIngredients[i].craftingWord}'s crafting type`
+        `There is an error with ${craftingWordList[craftIngredients[i]]}'s crafting type`
       );
     }
-    console.log("chemCT =", chemCT, "& mechCT =", mechCT); //! TEST
+    console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
   }
   identifyDeviceOrMixture(chemCT, mechCT); // Mixture or Device
   identifyCraftingNumber(); // Adds up Crafting Number

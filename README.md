@@ -132,5 +132,6 @@ If you choose to take apart the device you can designate that the frame will not
     You may add between 1 & 3 Components (based on the number of parts used).
     Each Device has 4 uses, before it becomes broken.
     Existing Devices can be modified based on their Crafting Number (see above).
-#   S e n t i n e l s - C r a f t i n g  
+#   S e n t i n e l s - C r a f t i n g 
+ 
  

@@ -1784,7 +1784,7 @@ function deviceUses() {
     console.log(uses, "Item Uses)"); //! TEST
   }
   numberOfUses.innerHTML = uses;
-  itemUses.innerHTML = `in total before device breaks`; //TODO This is to switch it to combat from special cards.
+  itemUses.innerHTML = `uses before the Device breaks`; //TODO This is to switch it to combat from special cards.
 }
 
 // Capitalize the User's Input

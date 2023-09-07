@@ -1569,11 +1569,9 @@ let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times ca
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
 dropdownMenu(searchCraftingWords); //Call the drop down
-
-//TODO Put the following code back in after tests are done
-/* //The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
+//The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
 workBench.style.display = "none"; //Makes the Crafting Table Disappear
-indexCard.style.display = "none"; //Makes the Index Card Disappear */
+indexCard.style.display = "none"; //Makes the Index Card Disappear
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1626,7 +1624,8 @@ function addItem() {
     let itemSearcher = document.querySelector("#searched-item"); // Search Bar
     let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
     //console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
-    if (wordIndex !== -1) {//If the Word in the Search Bar is not on the list then nothing happens
+    if (wordIndex !== -1) {
+      //If the Word in the Search Bar is not on the list then nothing happens
       workBench.style.display = "block"; // This makes the Crafting Table Appear
       searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
       craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
@@ -1726,7 +1725,7 @@ function resetTable() {
 }
 
 // This Resets the Index Card
-function resetItemCard(){
+function resetItemCard() {
   itemName.innerHTML = `Item Name`;
   //TODO Effect Text Goes Here
   numberOfUses.innerHTML = `X per combat`;
@@ -1735,25 +1734,32 @@ function resetItemCard(){
   craftingNumberValue.innerHTML = `000`;
 }
 
-
 createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
 
 function itemCardBuilder() {
   console.log("Craft Item button clicked"); //Confirmation
-  
+
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
   console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
 
   for (let i = 0; i < craftIngredients.length; i++) {
-    console.log(craftingWordList[craftIngredients[i]].craftingWord, ": Index", i+1, "of", craftIngredients.length); // This will Verify the Crafting Word in the Console Log
-    if ((craftingWordList[craftIngredients[i]].craftingType == "Chemical")) {
+    console.log(
+      craftingWordList[craftIngredients[i]].craftingWord,
+      ": Index",
+      i + 1,
+      "of",
+      craftIngredients.length
+    ); // This will Verify the Crafting Word in the Console Log
+    if (craftingWordList[craftIngredients[i]].craftingType == "Chemical") {
       console.log(
         craftingWordList[craftIngredients[i]].craftingWord,
         "is a Chemical crafting type."
       );
       chemCT++; // Adds 1 to the Chemical Crafting Type
-    } else if (craftingWordList[craftIngredients[i]].craftingType == "Mechanical") {
+    } else if (
+      craftingWordList[craftIngredients[i]].craftingType == "Mechanical"
+    ) {
       console.log(
         craftingWordList[craftIngredients[i]].craftingWord,
         "is a Mechanical crafting type."
@@ -1761,7 +1767,9 @@ function itemCardBuilder() {
       mechCT++; // Adds 1 to the Mechanical Crafting Type
     } else {
       console.log(
-        `There is an error with ${craftingWordList[craftIngredients[i]]}'s crafting type`
+        `There is an error with ${
+          craftingWordList[craftIngredients[i]]
+        }'s crafting type`
       );
     }
     console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
@@ -1777,7 +1785,9 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     itemName.innerHTML = `Crafted Chemical Mixture`;
     cardFooterItemType.innerHTML = `(Mixture:`;
     numberOfUses.innerHTML = "";
-    itemUses.innerHTML = `${craftingWordList[craftIngredients[0]].uses} after consumption`;
+    itemUses.innerHTML = `${
+      craftingWordList[craftIngredients[0]].uses
+    } after consumption`;
     identifyCraftingNumber(); // Adds up Crafting Number
     indexCard.style.display = "block"; //This makes the Index Card Appear
   } else if (mechCT >= 2 && chemCT == 0) {

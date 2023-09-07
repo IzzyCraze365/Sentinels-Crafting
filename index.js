@@ -1744,7 +1744,6 @@ function itemCardBuilder() {
     console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
   }
   identifyDeviceOrMixture(chemCT, mechCT); // Mixture or Device
-  identifyCraftingNumber(); // Adds up Crafting Number
 }
 
 // This function checks to make sure proper items are being mixed.
@@ -1755,11 +1754,13 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     itemName.innerHTML = `Crafted Chemical Mixture`;
     cardFooterItemType.innerHTML = `(Mixture:`;
     numberOfUses.innerHTML = "";
-    itemUses.innerHTML = craftIngredients[0].uses;
+    itemUses.innerHTML = `${craftingWordList[craftIngredients[0]].uses} after consumption`;
+    identifyCraftingNumber(); // Adds up Crafting Number
   } else if (mechCT >= 2 && chemCT == 0) {
     console.log("This is a crafted Mechanical Device"); //! TEST
     itemName.innerHTML = `Crafted Mechanical Device`;
     cardFooterItemType.innerHTML = `(Device:`;
+    identifyCraftingNumber(); // Adds up Crafting Number
     deviceUses(); // Adds up Item Uses
   } else {
     console.log("This is Item cannot be crafted"); //! TEST
@@ -1770,8 +1771,8 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
 function identifyCraftingNumber() {
   let craftNumber = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
-    craftNumber += craftIngredients[i].craftingNumber;
-    console.log(craftNumber, "CraftNumber)"); //! TEST
+    craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
+    //console.log(craftNumber, "CraftNumber)"); //! TEST
   }
   craftingNumberValue.innerHTML = craftNumber;
 }
@@ -1779,7 +1780,7 @@ function identifyCraftingNumber() {
 function deviceUses() {
   let uses = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
-    uses += craftIngredients[i].uses;
+    uses += craftingWordList[craftIngredients[i]].uses;
     console.log(uses, "Item Uses)"); //! TEST
   }
   numberOfUses.innerHTML = uses;

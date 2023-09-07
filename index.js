@@ -1570,8 +1570,10 @@ let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses 
 
 dropdownMenu(searchCraftingWords); //Call the drop down
 //The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
-workBench.style.display = "none"; //Makes the Crafting Table Disappear
-indexCard.style.display = "none"; //Makes the Index Card Disappear
+workBench.style.display = "none"; //Invisible Crafting Table
+indexCard.style.display = "none"; //Invisible Index Card
+createButton.style.display = "none"; //Invisible Button
+resetButton.style.display = "none"; //Invisible Button
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1626,9 +1628,11 @@ function addItem() {
     //console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
     if (wordIndex !== -1) {
       //If the Word in the Search Bar is not on the list then nothing happens
-      workBench.style.display = "block"; // This makes the Crafting Table Appear
-      searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
-      craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
+      workBench.style.display = "block"; //This makes the Crafting Table Appear
+      createButton.style.display = "inline-block"; //This makes the Craft Item Button Appear
+      resetButton.style.display = "inline-block"; //This makes the Craft Item Button Appear
+      searchCraftingWords.splice(wordIndex, 1); //Removed Item from Drop Down list
+      craftIngredients.push(itemSearcher.value); //This adds the searched word to the table
     }
     console.log("craftIngredients added to the Table", craftIngredients); //! Verify
     dropdownModifyRemove(itemSearcher.value);
@@ -1722,6 +1726,8 @@ function resetTable() {
   resetItemCard();
   workBench.style.display = "none"; //Makes the Crafting Table Disappear
   indexCard.style.display = "none"; //Makes the Index Card Disappear
+  createButton.style.display = "none"; //Makes the Craft item Button Disappear
+  resetButton.style.display = "none"; //Makes the Reset Button Disappear
 }
 
 // This Resets the Index Card

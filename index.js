@@ -1551,6 +1551,8 @@ let searchCraftingWords = craftingWordMatrix.sort();
 let craftIngredients = []; // This is the matrix that starts off empty and will store the Crafting Words we are adding to the table.
 
 //! Buttons - Query Selectors
+let workBench = document.querySelector(".crafting-table");
+let indexCard = document.querySelector(".card");
 let addButton = document.querySelector("#addItemButton");
 const searchInput = document.querySelector("[data-search]"); // Search Field
 let createButton = document.querySelector("#createButton");
@@ -1567,6 +1569,10 @@ let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times ca
 let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 
 dropdownMenu(searchCraftingWords); //Call the drop down
+
+//The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
+workBench.style.display = "none"; //Makes the Crafting Table Disappear
+indexCard.style.display = "none"; //Makes the Index Card Disappear
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1619,7 +1625,8 @@ function addItem() {
     let itemSearcher = document.querySelector("#searched-item"); // Search Bar
     let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
     //console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
-    if (wordIndex !== -1) {
+    if (wordIndex !== -1) {//If the Word in the Search Bar is not on the list then nothing happens
+      workBench.style.display = "block"; // This makes the Crafting Table Appear
       searchCraftingWords.splice(wordIndex, 1); // Removed Item from Drop Down list
       craftIngredients.push(itemSearcher.value); // This adds the searched word to the table
     }
@@ -1712,12 +1719,27 @@ function resetTable() {
   //dropdownMenu(craftIngredients);
   dropdownMenu(searchCraftingWords);
   populateTable(craftIngredients);
+  resetItemCard();
+  workBench.style.display = "none"; //Makes the Crafting Table Disappear
+  indexCard.style.display = "none"; //Makes the Index Card Disappear
 }
+
+// This Resets the Index Card
+function resetItemCard(){
+  itemName.innerHTML = `Item Name`;
+  //TODO Effect Text Goes Here
+  numberOfUses.innerHTML = `X per combat`;
+  itemUses.innerHTML = ``;
+  cardFooterItemType.innerHTML = `(Item:`;
+  craftingNumberValue.innerHTML = `000`;
+}
+
 
 createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
 
 function itemCardBuilder() {
-  console.log("Craft Item button clicked"); // Confirmation
+  console.log("Craft Item button clicked"); //Confirmation
+  
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
   console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
@@ -1756,12 +1778,14 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     numberOfUses.innerHTML = "";
     itemUses.innerHTML = `${craftingWordList[craftIngredients[0]].uses} after consumption`;
     identifyCraftingNumber(); // Adds up Crafting Number
+    indexCard.style.display = "block"; //This makes the Index Card Appear
   } else if (mechCT >= 2 && chemCT == 0) {
     console.log("This is a crafted Mechanical Device"); //! TEST
     itemName.innerHTML = `Crafted Mechanical Device`;
     cardFooterItemType.innerHTML = `(Device:`;
     identifyCraftingNumber(); // Adds up Crafting Number
     deviceUses(); // Adds up Item Uses
+    indexCard.style.display = "block"; //This makes the Index Card Appear
   } else {
     console.log("This is Item cannot be crafted"); //! TEST
     alert("This item is not viable to be crafted."); // ALERT

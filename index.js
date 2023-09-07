@@ -1570,9 +1570,10 @@ let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses 
 
 dropdownMenu(searchCraftingWords); //Call the drop down
 
-//The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
+//TODO Put the following code back in after tests are done
+/* //The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
 workBench.style.display = "none"; //Makes the Crafting Table Disappear
-indexCard.style.display = "none"; //Makes the Index Card Disappear
+indexCard.style.display = "none"; //Makes the Index Card Disappear */
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {

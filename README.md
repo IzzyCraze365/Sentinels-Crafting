@@ -1,8 +1,8 @@
 # Sentinel Comics Issue #404: Lock-Down
 
-This is a program to aid in the `Crafting System` for the game written by `John Isabella III` and `Nick Knapp`.
+This is a program to aid in the `Crafting System` for the 'Sentinel Comics Issue #404: Lock-Down' game written by `John Isabella III` and `Nick Knapp`.
 
-This was coded by John Isabella III as practice.
+`This project was coded by John Isabella III as practice.`
 
 # Information
 
@@ -22,7 +22,7 @@ Tour Guide & Secretary of the Freedom Tower
 
 This game is takes place in the Sentinels of the Multiverse world. While there will be several recognizable characters from the card game in this LARP, they will also be joined by everyday people without powers. Tour groups and news crews will be waiting anxiously to see if the greatest hero team ever assembled will have others join their ranks. In this time of crisis, who among you will prove to be the true heroes?
 
-This game came from the deranged minds of `John “Izzy” Isabella` and `Nick Knapp` for the `2015 S.N.O.P.L.W. initiative`. This game has successfully run 3 times before this code was written.
+This game came from the deranged minds of `John “Izzy” Isabella` and `Nick Knapp` for the `2015 S.N.O.P.L.W. Initiative`. This game has successfully run 3 times before this code was written.
 
 Genra: Super-Hero, Sentinels of the Multiverse
 
@@ -132,6 +132,5 @@ If you choose to take apart the device you can designate that the frame will not
     You may add between 1 & 3 Components (based on the number of parts used).
     Each Device has 4 uses, before it becomes broken.
     Existing Devices can be modified based on their Crafting Number (see above).
-#   S e n t i n e l s - C r a f t i n g 
- 
- 
+
+### `Sentinels Crafting`

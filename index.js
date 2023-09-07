@@ -1644,6 +1644,7 @@ function addItem() {
 //! "Remove" Button
 // This function removes the selected row in the Table
 function removeRow(index, selectedCW) {
+  indexCard.style.display = "none"; //Makes the Index Card Disappear
   console.log("Remove button clicked"); // Confirmation
   document.querySelector(".craftTable").deleteRow(index);
   craftIngredients;

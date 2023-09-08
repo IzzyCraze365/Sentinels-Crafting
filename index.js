@@ -1838,16 +1838,15 @@ function deviceUses() {
 }
 
 //TODO This Function was copied, make it work
-function effectDescription(){
+function effectDescription() {
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
   for (let i = 0; i < craftIngredients.length; i++) {
-    if(count2>1){
-    craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
+    if (count2 > 1) {
+      craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
+    }
   }
+  itemDescription.innerHTML = ``;
 }
-itemDescription.innerHTML = ``;
-}
-
 
 // Capitalize the User's Input
 function titleCase(myString) {

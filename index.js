@@ -1,5 +1,6 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid Helper Tool
+// Coded by John 'Izzy' Isabella
 
 class craftingWordAndItem {
   constructor({
@@ -1562,18 +1563,23 @@ let resetButton = document.querySelector("#resetButton");
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
 let cardType = document.querySelector(".cardType"); // Index Card Header
 let itemName = document.querySelector("#itemName"); // Probably will just be "New Device" or "Created Mixture"
-let cardFooterItemType = document.querySelector("#cardFooterItemType"); // Probably will just be "Device" or "Mixture"
-let craftingNumberValue = document.querySelector("#craftingNumberValue");
 let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
-let itemUses = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
+let itemUsesTime = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
+let tag = document.querySelector(".tag"); //Tag Mechanic
+let tagLine = document.querySelector("#tags"); //Tag Mechanic
+let tag3 = document.querySelector("#tag3"); //Tag Mechanic
+let tag4 = document.querySelector("#tag4"); //Tag Mechanic
+let tag5 = document.querySelector("#tag5"); //Tag Mechanic
+let cardFooterItemType = document.querySelector("#cardFooterItemType"); // Probably will just be "Device" or "Mixture"
+let craftingNumberValue = document.querySelector("#craftingNumberValue");
 
 dropdownMenu(searchCraftingWords); //Call the drop down
 //The WorkBench & Index Card are initally hidden so you can see the sweet Oblivaeon Artwork
 workBench.style.display = "none"; //Invisible Crafting Table
-indexCard.style.display = "none"; //Invisible Index Card
 createButton.style.display = "none"; //Invisible Button
 resetButton.style.display = "none"; //Invisible Button
+//indexCard.style.display = "none"; //Invisible Index Card
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1726,17 +1732,20 @@ function resetTable() {
   populateTable(craftIngredients);
   resetItemCard();
   workBench.style.display = "none"; //Makes the Crafting Table Disappear
-  indexCard.style.display = "none"; //Makes the Index Card Disappear
   createButton.style.display = "none"; //Makes the Craft item Button Disappear
   resetButton.style.display = "none"; //Makes the Reset Button Disappear
+  //indexCard.style.display = "none"; //Makes the Index Card Disappear
 }
 
 // This Resets the Index Card
 function resetItemCard() {
   itemName.innerHTML = `Item Name`;
-  //TODO Effect Text Goes Here
-  numberOfUses.innerHTML = `X per combat`;
-  itemUses.innerHTML = ``;
+  itemDescription.innerHTML = `This Item does a Thing`;
+  numberOfUses.innerHTML = `X`;
+  itemUsesTime.innerHTML = `per combat`;
+  tag3.innerHTML = `Tag 3,`;
+  tag4.innerHTML = `Tag 4,`;
+  tag5.innerHTML = `Tag 5`;
   cardFooterItemType.innerHTML = `(Item:`;
   craftingNumberValue.innerHTML = `000`;
 }
@@ -1791,10 +1800,8 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     console.log("This is a crafted Chemical Mixture"); //! TEST
     itemName.innerHTML = `Crafted Chemical Mixture`;
     cardFooterItemType.innerHTML = `(Mixture:`;
-    numberOfUses.innerHTML = "";
-    itemUses.innerHTML = `${
-      craftingWordList[craftIngredients[0]].uses
-    } after consumption`;
+    numberOfUses.innerHTML = craftingWordList[craftIngredients[0]].uses;
+    itemUsesTime.innerHTML = `after consumption.`;
     identifyCraftingNumber(); // Adds up Crafting Number
     indexCard.style.display = "block"; //This makes the Index Card Appear
   } else if (mechCT >= 2 && chemCT == 0) {
@@ -1826,7 +1833,7 @@ function deviceUses() {
     console.log(uses, "Item Uses)"); //! TEST
   }
   numberOfUses.innerHTML = uses;
-  itemUses.innerHTML = `uses before the Device breaks`; //TODO This is to switch it to combat from special cards.
+  itemUsesTime.innerHTML = `uses before the Device breaks.`; //TODO This is to switch it to combat from special cards.
 }
 
 // Capitalize the User's Input

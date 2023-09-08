@@ -1810,6 +1810,7 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     cardFooterItemType.innerHTML = `(Device:`;
     identifyCraftingNumber(); // Adds up Crafting Number
     deviceUses(); // Adds up Item Uses
+    effectDescription();
     indexCard.style.display = "block"; //This makes the Index Card Appear
   } else {
     console.log("This is Item cannot be crafted"); //! TEST
@@ -1835,6 +1836,18 @@ function deviceUses() {
   numberOfUses.innerHTML = uses;
   itemUsesTime.innerHTML = `uses before the Device breaks.`; //TODO This is to switch it to combat from special cards.
 }
+
+//TODO This Function was copied, make it work
+function effectDescription(){
+  let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
+  for (let i = 0; i < craftIngredients.length; i++) {
+    if(count2>1){
+    craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
+  }
+}
+itemDescription.innerHTML = ``;
+}
+
 
 // Capitalize the User's Input
 function titleCase(myString) {

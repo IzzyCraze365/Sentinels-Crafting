@@ -1837,7 +1837,7 @@ function deviceUses() {
   itemUsesTime.innerHTML = `uses before the Device breaks.`; //TODO This is to switch it to combat from special cards.
 }
 
-//TODO This Function was copied, make it work.  Its gonna be complicated
+//TODO This Function was copied, make it work.  Its gonna be complicated...
 function effectDescription() {
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
   for (let i = 0; i < craftIngredients.length; i++) {

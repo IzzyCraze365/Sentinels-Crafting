@@ -1579,7 +1579,7 @@ dropdownMenu(searchCraftingWords); //Call the drop down
 workBench.style.display = "none"; //Invisible Crafting Table
 createButton.style.display = "none"; //Invisible Button
 resetButton.style.display = "none"; //Invisible Button
-//indexCard.style.display = "none"; //Invisible Index Card
+//indexCard.style.display = "none"; //Invisible Index Card //TODO add back in
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1642,8 +1642,9 @@ function addItem() {
     }
     console.log("craftIngredients added to the Table", craftIngredients); //! Verify
     dropdownModifyRemove(itemSearcher.value);
-    itemSearcher.value = ""; // Resets the Search Bar
-    populateTable(craftIngredients); // Function Call to add item to the table
+    itemSearcher.value = ""; //Resets the Search Bar
+    populateTable(craftIngredients); //Function Call to add item to the table
+    //indexCard.style.display = "none";//Hides the Index Card if an Item is added //TODO
   }
 }
 
@@ -1651,7 +1652,7 @@ function addItem() {
 // This function removes the selected row in the Table
 function removeRow(index, selectedCW) {
   indexCard.style.display = "none"; //Makes the Index Card Disappear
-  console.log("Remove button clicked"); // Confirmation
+  console.log("Remove button clicked"); //Confirmation
   document.querySelector(".craftTable").deleteRow(index);
   craftIngredients;
   let selectedWord = selectedCW.craftingWord;
@@ -1665,6 +1666,9 @@ function removeRow(index, selectedCW) {
     dropdownMenu(searchCraftingWords);
   }
   populateTable(craftIngredients);
+  if(craftIngredients.length == 0){
+    workBench.style.display = "none"; //Hides the Crafting Table
+  }
 }
 
 // This function populates the table
@@ -1734,7 +1738,7 @@ function resetTable() {
   workBench.style.display = "none"; //Makes the Crafting Table Disappear
   createButton.style.display = "none"; //Makes the Craft item Button Disappear
   resetButton.style.display = "none"; //Makes the Reset Button Disappear
-  //indexCard.style.display = "none"; //Makes the Index Card Disappear
+  //indexCard.style.display = "none"; //Makes the Index Card Disappear //TODO
 }
 
 // This Resets the Index Card

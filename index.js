@@ -1843,13 +1843,21 @@ function deviceUses() {
 
 //TODO This Function was copied, make it work.  Its gonna be complicated...
 function effectDescription() {
+  let totalTargets = 0;
+  let totalDamage = 1;
+  let totalBacklash = 0;
+  let totalCollateralDamage = 0;
+  let totalDamageTypes = `melee`;
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
   for (let i = 0; i < craftIngredients.length; i++) {
     if (count2 > 1) {
-      craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
+      totalDamageTypes += craftingWordList[craftIngredients[i]].damageType;
     }
-  }
-  itemDescription.innerHTML = ``;
+      }
+  let backlashDamageType = totalDamageTypes;
+  // If END "At the end of your turn,..."
+  // If START "At the start of your turn,..."
+  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalDamage} ${totalDamageTypes} damage and ${totalBacklash} ${backlashDamageType} damage to yourself and ${totalCollateralDamage} collateral damage to the room`;//TODO Deal 1 target 1 melee damage and 2 melee damage to yourself and 1 collateral damage to the room.
 }
 
 // Capitalize the User's Input

@@ -3,7 +3,7 @@
 // Coded by John 'Izzy' Isabella
 
 class craftingWordAndItem {
-  constructor({
+  constructor(
     itemName,
     craftingWord,
     craftingType,
@@ -15,10 +15,11 @@ class craftingWordAndItem {
     potency,
     targets,
     backlash,
+    turns,
     collateralDamage,
     consumedBacklash,
-    effect,
-  }) {
+    effect
+  ) {
     this.itemName = itemName;
     this.craftingWord = craftingWord;
     this.craftingType = craftingType;
@@ -30,6 +31,7 @@ class craftingWordAndItem {
     this.potency = potency;
     this.targets = targets;
     this.backlash = backlash;
+    this.turns = turns;
     this.collateralDamage = collateralDamage;
     this.consumedBacklash = consumedBacklash;
     this.effect = effect;
@@ -49,6 +51,7 @@ const Active = new craftingWordAndItem({
   potency: 1,
   targets: 1,
   backlash: 0,
+  turns: 0,
   collateralDamage: 0,
   consumedBacklash: 4,
   effect: "Power – Direct (1 effect to 1 target)",
@@ -65,6 +68,7 @@ const Continuous = new craftingWordAndItem({
   potency: 1,
   targets: 1,
   backlash: 0,
+  turns: 0,
   collateralDamage: 0,
   consumedBacklash: 4,
   effect: "Ongoing – Buff (+1 effect)",
@@ -1666,7 +1670,7 @@ function removeRow(index, selectedCW) {
     dropdownMenu(searchCraftingWords);
   }
   populateTable(craftIngredients);
-  if(craftIngredients.length == 0){
+  if (craftIngredients.length == 0) {
     workBench.style.display = "none"; //Hides the Crafting Table
   }
 }
@@ -1807,6 +1811,7 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     numberOfUses.innerHTML = craftingWordList[craftIngredients[0]].uses;
     itemUsesTime.innerHTML = `after consumption.`;
     identifyCraftingNumber(); // Adds up Crafting Number
+    effectDescription();
     indexCard.style.display = "block"; //This makes the Index Card Appear
   } else if (mechCT >= 2 && chemCT == 0) {
     console.log("This is a crafted Mechanical Device"); //! TEST
@@ -1832,32 +1837,59 @@ function identifyCraftingNumber() {
 }
 
 function deviceUses() {
-  let uses = 0;
+  let totalUses = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
     uses += craftingWordList[craftIngredients[i]].uses;
     console.log(uses, "Item Uses)"); //! TEST
   }
-  numberOfUses.innerHTML = uses;
+  numberOfUses.innerHTML = totalUses;
   itemUsesTime.innerHTML = `uses before the Device breaks.`; //TODO This is to switch it to combat from special cards.
 }
 
 //TODO This Function was copied, make it work.  Its gonna be complicated.
 function effectDescription() {
+  let totalPotency = 1;
   let totalTargets = 0;
-  let totalDamage = 1;
   let totalBacklash = 0;
+  let totalTurns = 0;
   let totalCollateralDamage = 0;
+  let totalConsumedBacklash = 0;
   let totalDamageTypes = `melee`;
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
   for (let i = 0; i < craftIngredients.length; i++) {
-    if (count2 > 1) {
-      totalDamageTypes += craftingWordList[craftIngredients[i]].damageType;
-    }
+    totalPotency += craftingWordList[craftIngredients[i]].potency;
+    totalTargets += craftingWordList[craftIngredients[i]].targets;
+    totalBacklash += craftingWordList[craftIngredients[i]].backlash;
+    totalTurns += craftingWordList[craftIngredients[i]].turns;
+    totalCollateralDamage +=
+      craftingWordList[craftIngredients[i]].collateralDamage;
+    totalConsumedBacklash +=
+      craftingWordList[craftIngredients[i]].consumedBacklash;
+    console.log(craftingWordList[craftIngredients[i]]); //Verify
+    console.log(
+      `After adding ${
+        craftingWordList[craftIngredients[i]].craftingWord
+      } the total values are as follows: Potency ${totalPotency}, Targets ${totalTargets}, Backlash ${totalBacklash}, Turns ${totalTurns}, Collateral Damage ${totalCollateralDamage}, Consumed Backlash ${totalConsumedBacklash}`
+    ); //Verify that math is correct
+  }
+
+  for (let i = 0; i < craftIngredients.length; i++) {
+    if (
+      craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
+      craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
+    ) {
+      totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+      count2++;
+      console.log(`There's ${count2} 2-Mechanisms or 2-Compoundsbeing used.`);
+      if (count2 > 1) {
+        totalDamageTypes += craftingWordList[craftIngredients[i]].damageType;
       }
+    }
+  }
   let backlashDamageType = totalDamageTypes;
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
-  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalDamage} ${totalDamageTypes} damage and ${totalBacklash} ${backlashDamageType} damage to yourself and ${totalCollateralDamage} collateral damage to the room`;//TODO Deal 1 target 1 melee damage and 2 melee damage to yourself and 1 collateral damage to the room.
+  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotency} ${totalDamageTypes} damage and ${totalBacklash} ${backlashDamageType} damage to yourself and ${totalCollateralDamage} collateral damage to the room.`; //TODO Deal 1 target 1 melee damage and 2 melee damage to yourself and 1 collateral damage to the room.
   //TODO this will need to get modified if the backlash and collateral are 0
 }
 

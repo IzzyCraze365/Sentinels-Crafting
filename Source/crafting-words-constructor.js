@@ -16,6 +16,7 @@ class craftingWordAndItem {
     potency,
     targets,
     backlash,
+    turns,
     collateralDamage,
     consumedBacklash,
     effect
@@ -31,6 +32,7 @@ class craftingWordAndItem {
     this.potency = potency;
     this.targets = targets;
     this.backlash = backlash;
+    this.turns = turns;
     this.collateralDamage = collateralDamage;
     this.consumedBacklash = consumedBacklash;
     this.effect = effect;
@@ -50,6 +52,7 @@ const Active = new craftingWordAndItem({
   potency: 1,
   targets: 1,
   backlash: 0,
+  turns: 0,
   collateralDamage: 0,
   consumedBacklash: 4,
   effect: "Power – Direct (1 effect to 1 target)",
@@ -66,6 +69,7 @@ const Continuous = new craftingWordAndItem({
   potency: 1,
   targets: 1,
   backlash: 0,
+  turns: 0,
   collateralDamage: 0,
   consumedBacklash: 4,
   effect: "Ongoing – Buff (+1 effect)",

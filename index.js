@@ -1881,6 +1881,7 @@ function effectDescription() {
     }
   }
 
+  //TODO Turn this into a fucntion that works for both normal damage type AND backlash damage type.
   //Item Description for the Damage Types
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
   for (let i = 0; i < craftIngredients.length; i++) {

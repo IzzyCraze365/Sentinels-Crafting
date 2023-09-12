@@ -3,7 +3,7 @@
 // Coded by John 'Izzy' Isabella
 
 class craftingWordAndItem {
-  constructor(
+  constructor({
     itemName,
     craftingWord,
     craftingType,
@@ -18,8 +18,8 @@ class craftingWordAndItem {
     turns,
     collateralDamage,
     consumedBacklash,
-    effect
-  ) {
+    effect,
+  }) {
     this.itemName = itemName;
     this.craftingWord = craftingWord;
     this.craftingType = craftingType;
@@ -1856,6 +1856,7 @@ function effectDescription() {
   let totalConsumedBacklash = 0;
   let totalDamageTypes = `melee`;
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
+
   for (let i = 0; i < craftIngredients.length; i++) {
     totalPotency += craftingWordList[craftIngredients[i]].potency;
     totalTargets += craftingWordList[craftIngredients[i]].targets;
@@ -1871,26 +1872,62 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord
       } the total values are as follows: Potency ${totalPotency}, Targets ${totalTargets}, Backlash ${totalBacklash}, Turns ${totalTurns}, Collateral Damage ${totalCollateralDamage}, Consumed Backlash ${totalConsumedBacklash}`
     ); //Verify that math is correct
-  }
-
-  for (let i = 0; i < craftIngredients.length; i++) {
     if (
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
-      totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
       count2++;
-      console.log(`There's ${count2} 2-Mechanisms or 2-Compoundsbeing used.`);
-      if (count2 > 1) {
-        totalDamageTypes += craftingWordList[craftIngredients[i]].damageType;
-      }
+      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
     }
   }
-  let backlashDamageType = totalDamageTypes;
+
+  //Item Description for the Damage Types
+  let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
+  for (let i = 0; i < craftIngredients.length; i++) {
+    console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
+    if (
+      craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
+      craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
+    ) {
+      if (damageTypeCount2 == 1) {
+        totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log("first damage type");
+      } else if (damageTypeCount2 == count2) {
+        totalDamageTypes =
+          totalDamageTypes +
+          ` and ${totalPotency} ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        console.log("Final damage type");
+        damageTypeCount2++;
+      } else {
+        totalDamageTypes =
+          totalDamageTypes +
+          `, ${totalPotency} ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log(damageTypeCount2, " damage type");
+      }
+    }
+    console.log(totalDamageTypes); //! TEST
+  }
+
+  //Backlash Damage in Description
+  let backlashDamageType = totalDamageTypes; //TODO figure this one out
+  let totalBacklashWords = ""; //If there is no damage value then nothing appears
+  if (totalBacklash > 0) {
+    totalBacklashWords = ` and ${totalBacklash} ${backlashDamageType} damage to yourself`;
+  }
+
+  //Collateral Damage in Description
+  let totalCollateralDamageWords = ""; //If there is no damage value then nothing appears
+  if (totalCollateralDamage > 0) {
+    totalCollateralDamageWords = ` and ${totalCollateralDamage} collateral damage to the room`;
+  }
+
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
-  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotency} ${totalDamageTypes} damage and ${totalBacklash} ${backlashDamageType} damage to yourself and ${totalCollateralDamage} collateral damage to the room.`; //TODO Deal 1 target 1 melee damage and 2 melee damage to yourself and 1 collateral damage to the room.
-  //TODO this will need to get modified if the backlash and collateral are 0
+  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 }
 
 // Capitalize the User's Input

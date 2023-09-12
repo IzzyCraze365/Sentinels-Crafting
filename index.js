@@ -1858,6 +1858,7 @@ function effectDescription() {
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
   itemDescription.innerHTML = `Deal ${totalTargets} target ${totalDamage} ${totalDamageTypes} damage and ${totalBacklash} ${backlashDamageType} damage to yourself and ${totalCollateralDamage} collateral damage to the room`;//TODO Deal 1 target 1 melee damage and 2 melee damage to yourself and 1 collateral damage to the room.
+  //TODO this will need to get modified if the backlash and collateral are 0
 }
 
 // Capitalize the User's Input

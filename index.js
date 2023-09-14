@@ -820,7 +820,7 @@ const Welding = new craftingWordAndItem({
   potency: 1,
   targets: 1,
   backlash: 0,
-  turns: 0,
+  turns: 2,
   collateralDamage: 0,
   consumedBacklash: 0,
   effect: "Power – Armor (-1 effect received for 2 turns)",
@@ -1401,7 +1401,7 @@ const UserFriendly = new craftingWordAndItem({
   damageType: "",
   uses: 0,
   potency: 1,
-  targets: -25,
+  targets: -100,
   backlash: 0,
   turns: 0,
   collateralDamage: 0,
@@ -1888,12 +1888,16 @@ function effectDescription() {
     totalTargetsWords = "1 target";
   } else if (totalTargets > 15) {
     totalTargetsWords = "everyone";
+  } else if (totalTargets <= 0) {
+    // Self will always take Priority
+    totalTargetsWords = "yourself";
   } else {
     totalTargetsWords = `${totalTargets} targets`;
   }
 
   //! Item's Damage Types Description
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
+  let tag4Words = ""; // This is for the Tag line in [here]
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
     if (
@@ -1902,6 +1906,7 @@ function effectDescription() {
     ) {
       if (damageTypeCount2 == 1) {
         totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+        tag4Words = craftingWordList[craftIngredients[i]].damageType;
         damageTypeCount2++;
         console.log("first damage type");
       } else if (damageTypeCount2 == count2) {
@@ -1909,6 +1914,9 @@ function effectDescription() {
           totalDamageTypes +
           ` & ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
+        tag4Words =
+          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType+",";
+        damageTypeCount2++;
         console.log("Final damage type");
         damageTypeCount2++;
       } else {
@@ -1916,6 +1924,8 @@ function effectDescription() {
           totalDamageTypes +
           `, ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
+        tag4Words =
+          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
         damageTypeCount2++;
         console.log(damageTypeCount2, " damage type");
       }
@@ -1965,10 +1975,15 @@ function effectDescription() {
   if (totalCollateralDamage > 0) {
     totalCollateralDamageWords = ` and ${totalCollateralDamage} collateral damage to the room`;
   }
-
+  
+//! Description is based on the 1-Solution / 1-Frame
+//There are 9 different types of Solutions / Frames
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
   itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+
+  tag4.innerHTML = tag4Words; //TODO Add Redirect if needed
+  //tag5.innerHTML = tag5Words; //Heavy, Extract, Backlash, 
 }
 
 // Capitalize the User's Input

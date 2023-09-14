@@ -1980,6 +1980,7 @@ function effectDescription() {
 //There are 9 different types of Solutions / Frames
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
+  // Redirect- this will be an odd one
   itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 
   tag4.innerHTML = tag4Words; //TODO Add Redirect if needed

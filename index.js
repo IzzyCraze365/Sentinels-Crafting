@@ -1839,8 +1839,8 @@ function identifyCraftingNumber() {
 function deviceUses() {
   let totalUses = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
-    uses += craftingWordList[craftIngredients[i]].uses;
-    console.log(uses, "Item Uses)"); //! TEST
+    totalUses += craftingWordList[craftIngredients[i]].uses;
+    console.log(totalUses, "Item Uses)"); //! TEST
   }
   numberOfUses.innerHTML = totalUses;
   itemUsesTime.innerHTML = `uses before the Device breaks.`; //TODO This is to switch it to combat from special cards.
@@ -1854,7 +1854,7 @@ function effectDescription() {
   let totalTurns = 0;
   let totalCollateralDamage = 0;
   let totalConsumedBacklash = 0;
-  //let totalDamageTypes = `melee`;
+  let totalDamageTypes = `melee`;
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
 
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1880,10 +1880,8 @@ function effectDescription() {
       console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);// !TEST
     }
   }
-  let totalPotencyWords = damageTypeSentence(craftIngredients, totalPotency, count2); // This figures out the normal damage type.
 
-/*   //TODO Turn this into a fucntion that works for both normal damage type AND backlash damage type.
-  //Item Description for the Damage Types
+  //! Item's Damage Types Description
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
@@ -1911,15 +1909,46 @@ function effectDescription() {
         console.log(damageTypeCount2, " damage type");
       }
     }
-    console.log(totalDamageTypes); //! TEST
-  } */
-
-  //Backlash Damage in Description
-  let backlashDamageType = totalDamageTypes; //TODO figure this one out so its each damage type
-  let totalBacklashWords = ""; //If there is no damage value then nothing appears
-  if (totalBacklash > 0) {
-    totalBacklashWords = ` and ${totalBacklash} ${backlashDamageType} damage to yourself`;
+    console.log("Damage Type", totalDamageTypes); //! TEST
   }
+
+  //! Backlash Damage Description
+  let backlashDamageType = "";
+  let totalBacklashWords = ""; //If there is no damage value then nothing appears
+  let damageTypeBacklashCount2 = 1; //Tracks the count up for Different Damage Types
+  for (let i = 0; i < craftIngredients.length; i++) {
+    console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
+    if (
+      craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
+      craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
+    ) {
+      if (damageTypeBacklashCount2 == 1) {
+        backlashDamageType = craftingWordList[craftIngredients[i]].damageType;
+        damageTypeBacklashCount2++;
+        console.log("first damage type");
+      } else if (damageTypeBacklashCount2 == count2) {
+        backlashDamageType =
+        backlashDamageType +
+          ` and ${totalBacklash} ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        console.log("Final damage type");
+        damageTypeBacklashCount2++;
+      } else {
+        backlashDamageType =
+        backlashDamageType +
+          `, ${totalBacklash} ` +
+          craftingWordList[craftIngredients[i]].damageType;
+          damageTypeBacklashCount2++;
+        console.log(damageTypeCount2, " damage type");
+      }
+    }
+    console.log("Backlash",backlashDamageType); //! TEST
+  }
+
+  if (totalBacklash > 0) {
+    totalBacklashWords = ` and ${totalBacklash} ${backlashDamageType} backlash damage to yourself`;
+  }
+
 
   //Collateral Damage in Description
   let totalCollateralDamageWords = ""; //If there is no damage value then nothing appears
@@ -1929,40 +1958,8 @@ function effectDescription() {
 
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
-  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotencyWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 }
-
-  function damageTypeSentence(craftIngredients, damageType, count2){
-  //Item Description for the Damage Types
-  let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
-  let totalDamageTypes = "melee";
-  for (let i = 0; i < craftIngredients.length; i++) {
-    console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
-    if (
-      craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
-      craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
-    ) {
-      if (damageTypeCount2 == 1) {
-        totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log("first damage type");
-      } else if (damageTypeCount2 == count2) {
-        totalDamageTypes =
-          totalDamageTypes +
-          ` and `+ damageType, craftingWordList[craftIngredients[i]].damageType;
-        console.log("Final damage type");
-        damageTypeCount2++;
-      } else {
-        totalDamageTypes =
-          totalDamageTypes +
-          `, `,damageType,
-          craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log(damageTypeCount2, " damage type");
-      }
-    }
-    console.log(totalDamageTypes); //! TEST
-  }}
 
 
 // Capitalize the User's Input

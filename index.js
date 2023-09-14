@@ -1914,7 +1914,7 @@ function effectDescription() {
   }
 
   //Backlash Damage in Description
-  let backlashDamageType = totalDamageTypes; //TODO figure this one out
+  let backlashDamageType = totalDamageTypes; //TODO figure this one out so its each damage type
   let totalBacklashWords = ""; //If there is no damage value then nothing appears
   if (totalBacklash > 0) {
     totalBacklashWords = ` and ${totalBacklash} ${backlashDamageType} damage to yourself`;

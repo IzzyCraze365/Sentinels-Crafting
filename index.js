@@ -1386,7 +1386,7 @@ const Targeting = new craftingWordAndItem({
   targets: 2,
   backlash: 0,
   turns: 0,
-  collateralDamage: 3,
+  collateralDamage: 0,
   consumedBacklash: 0,
   effect: "Potency -1, Targets +2",
 });
@@ -1848,7 +1848,7 @@ function deviceUses() {
 
 //TODO This Function was copied, make it work.  Its gonna be complicated.
 function effectDescription() {
-  let totalPotency = 1;
+  let totalPotency = 0;
   let totalTargets = 0;
   let totalBacklash = 0;
   let totalTurns = 0;
@@ -1882,11 +1882,11 @@ function effectDescription() {
     }
   }
 
-  //Total Targets
+  //! Total Targets
   let totalTargetsWords = "X targets";
   if (totalTargets == 1) {
     totalTargetsWords = "1 target";
-  } else if (totalTarget > 15) {
+  } else if (totalTargets > 15) {
     totalTargetsWords = "everyone";
   } else {
     totalTargetsWords = `${totalTargets} targets`;
@@ -1968,7 +1968,7 @@ function effectDescription() {
 
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
-  itemDescription.innerHTML = `Deal ${totalTargetWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+  itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 }
 
 // Capitalize the User's Input

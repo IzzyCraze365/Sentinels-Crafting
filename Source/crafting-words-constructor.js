@@ -1387,7 +1387,7 @@ const Targeting = new craftingWordAndItem({
   targets: 2,
   backlash: 0,
   turns: 0,
-  collateralDamage: 3,
+  collateralDamage: 0,
   consumedBacklash: 0,
   effect: "Potency -1, Targets +2",
 });

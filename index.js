@@ -1872,13 +1872,24 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord
       } the total values are as follows: Potency ${totalPotency}, Targets ${totalTargets}, Backlash ${totalBacklash}, Turns ${totalTurns}, Collateral Damage ${totalCollateralDamage}, Consumed Backlash ${totalConsumedBacklash}`
     ); //Verify that math is correct
+
     if (
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
       count2++;
-      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);// !TEST
+      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`); // !TEST
     }
+  }
+
+  //Total Targets
+  let totalTargetsWords = "X targets";
+  if (totalTargets == 1) {
+    totalTargetsWords = "1 target";
+  } else if (totalTarget > 15) {
+    totalTargetsWords = "everyone";
+  } else {
+    totalTargetsWords = `${totalTargets} targets`;
   }
 
   //! Item's Damage Types Description
@@ -1896,7 +1907,7 @@ function effectDescription() {
       } else if (damageTypeCount2 == count2) {
         totalDamageTypes =
           totalDamageTypes +
-          ` and ${totalPotency} ` +
+          ` & ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
         console.log("Final damage type");
         damageTypeCount2++;
@@ -1928,27 +1939,26 @@ function effectDescription() {
         console.log("first damage type");
       } else if (damageTypeBacklashCount2 == count2) {
         backlashDamageType =
-        backlashDamageType +
-          ` and ${totalBacklash} ` +
+          backlashDamageType +
+          ` & ${totalBacklash} ` +
           craftingWordList[craftIngredients[i]].damageType;
         console.log("Final damage type");
         damageTypeBacklashCount2++;
       } else {
         backlashDamageType =
-        backlashDamageType +
+          backlashDamageType +
           `, ${totalBacklash} ` +
           craftingWordList[craftIngredients[i]].damageType;
-          damageTypeBacklashCount2++;
+        damageTypeBacklashCount2++;
         console.log(damageTypeCount2, " damage type");
       }
     }
-    console.log("Backlash",backlashDamageType); //! TEST
+    console.log("Backlash", backlashDamageType); //! TEST
   }
 
   if (totalBacklash > 0) {
     totalBacklashWords = ` and ${totalBacklash} ${backlashDamageType} backlash damage to yourself`;
   }
-
 
   //Collateral Damage in Description
   let totalCollateralDamageWords = ""; //If there is no damage value then nothing appears
@@ -1958,9 +1968,8 @@ function effectDescription() {
 
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
-  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+  itemDescription.innerHTML = `Deal ${totalTargetWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 }
-
 
 // Capitalize the User's Input
 function titleCase(myString) {

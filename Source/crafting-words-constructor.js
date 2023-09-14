@@ -1251,7 +1251,7 @@ const Motorized = new craftingWordAndItem({
   targets: 1,
   backlash: 0,
   turns: 0,
-  collateralDamage: 0,
+  colleveryonetargetateralDamage: 0,
   consumedBacklash: 0,
   effect: "Targets +1",
 });

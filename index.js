@@ -1854,7 +1854,7 @@ function effectDescription() {
   let totalTurns = 0;
   let totalCollateralDamage = 0;
   let totalConsumedBacklash = 0;
-  let totalDamageTypes = `melee`;
+  //let totalDamageTypes = `melee`;
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
 
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1877,11 +1877,12 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
       count2++;
-      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
+      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);// !TEST
     }
   }
+  let totalPotencyWords = damageTypeSentence(craftIngredients, totalPotency, count2); // This figures out the normal damage type.
 
-  //TODO Turn this into a fucntion that works for both normal damage type AND backlash damage type.
+/*   //TODO Turn this into a fucntion that works for both normal damage type AND backlash damage type.
   //Item Description for the Damage Types
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1911,7 +1912,7 @@ function effectDescription() {
       }
     }
     console.log(totalDamageTypes); //! TEST
-  }
+  } */
 
   //Backlash Damage in Description
   let backlashDamageType = totalDamageTypes; //TODO figure this one out so its each damage type
@@ -1928,8 +1929,41 @@ function effectDescription() {
 
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
-  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+  itemDescription.innerHTML = `Deal ${totalTargets} target ${totalPotencyWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 }
+
+  function damageTypeSentence(craftIngredients, damageType, count2){
+  //Item Description for the Damage Types
+  let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
+  let totalDamageTypes = "melee";
+  for (let i = 0; i < craftIngredients.length; i++) {
+    console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
+    if (
+      craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
+      craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
+    ) {
+      if (damageTypeCount2 == 1) {
+        totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log("first damage type");
+      } else if (damageTypeCount2 == count2) {
+        totalDamageTypes =
+          totalDamageTypes +
+          ` and `+ damageType, craftingWordList[craftIngredients[i]].damageType;
+        console.log("Final damage type");
+        damageTypeCount2++;
+      } else {
+        totalDamageTypes =
+          totalDamageTypes +
+          `, `,damageType,
+          craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log(damageTypeCount2, " damage type");
+      }
+    }
+    console.log(totalDamageTypes); //! TEST
+  }}
+
 
 // Capitalize the User's Input
 function titleCase(myString) {

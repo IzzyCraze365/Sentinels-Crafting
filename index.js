@@ -1813,6 +1813,11 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     itemUsesTime.innerHTML = `after consumption.`;
     identifyCraftingNumber(); // Adds up Crafting Number
     effectDescription();
+    if(craftIngredients.includes(`Mutagenic`)){//This is a Special Case
+      usesWords.innerHTML =`This is a Permanent Ability.`;
+      numberOfUses.innerHTML =``;
+      itemUsesTime.innerHTML = ``;
+    }
     indexCard.style.display = "block"; //This makes the Index Card Appear
   } else if (mechCT >= 2 && chemCT == 0) {
     console.log("This is a crafted Mechanical Device"); //! TEST

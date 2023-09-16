@@ -1813,9 +1813,10 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     itemUsesTime.innerHTML = `after consumption.`;
     identifyCraftingNumber(); // Adds up Crafting Number
     effectDescription();
-    if(craftIngredients.includes(`Mutagenic`)){//This is a Special Case
-      usesWords.innerHTML =`This is a Permanent Ability.`;
-      numberOfUses.innerHTML =``;
+    if (craftIngredients.includes(`Mutagenic`)) {
+      //This is a Special Case
+      usesWords.innerHTML = `This is a Permanent Ability.`;
+      numberOfUses.innerHTML = ``;
       itemUsesTime.innerHTML = ``;
     }
     indexCard.style.display = "block"; //This makes the Index Card Appear
@@ -1928,9 +1929,7 @@ function effectDescription() {
           ` & ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
         tag4Words =
-          tag4Words +
-          "/" +
-          craftingWordList[craftIngredients[i]].damageType;
+          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
         damageTypeCount2++;
         console.log("Final damage type");
         damageTypeCount2++;
@@ -1998,7 +1997,7 @@ function effectDescription() {
   // Redirect- this will be an odd one
   itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 
-  tag4.innerHTML = tag4Words+","; //Comma added here for now for ease of coding- possibly put it at the beginning of tag5 because tag 5 is not guarrenteed//TODO Add Redirect if needed
+  tag4.innerHTML = tag4Words + ","; //Comma added here for now for ease of coding- possibly put it at the beginning of tag5 because tag 5 is not guarrenteed//TODO Add Redirect if needed
   //tag5.innerHTML = tag5Words; //Heavy, Extract, Backlash,
 }
 

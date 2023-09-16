@@ -1567,7 +1567,8 @@ let resetButton = document.querySelector("#resetButton");
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
 let cardType = document.querySelector(".cardType"); // Index Card Header
 let itemName = document.querySelector("#itemName"); // Probably will just be "New Device" or "Created Mixture"
-let itemDescription = document.querySelector("#itemDescription"); //TODO This is going to be the most complicated part of the code
+let itemDescription = document.querySelector("#itemDescription"); //This is where all the rest of the variables are formatted into a sentence.
+let usesWords = document.querySelector("#itemUses"); //Uses vs HP
 let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times can the item be used
 let itemUsesTime = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 let tag = document.querySelector(".tag"); //Tag Mechanic
@@ -1583,7 +1584,7 @@ dropdownMenu(searchCraftingWords); //Call the drop down
 workBench.style.display = "none"; //Invisible Crafting Table
 createButton.style.display = "none"; //Invisible Button
 resetButton.style.display = "none"; //Invisible Button
-//indexCard.style.display = "none"; //Invisible Index Card //TODO add back in
+indexCard.style.display = "none"; //Invisible Index Card
 
 // Input field value is read here.
 searchInput.addEventListener("input", (e) => {
@@ -1648,7 +1649,7 @@ function addItem() {
     dropdownModifyRemove(itemSearcher.value);
     itemSearcher.value = ""; //Resets the Search Bar
     populateTable(craftIngredients); //Function Call to add item to the table
-    //indexCard.style.display = "none";//Hides the Index Card if an Item is added //TODO
+    indexCard.style.display = "none"; //Hides the Index Card if an Item is added
   }
 }
 
@@ -1742,7 +1743,7 @@ function resetTable() {
   workBench.style.display = "none"; //Makes the Crafting Table Disappear
   createButton.style.display = "none"; //Makes the Craft item Button Disappear
   resetButton.style.display = "none"; //Makes the Reset Button Disappear
-  //indexCard.style.display = "none"; //Makes the Index Card Disappear //TODO
+  indexCard.style.display = "none"; //Makes the Index Card Disappear
 }
 
 // This Resets the Index Card
@@ -1843,10 +1844,17 @@ function deviceUses() {
     console.log(totalUses, "Item Uses)"); //! TEST
   }
   numberOfUses.innerHTML = totalUses;
-  itemUsesTime.innerHTML = `uses before the Device breaks.`; //TODO This is to switch it to combat from special cards.
+  if (craftIngredients.includes("Golem")) {
+    usesWords.innerHTML = `Health:`;
+    itemUsesTime.innerHTML = `HP (Destroyed when HP is 0)`; //Special Case
+  } else if (craftIngredients.includes("Virtual")) {
+    itemUsesTime.innerHTML = `uses per Combat.`; //Special Case
+  } else {
+    itemUsesTime.innerHTML = `uses before the Device breaks.`; // Basic
+  }
 }
 
-//TODO This Function was copied, make it work.  Its gonna be complicated.
+//TODO Keep working on this - it will be figgerent for each.
 function effectDescription() {
   let totalPotency = 0;
   let totalTargets = 0;
@@ -1915,7 +1923,9 @@ function effectDescription() {
           ` & ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
         tag4Words =
-          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType+",";
+          tag4Words +
+          "/" +
+          craftingWordList[craftIngredients[i]].damageType;
         damageTypeCount2++;
         console.log("Final damage type");
         damageTypeCount2++;
@@ -1975,16 +1985,16 @@ function effectDescription() {
   if (totalCollateralDamage > 0) {
     totalCollateralDamageWords = ` and ${totalCollateralDamage} collateral damage to the room`;
   }
-  
-//! Description is based on the 1-Solution / 1-Frame
-//There are 9 different types of Solutions / Frames
+
+  //! Description is based on the 1-Solution / 1-Frame
+  //There are 9 different types of Solutions / Frames
   // If END "At the end of your turn,..."
   // If START "At the start of your turn,..."
   // Redirect- this will be an odd one
   itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
 
-  tag4.innerHTML = tag4Words; //TODO Add Redirect if needed
-  //tag5.innerHTML = tag5Words; //Heavy, Extract, Backlash, 
+  tag4.innerHTML = tag4Words+","; //Comma added here for now for ease of coding- possibly put it at the beginning of tag5 because tag 5 is not guarrenteed//TODO Add Redirect if needed
+  //tag5.innerHTML = tag5Words; //Heavy, Extract, Backlash,
 }
 
 // Capitalize the User's Input

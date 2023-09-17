@@ -1860,7 +1860,7 @@ function deviceUses() {
   }
 }
 
-//TODO Keep working on this - it will be different for each.
+//TODO Keep working on this - it will be different for each type of frame/solution
 function effectDescription() {
   let totalPotency = 0;
   let totalTargets = 0;

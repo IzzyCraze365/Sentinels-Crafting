@@ -1897,6 +1897,16 @@ function effectDescription() {
   }
 
   //! Total Targets
+  let totalTurnsWords = "X turns";
+  if (totalTurns == 1) {
+    totalTurnsWords = "1 turn";
+  } else if (totalTurns <= 0) {
+    totalTurnsWords = "";
+  } else {
+    totalTurnsWords = `${totalTurns} turns`;
+  }
+
+  //! Total Turns
   let totalTargetsWords = "X targets";
   if (totalTargets == 1) {
     totalTargetsWords = "1 target";
@@ -1990,15 +2000,93 @@ function effectDescription() {
     totalCollateralDamageWords = ` and ${totalCollateralDamage} collateral damage to the room`;
   }
 
+  tag3.innerHTML = craftingWordList[craftIngredients[0]].actionTime + ","; //This sets the action Time Tage (Tag #3)
+  tag4.innerHTML = tag4Words; // Sets Damage Type Tags (Tag #4)
+
   //! Description is based on the 1-Solution / 1-Frame
   //There are 9 different types of Solutions / Frames
-  // If END "At the end of your turn,..."
-  // If START "At the start of your turn,..."
-  // Redirect- this will be an odd one
-  itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+  for (let i = 0; i < craftIngredients.length; i++) {
+    if (
+      craftingWordList[craftIngredients[i]].itemType == "1-Solution" ||
+      craftingWordList[craftIngredients[i]].itemType == "1-Frame"
+    ) {
+      //Power – Direct (1 effect to 1 target)
+      if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Active" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Cordless"
+      ) {
+        itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //Power – Armor (-1 effect received for 2 turns)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Crystalized" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Welding"
+      ) {
+        itemDescription.innerHTML = `Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //Power – Buff (+1 effect to 1 target for 2 turns)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Lubricant" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
+      ) {
+        itemDescription.innerHTML = `Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //Ongoing – Buff (+1 effect)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Continuous" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Personal"
+      ) {
+        itemDescription.innerHTML = `You deal +${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //Ongoing – Armor (-1 effect received)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Preserving" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Sturdy"
+      ) {
+        itemDescription.innerHTML = `Reduce all ${totalDamageTypes} damage dealt to you by ${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //Start - Direct (1 effect to 1 target)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Reactant" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Automatic"
+      ) {
+        itemDescription.innerHTML = `At the start of your turn, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //End - Direct (1 effect to 1 target)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Product" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Auxiliary"
+      ) {
+        itemDescription.innerHTML = `At the end of your turn, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      // Reaction - Direct (1 effect to 1 target)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Lubricant" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
+      ) {
+        itemDescription.innerHTML = `Whenever you are dealt damage, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+      }
+      //Reaction - Redirect (Redirect the next 2+potency effect to target)
+      else if (
+        craftingWordList[craftIngredients[i]].craftingWord == "Residual" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Spring-Loaded"
+      ) {
+        itemDescription.innerHTML = `Redirect the next ${
+          2 + totalPotency
+        } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+      }
 
-  tag4.innerHTML = tag4Words + ","; //Comma added here for now for ease of coding- possibly put it at the beginning of tag5 because tag 5 is not guarrenteed//TODO Add Redirect if needed
-  //tag5.innerHTML = tag5Words; //Heavy, Extract, Backlash,
+      //in case the Code Breaks
+      else {
+        alert(
+          `There is something wrong with ${
+            craftingWordList[craftIngredients[i]].craftingWord
+          }, try again`
+        );
+      }
+    }
+  }
 }
 
 // Capitalize the User's Input

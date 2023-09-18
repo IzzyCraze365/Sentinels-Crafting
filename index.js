@@ -703,7 +703,7 @@ const Automatic = new craftingWordAndItem({
   turns: 0,
   collateralDamage: 0,
   consumedBacklash: 0,
-  effect: "Start - Direct",
+  effect: "Start - Direct (1 effect to 1 target)",
 });
 const Auxiliary = new craftingWordAndItem({
   itemName: "Computer",
@@ -720,7 +720,7 @@ const Auxiliary = new craftingWordAndItem({
   turns: 0,
   collateralDamage: 0,
   consumedBacklash: 0,
-  effect: "End - Direct",
+  effect: "End - Direct (1 effect to 1 target)",
 });
 const Cordless = new craftingWordAndItem({
   itemName: "Scrap Electronics",

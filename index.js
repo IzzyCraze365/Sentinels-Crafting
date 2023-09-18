@@ -2066,22 +2066,21 @@ function effectDescription() {
       }
       // Reaction - Direct (1 effect to 1 target)
       else if (
-        craftingWordList[craftIngredients[i]].craftingWord == "Lubricant" ||
-        craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
+        craftingWordList[craftIngredients[i]].craftingWord == "Residual" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Spring-Loaded"
       ) {
         itemDescription.innerHTML = `Whenever you are dealt damage, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
       }
       //Reaction - Redirect (Redirect the next 2+potency effect to target)
       else if (
-        craftingWordList[craftIngredients[i]].craftingWord == "Residual" ||
-        craftingWordList[craftIngredients[i]].craftingWord == "Spring-Loaded"
+        craftingWordList[craftIngredients[i]].craftingWord == "Spasmodic" ||
+        craftingWordList[craftIngredients[i]].craftingWord == "Triggered"
       ) {
         itemDescription.innerHTML = `Redirect the next ${
           2 + totalPotency
         } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
         tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
       }
-
       //in case the Code Breaks
       else {
         alert(

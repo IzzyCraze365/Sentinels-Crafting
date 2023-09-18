@@ -1573,9 +1573,10 @@ let numberOfUses = document.querySelector("#itemUsesValue"); //How many Times ca
 let itemUsesTime = document.querySelector("#itemUsesTime"); //Uses per game or uses per combat?
 let tag = document.querySelector(".tag"); //Tag Mechanic
 let tagLine = document.querySelector("#tags"); //Tag Mechanic
-let tag3 = document.querySelector("#tag3"); //Tag Mechanic
-let tag4 = document.querySelector("#tag4"); //Tag Mechanic
-let tag5 = document.querySelector("#tag5"); //Tag Mechanic
+let tag1 = document.querySelector("#tag3"); //Tag Mechanic, this will only Add Golem or Module
+let tag3 = document.querySelector("#tag3"); //Tag Mechanic, this will add the Action Timing
+let tag4 = document.querySelector("#tag4"); //Tag Mechanic, this will add the Damage Type
+let tag5 = document.querySelector("#tag5"); //Tag Mechanic, this will only add Heavy or Extract
 let cardFooterItemType = document.querySelector("#cardFooterItemType"); // Probably will just be "Device" or "Mixture"
 let craftingNumberValue = document.querySelector("#craftingNumberValue");
 
@@ -1860,7 +1861,11 @@ function deviceUses() {
   }
 }
 
-//TODO Keep working on this - it will be different for each type of frame/solution
+//TODO Need to add Code for Recipies
+//TODO Need to add Code for Debilitating (2-Compound) & Inhibitor (2-Mechanism)
+//TODO Need to add code to the special choose a word Supersaturated & Rube-Goldberg
+//TODO Add Code for Tag 5 Mutagenic (Extract), Bulky (Heavy), //TODO Add Code for Tag 1 Golem (Golem- Tag 1), Module (Module)
+
 function effectDescription() {
   let totalPotency = 0;
   let totalTargets = 0;

@@ -1862,9 +1862,9 @@ function deviceUses() {
 }
 
 //TODO Need to add Code for Recipies
-//TODO Need to add Code for Debilitating (2-Compound) & Inhibitor (2-Mechanism)
 //TODO Need to add code to the special choose a word Supersaturated & Rube-Goldberg
 
+//TODO Need to add Code for Debilitating (2-Compound) & Inhibitor (2-Mechanism) STILL NEED TO ADD MORE LOGIC
 
 function effectDescription() {
   let totalPotency = 0;
@@ -1873,7 +1873,7 @@ function effectDescription() {
   let totalTurns = 0;
   let totalCollateralDamage = 0;
   let totalConsumedBacklash = 0;
-  let totalDamageTypes = `melee`;
+  let totalDamageTypes = ``;
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
 
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1925,45 +1925,58 @@ function effectDescription() {
   }
 
   //! Item's Damage Types Description
+  let debuffer = 0;
+  let debuffWords = ""; //This only works for Direct Powers
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
   let tag4Words = ""; // This is for the Tag line in [here]
+
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
     if (
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
-      if (damageTypeCount2 == 1) {
-        totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
-        tag4Words = craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log("first damage type");
-      } else if (damageTypeCount2 == count2) {
-        totalDamageTypes =
-          totalDamageTypes +
-          ` & ${totalPotency} ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        tag4Words =
-          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log("Final damage type");
-        damageTypeCount2++;
+      if (
+        craftingWordList[craftIngredients[i]].craftingWord == `Debilitating` ||
+        craftingWordList[craftIngredients[i]].craftingWord == `Inhibitor`
+      ) {
+        debuffWords = ` and reduce all damage dealt by ${totalTargetsWords} by ${totalPotency} for ${totalTurnsWords}`;
+        debuffer = 1; // Status Check
+        console.log("debuff words",debuffWords);
+        craftIngredients.splice(i, 1); //Removes Debuff from the craftIngredients.
       } else {
-        totalDamageTypes =
-          totalDamageTypes +
-          `, ${totalPotency} ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        tag4Words =
-          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log(damageTypeCount2, " damage type");
+        if (damageTypeCount2 == 1) {
+          totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+          tag4Words = craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log("first damage type");
+        } else if (damageTypeCount2 == count2) {
+          totalDamageTypes =
+            totalDamageTypes +
+            ` & ${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          tag4Words =
+            tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log("Final damage type");
+          damageTypeCount2++;
+        } else {
+          totalDamageTypes =
+            totalDamageTypes +
+            `, ${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          tag4Words =
+            tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log(damageTypeCount2, " damage type");
+        }
       }
     }
     console.log("Damage Type", totalDamageTypes); //! TEST
   }
 
   //! Extra Tags (Tag 1 and Tag 5)
-  tag5.innerHTML =``;//No Tag no words
+  tag5.innerHTML = ``; //No Tag no words
   if (craftIngredients.includes(`Golem`)) {
     tag1.innerHTML = "[ Golem, Combat,";
   }
@@ -1980,7 +1993,7 @@ function effectDescription() {
   //! Backlash Damage Description
   let backlashDamageType = "";
   let totalBacklashWords = ""; //If there is no damage value then nothing appears
-  let defuffWords = ""; //This only works for Direct Powers
+
   let damageTypeBacklashCount2 = 1; //Tracks the count up for Different Damage Types
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
@@ -2024,10 +2037,6 @@ function effectDescription() {
   tag3.innerHTML = craftingWordList[craftIngredients[0]].actionTime + ","; //This sets the action Time Tage (Tag #3)
   tag4.innerHTML = tag4Words; // Sets Damage Type Tags (Tag #4)
 
-  if(craftIngredients.includes(`Debilitating`) || craftIngredients.includes(`Inhibitor`)){
-    defuffWords = ` and reduce all damage dealt by ${totalTargetsWords} by ${totalPotency} for ${totalTurnsWords}`;
-  }
-
   //! Description is based on the 1-Solution / 1-Frame
   //There are 9 different types of Solutions / Frames
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -2040,21 +2049,54 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Active" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Cordless"
       ) {
-        itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${defuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if(debuffer == 1){
+          if(craftingWordList[craftIngredients[i]].craftingWord == "Active"){
+            craftIngredients.push(`Debilitating`);
+            debuffer = 0;
+          }else if(craftingWordList[craftIngredients[i]].craftingWord == "Cordless"){
+            craftIngredients.push(`Inhibitor`);
+            debuffer = 0;
+          }else{
+            debuffer = 0;
+          }
+        }
       }
       //Power – Armor (-1 effect received for 2 turns)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Crystalized" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Welding"
       ) {
-        itemDescription.innerHTML = `Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${defuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if(debuffer == 1){
+          if(craftingWordList[craftIngredients[i]].craftingWord == "Crystalized"){
+            craftIngredients.push(`Debilitating`);
+            debuffer = 0;
+          }else if(craftingWordList[craftIngredients[i]].craftingWord == "Welding"){
+            craftIngredients.push(`Inhibitor`);
+            debuffer = 0;
+          }else{
+            debuffer = 0;
+          }
+        }
       }
       //Power – Buff (+1 effect to 1 target for 2 turns)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Lubricant" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
       ) {
-        itemDescription.innerHTML = `Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${defuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if(debuffer == 1){
+          if(craftingWordList[craftIngredients[i]].craftingWord == "Lubricant"){
+            craftIngredients.push(`Debilitating`);
+            debuffer = 0;
+          }else if(craftingWordList[craftIngredients[i]].craftingWord == "Assisting"){
+            craftIngredients.push(`Inhibitor`);
+            debuffer = 0;
+          }else{
+            debuffer = 0;
+          }
+        }
       }
       //Ongoing – Buff (+1 effect)
       else if (

@@ -1753,7 +1753,7 @@ function resetItemCard() {
   itemDescription.innerHTML = `This Item does a Thing`;
   numberOfUses.innerHTML = `X`;
   itemUsesTime.innerHTML = `per combat`;
-  tag1.innerHTML = `[Tag 1, Tag2`;
+  tag1.innerHTML = `[ Combat,`;
   tag3.innerHTML = `Tag 3,`;
   tag4.innerHTML = `Tag 4,`;
   tag5.innerHTML = `Tag 5`;
@@ -1965,6 +1965,7 @@ function effectDescription() {
   tag4.innerHTML = tag4Words; // Sets Damage Type Tags (Tag #4)
 
   //! Extra Tags (Tag 1 and Tag 5)
+  tag1.innerHTML = `[ Combat,`;// Default
   tag5.innerHTML = ``; //No Tag no words
   if (craftIngredients.includes(`Golem`)) {
     tag1.innerHTML = "[ Golem, Combat,";
@@ -2084,12 +2085,15 @@ function effectDescription() {
             craftIngredients.push(`Debilitating`);
             console.log("TEST 1234",craftIngredients);
             debuffer = 0;
+            addItem();
           } else if (
             craftingWordList[craftIngredients[i]].craftingWord == "Cordless"
           ) {
             craftIngredients.push(`Inhibitor`);
+            addItem();
             debuffer = 0;
           } else {
+            addItem();
             debuffer = 0;
           }
         }
@@ -2105,13 +2109,16 @@ function effectDescription() {
             craftingWordList[craftIngredients[i]].craftingWord == "Crystalized"
           ) {
             craftIngredients.push(`Debilitating`);
+            addItem();
             debuffer = 0;
           } else if (
             craftingWordList[craftIngredients[i]].craftingWord == "Welding"
           ) {
             craftIngredients.push(`Inhibitor`);
+            addItem();
             debuffer = 0;
           } else {
+            addItem();
             debuffer = 0;
           }
         }
@@ -2127,13 +2134,16 @@ function effectDescription() {
             craftingWordList[craftIngredients[i]].craftingWord == "Lubricant"
           ) {
             craftIngredients.push(`Debilitating`);
+            addItem();
             debuffer = 0;
           } else if (
             craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
           ) {
             craftIngredients.push(`Inhibitor`);
+            addItem();
             debuffer = 0;
           } else {
+            addItem();
             debuffer = 0;
           }
         }

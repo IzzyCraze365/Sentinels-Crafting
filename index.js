@@ -1753,7 +1753,7 @@ function resetItemCard() {
   itemDescription.innerHTML = `This Item does a Thing`;
   numberOfUses.innerHTML = `X`;
   itemUsesTime.innerHTML = `per combat`;
-  tag1.innerHTML = `[ Combat,`;
+  tag1.innerHTML = `[ Tag 1, Tag 2,`;
   tag3.innerHTML = `Tag 3,`;
   tag4.innerHTML = `Tag 4,`;
   tag5.innerHTML = `Tag 5`;
@@ -1854,7 +1854,7 @@ function deviceUses() {
   numberOfUses.innerHTML = totalUses;
   if (craftIngredients.includes("Golem")) {
     usesWords.innerHTML = `Health:`;
-    itemUsesTime.innerHTML = `HP (Destroyed when HP is 0)`; //Special Case
+    itemUsesTime.innerHTML = `HP (Destroyed when HP is reduced to 0)`; //Special Case
   } else if (craftIngredients.includes("Virtual")) {
     itemUsesTime.innerHTML = `uses per Combat.`; //Special Case
   } else {
@@ -2057,7 +2057,7 @@ function effectDescription() {
   }
 
   if (totalBacklash > 0) {
-    totalBacklashWords = ` and ${totalBacklash} ${backlashDamageType} backlash damage to yourself`;
+    totalBacklashWords = ` and deal ${totalBacklash} ${backlashDamageType} backlash damage to yourself`;
   }
 
   //Collateral Damage in Description

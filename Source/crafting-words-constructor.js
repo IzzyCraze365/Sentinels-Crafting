@@ -901,7 +901,7 @@ const Inhibitor = new craftingWordAndItem({
   itemType: "2-Mechanism",
   craftingNumber: 4,
   actionTime: "",
-  damageType: "",
+  damageType: "Debuff",
   uses: 0,
   potency: 1,
   targets: 0,

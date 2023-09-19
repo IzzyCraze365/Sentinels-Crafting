@@ -1753,6 +1753,7 @@ function resetItemCard() {
   itemDescription.innerHTML = `This Item does a Thing`;
   numberOfUses.innerHTML = `X`;
   itemUsesTime.innerHTML = `per combat`;
+  tag1.innerHTML = `[Tag 1, Tag2`;
   tag3.innerHTML = `Tag 3,`;
   tag4.innerHTML = `Tag 4,`;
   tag5.innerHTML = `Tag 5`;
@@ -1863,12 +1864,13 @@ function deviceUses() {
 
 //TODO Need to add Code for Recipies
 //TODO Need to add code to the special choose a word Supersaturated & Rube-Goldberg
-
+// DEBUFF HAS REALLY SCREWED UP THIS CODE
 //TODO Need to add Code for Debilitating (2-Compound) & Inhibitor (2-Mechanism) STILL NEED TO ADD MORE LOGIC
 
 function effectDescription() {
   let totalPotency = 0;
   let totalTargets = 0;
+  let thatThoseTargets = "that target";
   let totalBacklash = 0;
   let totalTurns = 0;
   let totalCollateralDamage = 0;
@@ -1901,7 +1903,7 @@ function effectDescription() {
     }
   }
 
-  //! Total Targets
+  //! Total Turns
   let totalTurnsWords = "X turns";
   if (totalTurns == 1) {
     totalTurnsWords = "1 turn";
@@ -1911,69 +1913,56 @@ function effectDescription() {
     totalTurnsWords = `${totalTurns} turns`;
   }
 
-  //! Total Turns
+  //! Total Targets
   let totalTargetsWords = "X targets";
   if (totalTargets == 1) {
     totalTargetsWords = "1 target";
   } else if (totalTargets > 15) {
     totalTargetsWords = "everyone";
+    thatThoseTargets = "every target";
   } else if (totalTargets <= 0) {
     // Self will always take Priority
     totalTargetsWords = "yourself";
+    thatThoseTargets = "you";
   } else {
     totalTargetsWords = `${totalTargets} targets`;
+    thatThoseTargets = "those targets";
   }
 
   //! Item's Damage Types Description
   let debuffer = 0;
   let debuffWords = ""; //This only works for Direct Powers
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
-  let tag4Words = ""; // This is for the Tag line in [here]
+  let damageTagCount = 1; //Tracks the Count for Tags
+  let tag4Words = ""; //This is for the Tag line in [here]
+  //todo seperate this FOR loop so one creates the tags and the other creates the words
 
+  //! Tag 4 Determination
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
     if (
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
-      if (
-        craftingWordList[craftIngredients[i]].craftingWord == `Debilitating` ||
-        craftingWordList[craftIngredients[i]].craftingWord == `Inhibitor`
-      ) {
-        debuffWords = ` and reduce all damage dealt by ${totalTargetsWords} by ${totalPotency} for ${totalTurnsWords}`;
-        debuffer = 1; // Status Check
-        console.log("debuff words",debuffWords);
-        craftIngredients.splice(i, 1); //Removes Debuff from the craftIngredients.
+      if (damageTagCount == 1) {
+        tag4Words = craftingWordList[craftIngredients[i]].damageType;
+        damageTagCount++;
+        console.log("First Tag 4");
+      } else if (damageTagCount == count2) {
+        tag4Words =
+          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
+        damageTagCount++;
+        console.log("Final Tag 4");
       } else {
-        if (damageTypeCount2 == 1) {
-          totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
-          tag4Words = craftingWordList[craftIngredients[i]].damageType;
-          damageTypeCount2++;
-          console.log("first damage type");
-        } else if (damageTypeCount2 == count2) {
-          totalDamageTypes =
-            totalDamageTypes +
-            ` & ${totalPotency} ` +
-            craftingWordList[craftIngredients[i]].damageType;
-          tag4Words =
-            tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
-          damageTypeCount2++;
-          console.log("Final damage type");
-          damageTypeCount2++;
-        } else {
-          totalDamageTypes =
-            totalDamageTypes +
-            `, ${totalPotency} ` +
-            craftingWordList[craftIngredients[i]].damageType;
-          tag4Words =
-            tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
-          damageTypeCount2++;
-          console.log(damageTypeCount2, " damage type");
-        }
+        tag4Words =
+          tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
+        damageTagCount++;
+        console.log(damageTagCount, " Tag 4");
       }
     }
-    console.log("Damage Type", totalDamageTypes); //! TEST
   }
+  tag3.innerHTML = craftingWordList[craftIngredients[0]].actionTime + ","; //This sets the action Time Tage (Tag #3)
+  tag4.innerHTML = tag4Words; // Sets Damage Type Tags (Tag #4)
 
   //! Extra Tags (Tag 1 and Tag 5)
   tag5.innerHTML = ``; //No Tag no words
@@ -1988,6 +1977,48 @@ function effectDescription() {
   }
   if (craftIngredients.includes("Mutagenic")) {
     tag5.innerHTML = ", Mutagenic";
+  }
+
+  //! This determines the Damage Types of the Item
+  for (let i = 0; i < craftIngredients.length; i++) {
+  if (craftIngredients.includes(`Debilitating`) ||
+    craftIngredients.includes(`Inhibitor`)) {
+      if(count2 > 1){
+    debuffWords = ` and reduce all damage dealt by ${thatThoseTargets} by ${totalPotency} for ${totalTurnsWords}`;
+    debuffer = 1; // Status Check
+    console.log("debuff words", debuffWords);
+    craftIngredients.splice(i, 1); //Removes Debuff from the craftIngredients.
+      } else {
+        //TODO here is where I put the solo debuffer words
+      }
+    }}
+  for (let i = 0; i < craftIngredients.length; i++) {
+    console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
+    if (
+      craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
+      craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
+    ) {
+        if (damageTypeCount2 == 1) {
+          totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log("first damage type");
+        } else if (damageTypeCount2 == count2) {
+          totalDamageTypes =
+            totalDamageTypes +
+            ` & ${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log("Final damage type");
+        } else {
+          totalDamageTypes =
+            totalDamageTypes +
+            `, ${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log(damageTypeCount2, " damage type");
+        }
+      }
+    console.log("Damage Type", totalDamageTypes); //! TEST
   }
 
   //! Backlash Damage Description
@@ -2008,7 +2039,7 @@ function effectDescription() {
       } else if (damageTypeBacklashCount2 == count2) {
         backlashDamageType =
           backlashDamageType +
-          ` & ${totalBacklash} ` +
+          ` & deal ${totalBacklash} ` +
           craftingWordList[craftIngredients[i]].damageType;
         console.log("Final damage type");
         damageTypeBacklashCount2++;
@@ -2034,9 +2065,6 @@ function effectDescription() {
     totalCollateralDamageWords = ` and ${totalCollateralDamage} collateral damage to the room`;
   }
 
-  tag3.innerHTML = craftingWordList[craftIngredients[0]].actionTime + ","; //This sets the action Time Tage (Tag #3)
-  tag4.innerHTML = tag4Words; // Sets Damage Type Tags (Tag #4)
-
   //! Description is based on the 1-Solution / 1-Frame
   //There are 9 different types of Solutions / Frames
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -2050,14 +2078,18 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Cordless"
       ) {
         itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
-        if(debuffer == 1){
-          if(craftingWordList[craftIngredients[i]].craftingWord == "Active"){
+        if (debuffer == 1) {
+          if (craftingWordList[craftIngredients[i]].craftingWord == "Active") {
+            console.log("TEST 123456789",craftIngredients);
             craftIngredients.push(`Debilitating`);
+            console.log("TEST 1234",craftIngredients);
             debuffer = 0;
-          }else if(craftingWordList[craftIngredients[i]].craftingWord == "Cordless"){
+          } else if (
+            craftingWordList[craftIngredients[i]].craftingWord == "Cordless"
+          ) {
             craftIngredients.push(`Inhibitor`);
             debuffer = 0;
-          }else{
+          } else {
             debuffer = 0;
           }
         }
@@ -2068,14 +2100,18 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Welding"
       ) {
         itemDescription.innerHTML = `Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
-        if(debuffer == 1){
-          if(craftingWordList[craftIngredients[i]].craftingWord == "Crystalized"){
+        if (debuffer == 1) {
+          if (
+            craftingWordList[craftIngredients[i]].craftingWord == "Crystalized"
+          ) {
             craftIngredients.push(`Debilitating`);
             debuffer = 0;
-          }else if(craftingWordList[craftIngredients[i]].craftingWord == "Welding"){
+          } else if (
+            craftingWordList[craftIngredients[i]].craftingWord == "Welding"
+          ) {
             craftIngredients.push(`Inhibitor`);
             debuffer = 0;
-          }else{
+          } else {
             debuffer = 0;
           }
         }
@@ -2086,14 +2122,18 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
       ) {
         itemDescription.innerHTML = `Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
-        if(debuffer == 1){
-          if(craftingWordList[craftIngredients[i]].craftingWord == "Lubricant"){
+        if (debuffer == 1) {
+          if (
+            craftingWordList[craftIngredients[i]].craftingWord == "Lubricant"
+          ) {
             craftIngredients.push(`Debilitating`);
             debuffer = 0;
-          }else if(craftingWordList[craftIngredients[i]].craftingWord == "Assisting"){
+          } else if (
+            craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
+          ) {
             craftIngredients.push(`Inhibitor`);
             debuffer = 0;
-          }else{
+          } else {
             debuffer = 0;
           }
         }

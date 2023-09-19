@@ -1812,7 +1812,7 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     itemName.innerHTML = `Crafted Chemical Mixture`;
     cardFooterItemType.innerHTML = `(Mixture:`;
     numberOfUses.innerHTML = craftingWordList[craftIngredients[0]].uses;
-    itemUsesTime.innerHTML = `after consumption.`;
+    itemUsesTime.innerHTML = `(after consumption)`;
     identifyCraftingNumber(); // Adds up Crafting Number
     effectDescription();
     if (craftIngredients.includes(`Mutagenic`)) {
@@ -1864,8 +1864,6 @@ function deviceUses() {
 
 //TODO Need to add Code for Recipies
 //TODO Need to add code to the special choose a word Supersaturated & Rube-Goldberg
-// DEBUFF HAS REALLY SCREWED UP THIS CODE
-//TODO Need to add Code for Debilitating (2-Compound) & Inhibitor (2-Mechanism) STILL NEED TO ADD MORE LOGIC
 
 function effectDescription() {
   let totalPotency = 0;
@@ -1875,7 +1873,8 @@ function effectDescription() {
   let totalTurns = 0;
   let totalCollateralDamage = 0;
   let totalConsumedBacklash = 0;
-  let totalDamageTypes = ``;
+  let totalDamageTypes = ``;// Lists different types of damages
+  let totalDamageWords = ``;//Potency + Damage Types
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
 
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1929,12 +1928,17 @@ function effectDescription() {
     thatThoseTargets = "those targets";
   }
 
+//! Total Consumed Backlash Damage
+let consumedBacklashWords=``;//If the number is 0 this is unchanged.
+if(totalConsumedBacklash>0){
+  consumedBacklashWords=`If you consume this mixture take ${totalConsumedBacklash} Toxic backlash damage and gain the following ability: `;
+}
+
   //! Item's Damage Types Description
   let debuffWords = ""; //This only works for Direct Powers
   let damageTypeCount2 = 1; //Tracks the count up for Different Damage Types
   let damageTagCount = 1; //Tracks the Count for Tags
   let tag4Words = ""; //This is for the Tag line in [here]
-  //todo seperate this FOR loop so one creates the tags and the other creates the words
 
   //! Tag 4 Determination
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1964,7 +1968,7 @@ function effectDescription() {
   tag4.innerHTML = tag4Words; // Sets Damage Type Tags (Tag #4)
 
   //! Extra Tags (Tag 1 and Tag 5)
-  tag1.innerHTML = `[ Combat,`;// Default
+  tag1.innerHTML = `[ Combat,`; // Default
   tag5.innerHTML = ``; //No Tag no words
   if (craftIngredients.includes(`Golem`)) {
     tag1.innerHTML = "[ Golem, Combat,";
@@ -1981,43 +1985,64 @@ function effectDescription() {
 
   //! This determines the Damage Types of the Item
   for (let i = 0; i < craftIngredients.length; i++) {
-  if (craftIngredients.includes(`Debilitating`) ||
-    craftIngredients.includes(`Inhibitor`)) {
-      console.log("count2", count2)
-      if(count2 > 1){
-    debuffWords = ` and reduce all damage dealt by ${thatThoseTargets} by ${totalPotency} for ${totalTurnsWords}`;
-    console.log("debuff words", debuffWords);//! TEST
-      } else if (count2 =1){
-        //TODO here is where I put the solo debuffer words
+    if (
+      craftIngredients.includes(`Debilitating`) ||
+      craftIngredients.includes(`Inhibitor`)
+    ) {
+      console.log("count2", count2);
+      if (count2 > 1) {
+        debuffWords = ` and reduce all damage dealt by ${thatThoseTargets} by ${totalPotency} for ${totalTurnsWords}`;
+        console.log("debuff words", debuffWords); //! TEST
+      } else if ((count2 = 1)) {
+        debuffWords = `All damage dealt by ${totalTargetsWords} is reduced by ${totalPotency} damage for ${totalTurnsWords}`;
       }
-    }}
+    }
+  }
+
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`);
     if (
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
-        if (damageTypeCount2 == 1 && craftingWordList[craftIngredients[i]].damageType != "Debuff") {
-          totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
-          damageTypeCount2++;
-          console.log("first damage type");
-        } else if (damageTypeCount2 == count2 && craftingWordList[craftIngredients[i]].damageType != "Debuff") {
-          totalDamageTypes =
-            totalDamageTypes +
-            ` & ${totalPotency} ` +
-            craftingWordList[craftIngredients[i]].damageType;
-          damageTypeCount2++;
-          console.log("Final damage type");
-        } else if(craftingWordList[craftIngredients[i]].damageType != "Debuff") {
-          totalDamageTypes =
-            totalDamageTypes +
-            `, ${totalPotency} ` +
-            craftingWordList[craftIngredients[i]].damageType;
-          damageTypeCount2++;
-          console.log(damageTypeCount2, " damage type");
-        }else{damageTypeCount2++;}
+      if (
+        damageTypeCount2 == 1 &&
+        craftingWordList[craftIngredients[i]].damageType != "Debuff"
+      ) {
+        totalDamageWords = `${totalPotency} ` + craftingWordList[craftIngredients[i]].damageType;
+        totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log("first damage type");
+      } else if (
+        damageTypeCount2 == count2 &&
+        craftingWordList[craftIngredients[i]].damageType != "Debuff"
+      ) {
+        totalDamageWords =
+        totalDamageWords +
+          ` & ${totalPotency} ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        totalDamageTypes =
+          totalDamageTypes +
+          ` & ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log("Final damage type");
+      } else if (craftingWordList[craftIngredients[i]].damageType != "Debuff") {
+        totalDamageWords =
+        totalDamageWords +
+          `, ${totalPotency} ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        totalDamageTypes =
+          totalDamageTypes +
+          `, ` +
+          craftingWordList[craftIngredients[i]].damageType;
+        damageTypeCount2++;
+        console.log(damageTypeCount2, " damage type");
+      } else {
+        damageTypeCount2++;
       }
-    console.log("Damage Type", totalDamageTypes); //! TEST
+    }
+    console.log("Total Damage Type", totalDamageTypes, "Total Damage Words", totalDamageWords); //! TEST
   }
 
   //! Backlash Damage Description
@@ -2076,63 +2101,87 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Active" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Cordless"
       ) {
-        itemDescription.innerHTML = `Deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          count2 == 1 &&
+          (craftIngredients.includes("Inhibitor") ||
+            craftIngredients.includes("Debilitating"))
+        ) {
+          itemDescription.innerHTML = `${consumedBacklashWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Deal ${totalTargetsWords} ${totalDamageWords} damage${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //Power – Armor (-1 effect received for 2 turns)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Crystalized" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Welding"
       ) {
-        itemDescription.innerHTML = `Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          count2 == 1 &&
+          (craftIngredients.includes("Inhibitor") ||
+            craftIngredients.includes("Debilitating"))
+        ) {
+          itemDescription.innerHTML = `${consumedBacklashWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //Power – Buff (+1 effect to 1 target for 2 turns)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Lubricant" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Assisting"
       ) {
-        itemDescription.innerHTML = `Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          count2 == 1 &&
+          (craftIngredients.includes("Inhibitor") ||
+            craftIngredients.includes("Debilitating"))
+        ) {
+          itemDescription.innerHTML = `${consumedBacklashWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //Ongoing – Buff (+1 effect)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Continuous" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Personal"
       ) {
-        itemDescription.innerHTML = `You deal +${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `${consumedBacklashWords}Increase all ${totalDamageTypes} damage by +${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
       }
       //Ongoing – Armor (-1 effect received)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Preserving" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Sturdy"
       ) {
-        itemDescription.innerHTML = `Reduce all ${totalDamageTypes} damage dealt to you by ${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `${consumedBacklashWords}Reduce all ${totalDamageTypes} damage dealt to you by ${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
       }
       //Start - Direct (1 effect to 1 target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Reactant" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Automatic"
       ) {
-        itemDescription.innerHTML = `At the start of your turn, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `${consumedBacklashWords}At the start of your turn, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
       }
       //End - Direct (1 effect to 1 target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Product" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Auxiliary"
       ) {
-        itemDescription.innerHTML = `At the end of your turn, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `${consumedBacklashWords}At the end of your turn, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
       }
       // Reaction - Direct (1 effect to 1 target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Residual" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Spring-Loaded"
       ) {
-        itemDescription.innerHTML = `Whenever you are dealt damage, deal ${totalTargetsWords} ${totalPotency} ${totalDamageTypes} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        itemDescription.innerHTML = `${consumedBacklashWords}Whenever you are dealt damage, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
       }
       //Reaction - Redirect (Redirect the next 2+potency effect to target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Spasmodic" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Triggered"
       ) {
-        itemDescription.innerHTML = `Redirect the next ${
+        itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
           2 + totalPotency
         } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
         tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4

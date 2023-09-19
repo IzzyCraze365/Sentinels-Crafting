@@ -1962,6 +1962,20 @@ function effectDescription() {
     console.log("Damage Type", totalDamageTypes); //! TEST
   }
 
+  //! Extra Tags (Tag 1 and Tag 5)
+  if (craftingWordList[craftIngredients[i]].craftingWord == "Golem") {
+    tag1 = "Golem, Combat,";
+  }
+  if (craftingWordList[craftIngredients[i]].craftingWord == "Module") {
+    tag1 = "Module, Combat,";
+  }
+  if (craftingWordList[craftIngredients[i]].craftingWord == "Bulky") {
+    tag5 = ", Heavy";
+  }
+  if (craftingWordList[craftIngredients[i]].craftingWord == "Mutagenic") {
+    tag5 = ", Mutagenic";
+  }
+
   //! Backlash Damage Description
   let backlashDamageType = "";
   let totalBacklashWords = ""; //If there is no damage value then nothing appears

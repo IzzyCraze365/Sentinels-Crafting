@@ -1,6 +1,7 @@
 // Sentinel Comics Issue #404: Lock Down
 // Crafting Aid Helper Tool
 // Coded by John 'Izzy' Isabella
+//! Item Card is properly built, just need to add recipes
 
 class craftingWordAndItem {
   constructor({

@@ -18,8 +18,10 @@ Coded by John 'Izzy' Isabella
       }
 
       body {
+        /* background: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w); */
+        /* Online Image (above) vs Locally Saved Image (below)*/
         background: url(./Sentinels-Wallpaper.jpg);
-        overflow: hidden;
+        overflow: scroll;
         background-size: cover;
         font-family: "Brush Script MT", cursive;
       }
@@ -44,6 +46,12 @@ Coded by John 'Izzy' Isabella
         border-radius: 5px 0px 0px 5px;
         background: green;
         min-width: 25%;
+      }
+
+      #recipeBlueprintButton {
+        border-radius: 10px 10px 10px 10px;
+        background: blue;
+        min-width: 50%;
       }
 
       .lineBTN {
@@ -81,6 +89,9 @@ Coded by John 'Izzy' Isabella
       }
 
       .card {
+        /* We are trying to mimic a 3" by 5" index card*/
+        /* background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png); */
+        /* TODO Make this with CSS, don't use an image OR save image locally*/
         background-size: cover;
         background-color: white;
         padding: 1rem;
@@ -292,6 +303,11 @@ Coded by John 'Izzy' Isabella
         <button class="button" id="createButton">Craft Item</button>
         <button class="button" id="resetButton">Reset</button>
       </div>
+      <div>
+        <button class="button" id="recipeBlueprintButton">
+          Blueprint Recipe
+        </button>
+      </div>
       <!--  Below displays the finished Item Card -->
       <div class="card">
         <div class="card-header">
@@ -333,15 +349,13 @@ Coded by John 'Izzy' Isabella
         </div>
       </div>
     </div>
+    <div><p>.</p></div>
     <script>
-      // Sentinel Comics Issue #404: Lock Down
-      // Crafting Aid Helper Tool
-      // Coded by John 'Izzy' Isabella
-
       class craftingWordAndItem {
         constructor({
           itemName,
           craftingWord,
+          idKeyword,
           craftingType,
           itemType,
           craftingNumber,
@@ -358,6 +372,7 @@ Coded by John 'Izzy' Isabella
         }) {
           this.itemName = itemName;
           this.craftingWord = craftingWord;
+          this.idKeyword = idKeyword;
           this.craftingType = craftingType;
           this.itemType = itemType;
           this.craftingNumber = craftingNumber;
@@ -378,6 +393,7 @@ Coded by John 'Izzy' Isabella
       const Active = new craftingWordAndItem({
         itemName: "Coffee",
         craftingWord: "Active",
+        idKeyword: "Active",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 1,
@@ -395,6 +411,7 @@ Coded by John 'Izzy' Isabella
       const Continuous = new craftingWordAndItem({
         itemName: "Amazonian Flowers",
         craftingWord: "Continuous",
+        idKeyword: "Continuous",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 3,
@@ -412,6 +429,7 @@ Coded by John 'Izzy' Isabella
       const Crystalized = new craftingWordAndItem({
         itemName: "Sodium",
         craftingWord: "Crystalized",
+        idKeyword: "Crystalized",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 2,
@@ -429,6 +447,7 @@ Coded by John 'Izzy' Isabella
       const Lubricant = new craftingWordAndItem({
         itemName: "Grease",
         craftingWord: "Lubricant",
+        idKeyword: "Lubricant",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 2,
@@ -446,6 +465,7 @@ Coded by John 'Izzy' Isabella
       const Preserving = new craftingWordAndItem({
         itemName: "Formaldihide",
         craftingWord: "Preserving",
+        idKeyword: "Preserving",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 5,
@@ -463,6 +483,7 @@ Coded by John 'Izzy' Isabella
       const Product = new craftingWordAndItem({
         itemName: "Ammonia",
         craftingWord: "Product",
+        idKeyword: "Product",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 4,
@@ -480,6 +501,7 @@ Coded by John 'Izzy' Isabella
       const Reactant = new craftingWordAndItem({
         itemName: "Chlorine",
         craftingWord: "Reactant",
+        idKeyword: "Reactant",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 4,
@@ -497,6 +519,7 @@ Coded by John 'Izzy' Isabella
       const Residual = new craftingWordAndItem({
         itemName: "Ethanol",
         craftingWord: "Residual",
+        idKeyword: "Residual",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 3,
@@ -514,6 +537,7 @@ Coded by John 'Izzy' Isabella
       const Spasmodic = new craftingWordAndItem({
         itemName: "Ethanol",
         craftingWord: "Spasmodic",
+        idKeyword: "Spasmodic",
         craftingType: "Chemical",
         itemType: "1-Solution",
         craftingNumber: 4,
@@ -532,6 +556,7 @@ Coded by John 'Izzy' Isabella
       const Acidic = new craftingWordAndItem({
         itemName: "Sulfuric Acid",
         craftingWord: "Acidic",
+        idKeyword: "Acidic",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 3,
@@ -549,6 +574,7 @@ Coded by John 'Izzy' Isabella
       const Coagulated = new craftingWordAndItem({
         itemName: "Growth Hormones",
         craftingWord: "Coagulated",
+        idKeyword: "Coagulated",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 1,
@@ -566,6 +592,7 @@ Coded by John 'Izzy' Isabella
       const Corrupted = new craftingWordAndItem({
         itemName: "Abiotic",
         craftingWord: "Corrupted",
+        idKeyword: "Corrupted",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 3,
@@ -583,6 +610,7 @@ Coded by John 'Izzy' Isabella
       const Debilitating = new craftingWordAndItem({
         itemName: "Paint Thinner",
         craftingWord: "Debilitating",
+        idKeyword: "Debilitating",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 4,
@@ -600,6 +628,7 @@ Coded by John 'Izzy' Isabella
       const Distilled = new craftingWordAndItem({
         itemName: "Purified Water",
         craftingWord: "Distilled",
+        idKeyword: "Distilled",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 3,
@@ -617,6 +646,7 @@ Coded by John 'Izzy' Isabella
       const Endothermic = new craftingWordAndItem({
         itemName: "AntiFreeze",
         craftingWord: "Endothermic",
+        idKeyword: "Endothermic",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 2,
@@ -634,6 +664,7 @@ Coded by John 'Izzy' Isabella
       const Exothermic = new craftingWordAndItem({
         itemName: "Glycerol",
         craftingWord: "Exothermic",
+        idKeyword: "Exothermic",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 2,
@@ -651,6 +682,7 @@ Coded by John 'Izzy' Isabella
       const Flammable = new craftingWordAndItem({
         itemName: "Tobacco",
         craftingWord: "Flammable",
+        idKeyword: "Flammable",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 2,
@@ -668,6 +700,7 @@ Coded by John 'Izzy' Isabella
       const Galvanic = new craftingWordAndItem({
         itemName: "Iodine",
         craftingWord: "Galvanic",
+        idKeyword: "Galvanic",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 2,
@@ -685,6 +718,7 @@ Coded by John 'Izzy' Isabella
       const Injected = new craftingWordAndItem({
         itemName: "Ink",
         craftingWord: "Injected",
+        idKeyword: "Injected",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 1,
@@ -702,6 +736,7 @@ Coded by John 'Izzy' Isabella
       const Neural = new craftingWordAndItem({
         itemName: "Crystalized Myelin",
         craftingWord: "Neural",
+        idKeyword: "Neural",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 3,
@@ -719,6 +754,7 @@ Coded by John 'Izzy' Isabella
       const Pulsating = new craftingWordAndItem({
         itemName: "Acitone",
         craftingWord: "Pulsating",
+        idKeyword: "Pulsating",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 3,
@@ -736,6 +772,7 @@ Coded by John 'Izzy' Isabella
       const Supersaturated = new craftingWordAndItem({
         itemName: "Chemical X",
         craftingWord: "Supersaturated",
+        idKeyword: "Supersaturated",
         craftingType: "Chemical",
         itemType: "varies",
         craftingNumber: 6,
@@ -754,6 +791,7 @@ Coded by John 'Izzy' Isabella
       const Sweet = new craftingWordAndItem({
         itemName: "Honey",
         craftingWord: "Sweet",
+        idKeyword: "Sweet",
         craftingType: "Chemical",
         itemType: "2-Compound",
         craftingNumber: 4,
@@ -771,6 +809,7 @@ Coded by John 'Izzy' Isabella
       const Alkaline = new craftingWordAndItem({
         itemName: "Industrial Cleaner",
         craftingWord: "Alkaline",
+        idKeyword: "Alkaline",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -788,6 +827,7 @@ Coded by John 'Izzy' Isabella
       const Concentrated = new craftingWordAndItem({
         itemName: "Caster Oil",
         craftingWord: "Concentrated",
+        idKeyword: "Concentrated",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -805,6 +845,7 @@ Coded by John 'Izzy' Isabella
       const Congealed = new craftingWordAndItem({
         itemName: "Cloroform",
         craftingWord: "Congealed",
+        idKeyword: "Congealed",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -822,6 +863,7 @@ Coded by John 'Izzy' Isabella
       const Convulsive = new craftingWordAndItem({
         itemName: "Laughing Gas",
         craftingWord: "Convulsive",
+        idKeyword: "Convulsive",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 1,
@@ -839,6 +881,7 @@ Coded by John 'Izzy' Isabella
       const Crude = new craftingWordAndItem({
         itemName: "Oil",
         craftingWord: "Crude",
+        idKeyword: "Crude",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 1,
@@ -856,6 +899,7 @@ Coded by John 'Izzy' Isabella
       const Dehydrated = new craftingWordAndItem({
         itemName: "Aerosol",
         craftingWord: "Dehydrated",
+        idKeyword: "Dehydrated",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 1,
@@ -873,6 +917,7 @@ Coded by John 'Izzy' Isabella
       const Explosive = new craftingWordAndItem({
         itemName: "Nitro Glycerine",
         craftingWord: "Explosive",
+        idKeyword: "Explosive",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -890,6 +935,7 @@ Coded by John 'Izzy' Isabella
       const Hazardous = new craftingWordAndItem({
         itemName: "Turpentine",
         craftingWord: "Hazardous",
+        idKeyword: "Hazardous",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 3,
@@ -907,6 +953,7 @@ Coded by John 'Izzy' Isabella
       const Ionic = new craftingWordAndItem({
         itemName: "Methanol",
         craftingWord: "Ionic",
+        idKeyword: "Ionic",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 3,
@@ -924,6 +971,7 @@ Coded by John 'Izzy' Isabella
       const Mutagenic = new craftingWordAndItem({
         itemName: "Mutant Fungus",
         craftingWord: "Mutagenic",
+        idKeyword: "Mutagenic",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 3,
@@ -942,6 +990,7 @@ Coded by John 'Izzy' Isabella
       const Saturated = new craftingWordAndItem({
         itemName: "Adrenaline",
         craftingWord: "Saturated",
+        idKeyword: "Saturated",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -959,6 +1008,7 @@ Coded by John 'Izzy' Isabella
       const Unsaturated = new craftingWordAndItem({
         itemName: "Saline",
         craftingWord: "Unsaturated",
+        idKeyword: "Unsaturated",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -976,6 +1026,7 @@ Coded by John 'Izzy' Isabella
       const Unstable = new craftingWordAndItem({
         itemName: "Liquid Krypton",
         craftingWord: "Unstable",
+        idKeyword: "Unstable",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 2,
@@ -993,6 +1044,7 @@ Coded by John 'Izzy' Isabella
       const Violent = new craftingWordAndItem({
         itemName: "Hydrogen Peroxide",
         craftingWord: "Violent",
+        idKeyword: "Violent",
         craftingType: "Chemical",
         itemType: "3-Catalyst",
         craftingNumber: 5,
@@ -1011,6 +1063,7 @@ Coded by John 'Izzy' Isabella
       const Assisting = new craftingWordAndItem({
         itemName: "Scrap Metal",
         craftingWord: "Assisting",
+        idKeyword: "Assisting",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 2,
@@ -1028,6 +1081,7 @@ Coded by John 'Izzy' Isabella
       const Automatic = new craftingWordAndItem({
         itemName: "Expresso Machine",
         craftingWord: "Automatic",
+        idKeyword: "Automatic",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 4,
@@ -1045,6 +1099,7 @@ Coded by John 'Izzy' Isabella
       const Auxiliary = new craftingWordAndItem({
         itemName: "Computer",
         craftingWord: "Auxiliary",
+        idKeyword: "Auxiliary",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 4,
@@ -1062,6 +1117,7 @@ Coded by John 'Izzy' Isabella
       const Cordless = new craftingWordAndItem({
         itemName: "Scrap Electronics",
         craftingWord: "Cordless",
+        idKeyword: "Cordless",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 1,
@@ -1079,6 +1135,7 @@ Coded by John 'Izzy' Isabella
       const Personal = new craftingWordAndItem({
         itemName: "Goggles",
         craftingWord: "Personal",
+        idKeyword: "Personal",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 5,
@@ -1097,6 +1154,7 @@ Coded by John 'Izzy' Isabella
         // NOTE could not add the dash
         itemName: "Hair Dryer",
         craftingWord: "Spring-Loaded",
+        idKeyword: "SpringLoaded",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 3,
@@ -1114,6 +1172,7 @@ Coded by John 'Izzy' Isabella
       const Sturdy = new craftingWordAndItem({
         itemName: "Freedom Tower Door",
         craftingWord: "Sturdy",
+        idKeyword: "Sturdy",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 3,
@@ -1131,6 +1190,7 @@ Coded by John 'Izzy' Isabella
       const Triggered = new craftingWordAndItem({
         itemName: "Plasma TV",
         craftingWord: "Triggered",
+        idKeyword: "Triggered",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 4,
@@ -1149,6 +1209,7 @@ Coded by John 'Izzy' Isabella
       const Welding = new craftingWordAndItem({
         itemName: "Duct Tape",
         craftingWord: "Welding",
+        idKeyword: "Welding",
         craftingType: "Mechanical",
         itemType: "1-Frame",
         craftingNumber: 2,
@@ -1166,6 +1227,7 @@ Coded by John 'Izzy' Isabella
       const Coolant = new craftingWordAndItem({
         itemName: "Fan",
         craftingWord: "Coolant",
+        idKeyword: "Coolant",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 2,
@@ -1183,6 +1245,7 @@ Coded by John 'Izzy' Isabella
       const Corrosive = new craftingWordAndItem({
         itemName: "Car Battery",
         craftingWord: "Corrosive",
+        idKeyword: "Corrosive",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 3,
@@ -1200,6 +1263,7 @@ Coded by John 'Izzy' Isabella
       const Digital = new craftingWordAndItem({
         itemName: "Circuit Board",
         craftingWord: "Digital",
+        idKeyword: "Digital",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 2,
@@ -1217,6 +1281,7 @@ Coded by John 'Izzy' Isabella
       const Halogen = new craftingWordAndItem({
         itemName: "Laser Pointer",
         craftingWord: "Halogen",
+        idKeyword: "Halogen",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 3,
@@ -1234,6 +1299,7 @@ Coded by John 'Izzy' Isabella
       const Inhibitor = new craftingWordAndItem({
         itemName: "Capacitor",
         craftingWord: "Inhibitor",
+        idKeyword: "Inhibitor",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 4,
@@ -1251,6 +1317,7 @@ Coded by John 'Izzy' Isabella
       const Irradiated = new craftingWordAndItem({
         itemName: "Uranium",
         craftingWord: "Irradiated",
+        idKeyword: "Irradiated",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 4,
@@ -1268,6 +1335,7 @@ Coded by John 'Izzy' Isabella
       const Magnetic = new craftingWordAndItem({
         itemName: "Battery",
         craftingWord: "Magnetic",
+        idKeyword: "Magnetic",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 2,
@@ -1285,6 +1353,7 @@ Coded by John 'Izzy' Isabella
       const Pneumatic = new craftingWordAndItem({
         itemName: "Air Horn",
         craftingWord: "Pneumatic",
+        idKeyword: "Pneumatic",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 1,
@@ -1302,6 +1371,7 @@ Coded by John 'Izzy' Isabella
       const Repairing = new craftingWordAndItem({
         itemName: "Superglue",
         craftingWord: "Repairing",
+        idKeyword: "Repairing",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 4,
@@ -1320,6 +1390,7 @@ Coded by John 'Izzy' Isabella
         // NOTE could not add the dash
         itemName: "Rubber Ducky",
         craftingWord: "Rube-Goldberg",
+        idKeyword: "RubeGoldberg",
         craftingType: "Mechanical",
         itemType: "varies",
         craftingNumber: 6,
@@ -1338,6 +1409,7 @@ Coded by John 'Izzy' Isabella
       const Seismic = new craftingWordAndItem({
         itemName: "Speaker",
         craftingWord: "Seismic",
+        idKeyword: "Seismic",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 3,
@@ -1355,6 +1427,7 @@ Coded by John 'Izzy' Isabella
       const Sharp = new craftingWordAndItem({
         itemName: "Metal Shards",
         craftingWord: "Sharp",
+        idKeyword: "Sharp",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 1,
@@ -1372,6 +1445,7 @@ Coded by John 'Izzy' Isabella
       const Thermal = new craftingWordAndItem({
         itemName: "Bunsen Burner",
         craftingWord: "Thermal",
+        idKeyword: "Thermal",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 2,
@@ -1389,6 +1463,7 @@ Coded by John 'Izzy' Isabella
       const Wireless = new craftingWordAndItem({
         itemName: "V.R. Helmet",
         craftingWord: "Wireless",
+        idKeyword: "Wireless",
         craftingType: "Mechanical",
         itemType: "2-Mechanism",
         craftingNumber: 3,
@@ -1406,6 +1481,7 @@ Coded by John 'Izzy' Isabella
       const Bulky = new craftingWordAndItem({
         itemName: "Barrel",
         craftingWord: "Bulky",
+        idKeyword: "Bulky",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 3,
@@ -1423,6 +1499,7 @@ Coded by John 'Izzy' Isabella
       const Compressed = new craftingWordAndItem({
         itemName: "Micro-Fusion Cell",
         craftingWord: "Compressed",
+        idKeyword: "Compressed",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 3,
@@ -1440,6 +1517,7 @@ Coded by John 'Izzy' Isabella
       const Dangerous = new craftingWordAndItem({
         itemName: "Gun Powder",
         craftingWord: "Dangerous",
+        idKeyword: "Dangerous",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 1,
@@ -1457,6 +1535,7 @@ Coded by John 'Izzy' Isabella
       const Diesel = new craftingWordAndItem({
         itemName: "Engine",
         craftingWord: "Diesel",
+        idKeyword: "Diesel",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1474,6 +1553,7 @@ Coded by John 'Izzy' Isabella
       const Efficient = new craftingWordAndItem({
         itemName: "Engine",
         craftingWord: "Efficient",
+        idKeyword: "Efficient",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 5,
@@ -1491,6 +1571,7 @@ Coded by John 'Izzy' Isabella
       const Golem = new craftingWordAndItem({
         itemName: "Unity's Power",
         craftingWord: "Golem",
+        idKeyword: "Golem",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 0,
@@ -1510,6 +1591,7 @@ Coded by John 'Izzy' Isabella
         // NOTE could not add the dash
         itemName: "Broken Laser Turret",
         craftingWord: "High-Maintenance",
+        idKeyword: "HighMaintenance",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 1,
@@ -1527,6 +1609,7 @@ Coded by John 'Izzy' Isabella
       const Incandescent = new craftingWordAndItem({
         itemName: "Infrared Sensor",
         craftingWord: "Incandescent",
+        idKeyword: "Incandescent",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1544,6 +1627,7 @@ Coded by John 'Izzy' Isabella
       const Manual = new craftingWordAndItem({
         itemName: "Focusing Lens",
         craftingWord: "Manual",
+        idKeyword: "Manual",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1561,6 +1645,7 @@ Coded by John 'Izzy' Isabella
       const Module = new craftingWordAndItem({
         itemName: "Om-X Power",
         craftingWord: "Module",
+        idKeyword: "Module",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 0,
@@ -1578,6 +1663,7 @@ Coded by John 'Izzy' Isabella
       const Motorized = new craftingWordAndItem({
         itemName: "Servos",
         craftingWord: "Motorized",
+        idKeyword: "Motorized",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 3,
@@ -1595,6 +1681,7 @@ Coded by John 'Izzy' Isabella
       const Overclocked = new craftingWordAndItem({
         itemName: "Projector",
         craftingWord: "Overclocked",
+        idKeyword: "Overclocked",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1612,6 +1699,7 @@ Coded by John 'Izzy' Isabella
       const Precision = new craftingWordAndItem({
         itemName: "Centrifuge",
         craftingWord: "Precision",
+        idKeyword: "Precision",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 6,
@@ -1629,6 +1717,7 @@ Coded by John 'Izzy' Isabella
       const Prototype = new craftingWordAndItem({
         itemName: "Fuel Cell",
         craftingWord: "Prototype",
+        idKeyword: "Prototype",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 4,
@@ -1646,6 +1735,7 @@ Coded by John 'Izzy' Isabella
       const Reliable = new craftingWordAndItem({
         itemName: "Rope",
         craftingWord: "Reliable",
+        idKeyword: "Reliable",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 3,
@@ -1663,6 +1753,7 @@ Coded by John 'Izzy' Isabella
       const Rigid = new craftingWordAndItem({
         itemName: "Processed Alloy",
         craftingWord: "Rigid",
+        idKeyword: "Rigid",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 3,
@@ -1680,6 +1771,7 @@ Coded by John 'Izzy' Isabella
       const Ruinous = new craftingWordAndItem({
         itemName: "Giant Saw Blade",
         craftingWord: "Ruinous",
+        idKeyword: "Ruinous",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1697,6 +1789,7 @@ Coded by John 'Izzy' Isabella
       const Supercharged = new craftingWordAndItem({
         itemName: "Gyroscope",
         craftingWord: "Supercharged",
+        idKeyword: "Supercharged",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 3,
@@ -1714,6 +1807,7 @@ Coded by John 'Izzy' Isabella
       const Targeting = new craftingWordAndItem({
         itemName: "Binoculars",
         craftingWord: "Targeting",
+        idKeyword: "Targeting",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1732,6 +1826,7 @@ Coded by John 'Izzy' Isabella
         // NOTE could not add the dash
         itemName: "Old Costume",
         craftingWord: "User-Friendly",
+        idKeyword: "UserFriendly",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1749,6 +1844,7 @@ Coded by John 'Izzy' Isabella
       const Vibrating = new craftingWordAndItem({
         itemName: "Joystick",
         craftingWord: "Vibrating",
+        idKeyword: "Vibrating",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 1,
@@ -1766,6 +1862,7 @@ Coded by John 'Izzy' Isabella
       const Virtual = new craftingWordAndItem({
         itemName: "Video Game",
         craftingWord: "Virtual",
+        idKeyword: "Virtual",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 6,
@@ -1784,6 +1881,7 @@ Coded by John 'Izzy' Isabella
         // NOTE could not add the dash
         itemName: "Drill",
         craftingWord: "Wind-Up",
+        idKeyword: "WindUp",
         craftingType: "Mechanical",
         itemType: "3-Component",
         craftingNumber: 2,
@@ -1797,6 +1895,25 @@ Coded by John 'Izzy' Isabella
         collateralDamage: 0,
         consumedBacklash: 0,
         effect: "Potency -1, Uses +1",
+      });
+      const LegacyLineBlood = new craftingWordAndItem({
+        // NOTE could not add the dash
+        itemName: "Legacy-line Blood",
+        craftingWord: "Legacy-line Blood",
+        idKeyword: "LegacyLineBlood",
+        craftingType: "Special",
+        itemType: "special",
+        craftingNumber: 0,
+        actionTime: "",
+        damageType: "",
+        uses: 0,
+        potency: 0,
+        targets: 0,
+        backlash: 0,
+        turns: 0,
+        collateralDamage: 0,
+        consumedBacklash: 0,
+        effect: "Special - Needed for Specific Recipe",
       });
 
       const craftingWordList = {
@@ -1883,6 +2000,7 @@ Coded by John 'Izzy' Isabella
         Vibrating: Vibrating,
         Virtual: Virtual,
         "Wind-Up": WindUp,
+        "Legacy-line Blood": LegacyLineBlood,
       };
 
       // Created a new Matrix using the Constructors Crafting Words
@@ -1892,6 +2010,7 @@ Coded by John 'Izzy' Isabella
 
       let searchCraftingWords = craftingWordMatrix.sort();
       let craftIngredients = []; // This is the matrix that starts off empty and will store the Crafting Words we are adding to the table.
+      let blueprint = "nada";
 
       //! Buttons - Query Selectors
       let workBench = document.querySelector(".crafting-table");
@@ -1900,6 +2019,9 @@ Coded by John 'Izzy' Isabella
       const searchInput = document.querySelector("[data-search]"); // Search Field
       let createButton = document.querySelector("#createButton");
       let resetButton = document.querySelector("#resetButton");
+      let recipeBlueprintButton = document.querySelector(
+        "#recipeBlueprintButton"
+      );
 
       //! Index Card Queries
       let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -1923,6 +2045,7 @@ Coded by John 'Izzy' Isabella
       workBench.style.display = "none"; //Invisible Crafting Table
       createButton.style.display = "none"; //Invisible Button
       resetButton.style.display = "none"; //Invisible Button
+      recipeBlueprintButton.style.display = "none"; //Invisible Button
       indexCard.style.display = "none"; //Invisible Index Card
 
       // Input field value is read here.
@@ -1985,6 +2108,8 @@ Coded by John 'Izzy' Isabella
             craftIngredients.push(itemSearcher.value); //This adds the searched word to the table
           }
           console.log("craftIngredients added to the Table", craftIngredients); //! Verify
+          recipeBlueprintButton.style.display = "none"; //Invisible Button
+          recipeChecker(); //This checks the specific Recipes in Game
           dropdownModifyRemove(itemSearcher.value);
           itemSearcher.value = ""; //Resets the Search Bar
           populateTable(craftIngredients); //Function Call to add item to the table
@@ -1999,18 +2124,22 @@ Coded by John 'Izzy' Isabella
         console.log("Remove button clicked"); //Confirmation
         document.querySelector(".craftTable").deleteRow(index);
         craftIngredients;
+        recipeBlueprintButton.style.display = "none"; //Invisible Button
         let selectedWord = selectedCW.craftingWord;
-        //console.log("selectedWord", selectedWord); //! Verify
+        console.log("selectedWord", selectedWord); //! Verify
         let indexWord = craftIngredients.indexOf(selectedWord);
-        //console.log("indexWord", indexWord); //! Verify
+        console.log("indexWord", indexWord); //! Verify
         if (indexWord !== -1) {
           craftIngredients.splice(indexWord, 1);
           searchCraftingWords.push(selectedWord);
           searchCraftingWords = searchCraftingWords.sort();
+          recipeChecker(); //This checks the specific Recipes in Game
           dropdownMenu(searchCraftingWords);
         }
         populateTable(craftIngredients);
         if (craftIngredients.length == 0) {
+          createButton.style.display = "none"; //Makes the Craft item Button Disappear
+          resetButton.style.display = "none"; //Makes the Reset Button Disappear
           workBench.style.display = "none"; //Hides the Crafting Table
         }
       }
@@ -2059,7 +2188,7 @@ Coded by John 'Izzy' Isabella
             craftingWordList[craftWords[i]].effect
           }</td>
   <td><button onclick="removeRow(${i + 1}, ${
-            craftingWordList[craftWords[i]].craftingWord
+            craftingWordList[craftWords[i]].idKeyword
           })" class="button lineBTN" id="removeItemBtn${
             i + 1
           }" >Remove</button></td>
@@ -2084,6 +2213,7 @@ Coded by John 'Izzy' Isabella
         workBench.style.display = "none"; //Makes the Crafting Table Disappear
         createButton.style.display = "none"; //Makes the Craft item Button Disappear
         resetButton.style.display = "none"; //Makes the Reset Button Disappear
+        recipeBlueprintButton.style.display = "none"; //Makes the Reset Button Disappear
         indexCard.style.display = "none"; //Makes the Index Card Disappear
       }
 
@@ -2091,6 +2221,7 @@ Coded by John 'Izzy' Isabella
       function resetItemCard() {
         itemName.innerHTML = `Item Name`;
         itemDescription.innerHTML = `This Item does a Thing`;
+        usesWords.innerHTML = `Uses:`;
         numberOfUses.innerHTML = `X`;
         itemUsesTime.innerHTML = `per combat`;
         tag1.innerHTML = `[ Tag 1, Tag 2,`;
@@ -2105,7 +2236,7 @@ Coded by John 'Izzy' Isabella
 
       function itemCardBuilder() {
         console.log("Craft Item button clicked"); //Confirmation
-
+        specialCraftingWords();
         let chemCT = 0; //Chemical Crafting Type
         let mechCT = 0; //Mechanical Crafting Type
         console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
@@ -2143,8 +2274,6 @@ Coded by John 'Izzy' Isabella
           }
           console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
         }
-        specialCraftingWords(); //Checks the Special Words
-        blueprintRecipes(); //This checks the specific Recipes in Game
         identifyDeviceOrMixture(chemCT, mechCT); //Mixture or Device
       }
 
@@ -2617,15 +2746,255 @@ Coded by John 'Izzy' Isabella
       }
 
       //This checks the specific Recipes in Game that break the normal crafting rules
-      function blueprintRecipes() {
-        console.log("Checking Recipies");
-        //TODO finish this
+      function recipeChecker() {
+        if (
+          craftIngredients.length == 4 &&
+          craftIngredients.includes("Personal") &&
+          craftIngredients.includes("Pneumatic") &&
+          craftIngredients.includes("Prototype") &&
+          craftIngredients.includes("Virtual")
+        ) {
+          blueprint = "Micro Targeting Computer";
+        } else if (
+          craftIngredients.length == 4 &&
+          craftIngredients.includes("Assisting") &&
+          craftIngredients.includes("Compressed") &&
+          craftIngredients.includes("Magnetic") &&
+          craftIngredients.includes("Spring-Loaded")
+        ) {
+          blueprint = "Utility Belt";
+        } else if (
+          craftIngredients.length == 4 &&
+          craftIngredients.includes("Golem") &&
+          craftIngredients.includes("Overclocked") &&
+          craftIngredients.includes("Pneumatic") &&
+          craftIngredients.includes("Triggered")
+        ) {
+          blueprint = "Bee Bot";
+        } else if (
+          craftIngredients.length == 5 &&
+          craftIngredients.includes("Golem") &&
+          craftIngredients.includes("Automatic") &&
+          craftIngredients.includes("Digital") &&
+          craftIngredients.includes("Sturdy") &&
+          craftIngredients.includes("User-Friendly")
+        ) {
+          blueprint = "Platform Bot";
+        } else if (
+          craftIngredients.length == 5 &&
+          craftIngredients.includes("Golem") &&
+          craftIngredients.includes("Auxiliary") &&
+          craftIngredients.includes("Bulky") &&
+          craftIngredients.includes("Prototype") &&
+          craftIngredients.includes("Sharp")
+        ) {
+          blueprint = "Raptor Bot";
+        } else if (
+          craftIngredients.length == 4 &&
+          craftIngredients.includes("Module") &&
+          craftIngredients.includes("Automatic") &&
+          craftIngredients.includes("Precision") &&
+          craftIngredients.includes("Thermal")
+        ) {
+          blueprint = "Focused Plasma Cannon";
+        } else if (
+          craftIngredients.length == 5 &&
+          craftIngredients.includes("Module") &&
+          craftIngredients.includes("Bulky") &&
+          craftIngredients.includes("Halogen") &&
+          craftIngredients.includes("Irradiated") &&
+          craftIngredients.includes("Sturdy")
+        ) {
+          blueprint = "Temporal Shielding Plating";
+        } else if (
+          craftIngredients.length == 4 &&
+          craftIngredients.includes("Compressed") &&
+          craftIngredients.includes("Halogen") &&
+          craftIngredients.includes("Overclocked") &&
+          craftIngredients.includes("Personal")
+        ) {
+          blueprint = "Death Ray";
+        } else if (
+          craftIngredients.length == 5 &&
+          craftIngredients.includes("Convulsive") &&
+          craftIngredients.includes("Debilitating") &&
+          craftIngredients.includes("Preserving") &&
+          craftIngredients.includes("Spasmodic") &&
+          craftIngredients.includes("Legacy-line Blood")
+        ) {
+          blueprint = "Regression Serum";
+        } else if (
+          craftIngredients.length == 4 &&
+          craftIngredients.includes("Diesel") &&
+          craftIngredients.includes("Exothermic") &&
+          craftIngredients.includes("Explosive") &&
+          craftIngredients.includes("Triggered")
+        ) {
+          blueprint = "Thermo-Pulse Explosive";
+        } else {
+          blueprint = "nada";
+        }
+        if (blueprint != "nada") {
+          //This makes the Recipe Button Appear
+          console.log(`Recipe for ${blueprint}`);
+          recipeBlueprintButton.innerHTML = `Blueprint: ${blueprint}`;
+          recipeBlueprintButton.style.display = "block";
+        }
+      }
+
+      recipeBlueprintButton.addEventListener("click", blueprintRecipesCraft); //! "Blueprint Crafting" Button
+
+      //Creats Recipes from Blueprinces when the Craft Recipe Button is pushed
+      function blueprintRecipesCraft() {
+        indexCard.style.display = "block"; //This makes the Index Card Appear
+        console.log(`Craft Recipe button clicked for ${blueprint}`);
+        if (blueprint == "Micro Targeting Computer") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `You deal +2 projectile damage.`;
+          usesWords.innerHTML = ``;
+          numberOfUses.innerHTML = ``;
+          itemUsesTime.innerHTML = ``;
+          tag1.innerHTML = `[ Wraith, Combat,`;
+          tag3.innerHTML = `Ongoing,`;
+          tag4.innerHTML = `Projectile`;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `20`;
+        } else if (blueprint == "Utility Belt") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `You may use an additional [Power] on your turn if both powers are found on items.  You may not use the same power more than once per turn.`;
+          usesWords.innerHTML = ``;
+          numberOfUses.innerHTML = ``;
+          itemUsesTime.innerHTML = ``;
+          tag1.innerHTML = `[ Wraith, Combat,`;
+          tag3.innerHTML = `Ongoing`;
+          tag4.innerHTML = ``;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `20`;
+        } else if (blueprint == "Bee Bot") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `You may redirect an attack that would deal damage to an allied target to Bee Bot. Bee Bot has 1 HP and deals 2 projectile damage to anyone who hits it.`;
+          usesWords.innerHTML = `Health: `;
+          numberOfUses.innerHTML = `2`;
+          itemUsesTime.innerHTML = `HP (Destroyed when HP is reduced to 0)`;
+          tag1.innerHTML = `[ Golem, Combat,`;
+          tag3.innerHTML = `Reaction,`;
+          tag4.innerHTML = `Projectile`;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `5`;
+        } else if (blueprint == "Platform Bot") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `A floating robot with 3 HP.  At the start of your turn, Platform Bot may deal 1 target 3 energy damage. Reduce damage dealt to Platform Bot by 1.`;
+          usesWords.innerHTML = `Health: `;
+          numberOfUses.innerHTML = `3`;
+          itemUsesTime.innerHTML = `HP (Destroyed when HP is reduced to 0)`;
+          tag1.innerHTML = `[ Golem, Combat,`;
+          tag3.innerHTML = `Start,`;
+          tag4.innerHTML = `Energy`;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `11`;
+        } else if (blueprint == "Raptor Bot") {
+          itemName.innerHTML = blueprint + ` / Mr. Chomps`;
+          itemDescription.innerHTML = `A dinosaur robot with 2 HP.  At the end of your turn Raptor Bot may deal 1 target 5 melee damage.`;
+          usesWords.innerHTML = `Health: `;
+          numberOfUses.innerHTML = `2`;
+          itemUsesTime.innerHTML = `HP (Destroyed when HP is reduced to 0)`;
+          tag1.innerHTML = `[ Golem, Combat,`;
+          tag3.innerHTML = `End,`;
+          tag4.innerHTML = `Melee`;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `11`;
+        } else if (blueprint == "Focused Plasma Cannon") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `At the start of your turn deal 1 target 2 irreducible fire damage.`;
+          usesWords.innerHTML = ``;
+          numberOfUses.innerHTML = ``;
+          itemUsesTime.innerHTML = ``;
+          tag1.innerHTML = `[ Module, Combat,`;
+          tag3.innerHTML = `Start,`;
+          tag4.innerHTML = `Fire`;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `13`;
+        } else if (blueprint == "Temporal Shielding Plating") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `Reduce [Psychic], [Infernal], [Radiant], and [Sonic] damage dealt to you by 2.  Prevents a singularity when 2 version of the same individual come into contact.`;
+          usesWords.innerHTML = ``;
+          numberOfUses.innerHTML = ``;
+          itemUsesTime.innerHTML = ``;
+          tag1.innerHTML = `[ Module, Combat,`;
+          tag3.innerHTML = `Ongoing,`;
+          tag4.innerHTML = ``;
+          tag5.innerHTML = `Heavy / Plating`;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `17`;
+        } else if (blueprint == "Death Ray") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `Deal 1 target 5 irreducible energy damage.`;
+          usesWords.innerHTML = `Uses: `;
+          numberOfUses.innerHTML = ``;
+          itemUsesTime.innerHTML = `3 per combat`;
+          tag1.innerHTML = `[ Baron Blade, Combat,`;
+          tag3.innerHTML = `Power,`;
+          tag4.innerHTML = `Energy`;
+          tag5.innerHTML = ``;
+          cardFooterItemType.innerHTML = `(Recipe Device: `;
+          craftingNumberValue.innerHTML = `20`;
+        } else if (blueprint == "Regression Serum") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `When used, it denies the Legacy-line the use of their abilities for 5 minutes. (This mixture is poured on a target)
+    `;
+          usesWords.innerHTML = `Uses: `;
+          numberOfUses.innerHTML = `1`;
+          itemUsesTime.innerHTML = ``;
+          tag1.innerHTML = `[ Baron Blade, Combat,`;
+          tag3.innerHTML = `Power,`;
+          tag4.innerHTML = ``;
+          tag5.innerHTML = `Specialty`;
+          cardFooterItemType.innerHTML = `(Recipe Mixture: `;
+          craftingNumberValue.innerHTML = `22`;
+        } else if (blueprint == "Thermo-Pulse Explosive") {
+          itemName.innerHTML = blueprint;
+          itemDescription.innerHTML = `Deal 2 fire damage to all targets and 20 collateral damage to the room.`;
+          usesWords.innerHTML = `Uses: `;
+          numberOfUses.innerHTML = `1`;
+          itemUsesTime.innerHTML = ``;
+          tag1.innerHTML = `[ Baron Blade, Combat,`;
+          tag3.innerHTML = `Power,`;
+          tag4.innerHTML = `Fire,`;
+          tag5.innerHTML = `Heavy`;
+          cardFooterItemType.innerHTML = `(Recipe Device/Mixture: `;
+          craftingNumberValue.innerHTML = `15`;
+        } else {
+          indexCard.style.display = "none"; //This makes the Index Card disappear
+          console.log("There is no Recipe Present, something went wrong...");
+        }
       }
 
       //This function checks if Supersaturated or Rube-Goldberg are used
       function specialCraftingWords() {
         console.log("Checking Special Words");
-        //TODO finish this
+        if (craftIngredients.includes(`Supersaturated`)) {
+          console.log(
+            `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
+          );
+          alert(
+            `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
+          );
+          //Todo add code to select a replacement word here
+        } else if (craftIngredients.includes(`Rube-Goldberg`)) {
+          console.log(
+            `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
+          );
+          alert(
+            `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
+          );
+          //Todo add code to select a replacement word here
+        }
       }
 
       // Capitalize the User's Input

@@ -14,7 +14,7 @@ body {
   /* background: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w); */
   /* Online Image (above) vs Locally Saved Image (below)*/
   background: url(./Sentinels-Wallpaper.jpg);
-  overflow: hidden;
+  overflow: scroll;
   background-size: cover;
   font-family: "Brush Script MT", cursive;
 }

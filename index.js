@@ -1671,6 +1671,7 @@ let resetButton = document.querySelector("#resetButton");
 let recipeBlueprintButton = document.querySelector("#recipeBlueprintButton");
 let modal = document.querySelector("#modal");
 let modalTitle = document.querySelector("#modal-title");
+let modalSearch = document.querySelector("#modal-search");
 
 //! Index Card Queries
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -1728,7 +1729,8 @@ function dropdownClear() {
 function dropdownModifyRemove(removedItem) {
   let dropdownList = document.getElementById("crafting-words");
   for (let i = 0; i < dropdownList.children.length; i++) {
-    if (removedItem === dropdownList.children[i].value) {dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
+    if (removedItem === dropdownList.children[i].value) {
+      dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
     }
   }
 }
@@ -2600,9 +2602,44 @@ function specialCraftingWords() {
     alert(
       `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
     );
-    modalTitle.innerHTML=`Supersaturated`;
+    modalTitle.innerHTML = `Supersaturated`;
     modal.style.display = "block";
+
     //Todo add code to select a replacement word here
+    let searchChemicalWords = Object.entries(craftingWordList).map(
+      (craftWords) => craftWords[1].craftingWord
+    );
+    searchChemicalWords = searchChemicalWords.sort();
+    let supersaturatedOptions = [];
+    for (let i = 0; i < searchChemicalWords.length; i++) {
+      if (
+        craftIngredients.includes(
+          craftingWordList[searchChemicalWords[i]].craftingWord
+        )
+      ) {
+        console.log(
+          `Skipping ${craftingWordList[searchChemicalWords[i]].craftingWord}`
+        );
+      } else if (
+        craftingWordList[searchChemicalWords[i]].craftingType == "Chemical"
+      ) {
+        console.log(
+          `Adding ${
+            craftingWordList[searchChemicalWords[i]].craftingWord
+          } to search list`
+        );
+        supersaturatedOptions.push(
+          craftingWordList[searchChemicalWords[i]].craftingWord
+        );
+      }
+    }
+    supersaturatedOptions.sort();
+    console.log(
+      "supersaturatedOptions",
+      supersaturatedOptions.length,
+      supersaturatedOptions
+    ); //! TEST
+    dropdownMenu(supersaturatedOptions);
   } else if (craftIngredients.includes(`Rube-Goldberg`)) {
     console.log(
       `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
@@ -2610,9 +2647,42 @@ function specialCraftingWords() {
     alert(
       `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
     );
-    modalTitle.innerHTML=`Rube-Goldberg`;
+    modalTitle.innerHTML = `Rube-Goldberg`;
     modal.style.display = "block";
-    //Todo add code to select a replacement word here
+    let searchMechanicalWords = Object.entries(craftingWordList).map(
+      (craftWords) => craftWords[1].craftingWord
+    );
+    searchMechanicalWords = searchMechanicalWords.sort();
+    let rubeGoldbergOptions = [];
+    for (let i = 0; i < searchMechanicalWords.length; i++) {
+      if (
+        craftIngredients.includes(
+          craftingWordList[searchMechanicalWords[i]].craftingWord
+        )
+      ) {
+        console.log(
+          `Skipping ${craftingWordList[searchMechanicalWords[i]].craftingWord}`
+        );
+      } else if (
+        craftingWordList[searchMechanicalWords[i]].craftingType == "Mechanical"
+      ) {
+        console.log(
+          `Adding ${
+            craftingWordList[searchMechanicalWords[i]].craftingWord
+          } to search list`
+        );
+        rubeGoldbergOptions.push(
+          craftingWordList[searchMechanicalWords[i]].craftingWord
+        );
+      }
+    }
+    rubeGoldbergOptions.sort();
+    console.log(
+      "rubeGoldbergOptions",
+      rubeGoldbergOptions.length,
+      rubeGoldbergOptions
+    ); //! TEST
+    dropdownMenu(rubeGoldbergOptions);
   }
 }
 

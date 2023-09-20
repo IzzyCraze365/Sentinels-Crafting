@@ -1,0 +1,305 @@
+/* 
+Sentinel Comics Issue #404: Lock Down
+Crafting Aid Helper Tool
+Coded by John 'Izzy' Isabella
+ */
+
+/*  Everything working correctly.  This is a saved copy of everything in this code, included commented out lines and console.logs  The version I will be releasing will be "clean code" so I will be removing the unnecessary lines of data. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(65, 25, 65);
+  background-image: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w);
+  /* Online Image (above) vs Locally Saved Image (below)*/
+  background-image: url(./Sentinels-Wallpaper.jpg);
+  background-size: cover;
+  overflow: scroll;
+  background-size: cover;
+  font-family: "Brush Script MT", cursive;
+}
+
+.button {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  min-width: 60px;
+  background: red;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#addItemButton {
+  border-radius: 0px 5px 5px 0px;
+  background: #2e66b9;
+}
+
+#createButton {
+  border-radius: 5px 0px 0px 5px;
+  background: green;
+  min-width: 25%;
+}
+
+#recipeBlueprintButton {
+  border-radius: 10px 10px 10px 10px;
+  background: blue;
+  min-width: 50%;
+}
+
+.lineBTN {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  min-width: 30px;
+  background: purple;
+  color: yellow;
+  border-radius: 15px;
+}
+
+#resetButton {
+  border-radius: 0px 5px 5px 0px;
+  background: red;
+  min-width: 25%;
+}
+
+.autocompleteList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocompleteList li {
+  color: black;
+  padding: 15px;
+  width: calc(100%-30px);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.card {
+  /* We are trying to mimic a 3" by 5" index card*/
+  /* background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png); */
+  /* TODO Make this with CSS, don't use an image OR save image locally*/
+  background-size: cover;
+  background-color: white;
+  padding: 1rem;
+  width: 1000px;
+  height: 60%;
+  box-shadow: 0px 10px 40px -10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.card-body {
+  margin-top: 1.5rem;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.card-body-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-body-header h2 {
+  color: red;
+  font-size: 1.4rem;
+  margin-top: 0.3rem;
+}
+
+.card-body-header h3 {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: 400;
+  background: red;
+  color: white;
+}
+
+.card-bulk {
+  display: inline-block;
+  margin: auto;
+  font-size: 2rem;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card-footer {
+  display: block;
+  margin-top: 3rem;
+  font-size: 2.5rem;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.card-header {
+  display: flex;
+  height: 60px;
+  align-items: top;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 3px solid red;
+}
+
+.cardType {
+  font-size: 2rem;
+  margin-top: 0.75rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.crafting-table {
+  background-color: white;
+  padding: 1rem;
+  min-width: 100px;
+  min-height: 60px;
+  box-shadow: 0px 10px 40px -10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.craftingNumber {
+  display: inline;
+  font-size: 2.5rem;
+  color: black;
+}
+
+#itemName {
+  font-size: 3rem;
+  color: black;
+  text-decoration: underline;
+}
+
+#itemDescription {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  color: black;
+}
+
+.itemUses {
+  display: inline;
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: black;
+  align-items: center;
+}
+
+.nameLARP {
+  font-size: 2rem;
+  margin-left: 1rem;
+  margin-top: 0.75rem;
+}
+
+.search-form {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.search-input {
+  padding: 0.5rem;
+  min-width: 240px;
+  border: 2px solid #2e66b9;
+}
+
+span {
+  font-size: 0.7rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-decoration: underline;
+}
+
+tr:nth-child(even) {
+  background-color: skyblue;
+}
+
+.tabletop {
+  text-align: center;
+}
+
+.tag {
+  display: inline;
+}
+
+#tags {
+  display: block;
+  margin: auto;
+  font-size: 2rem;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: black;
+}
+
+/* This is for the Table Item List */
+ul {
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.35); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  color: yellow;
+  background-color: purple;
+  text-align: center;
+  font-size: larger;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 5px solid yellow;
+  border-radius: 90px 90px 90px 90px;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+
+#continueButton {
+  font-size: larger;
+  border-radius: 0px 0px 0px 25px;
+  background: red;
+  min-width: 25%;
+}
+
+#replaceButton {
+  font-size: larger;
+  border-radius: 0px 0px 25px 0px;
+  color: purple;
+  background: rgb(113, 255, 113);
+  min-width: 25%;
+}

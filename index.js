@@ -2593,6 +2593,7 @@ function blueprintRecipesCraft() {
 }
 
 //This function checks if Supersaturated or Rube-Goldberg are used
+//TODO buttons needed to trigger the change in the for Special Word
 function specialCraftingWords() {
   console.log("Checking Special Words");
   if (craftIngredients.includes(`Supersaturated`)) {
@@ -2604,8 +2605,6 @@ function specialCraftingWords() {
     );
     modalTitle.innerHTML = `Supersaturated`;
     modal.style.display = "block";
-
-    //Todo add code to select a replacement word here
     let searchChemicalWords = Object.entries(craftingWordList).map(
       (craftWords) => craftWords[1].craftingWord
     );

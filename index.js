@@ -1669,8 +1669,8 @@ const searchInput = document.querySelector("[data-search]"); // Search Field
 let createButton = document.querySelector("#createButton");
 let resetButton = document.querySelector("#resetButton");
 let recipeBlueprintButton = document.querySelector("#recipeBlueprintButton");
-let continueButton = document.querySelector("#continueButton");//Modal button
-let replaceButton = document.querySelector("#replaceButton");//ModalButton
+let continueButton = document.querySelector("#continueButton"); //Modal button
+let replaceButton = document.querySelector("#replaceButton"); //ModalButton
 let modal = document.querySelector("#modal");
 let modalTitle = document.querySelector("#modal-title");
 let modalSearch = document.querySelector("#modal-search");
@@ -1882,11 +1882,21 @@ function resetItemCard() {
   craftingNumberValue.innerHTML = `000`;
 }
 
-createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
-//todo make a new function call for the button that if checks specialcrafting words else itemcardbuilder
-function itemCardBuilder() {
+createButton.addEventListener("click", itemCrafter); //! "Craft Item" Button
+
+function itemCrafter() {
   console.log("Craft Item button clicked"); //Confirmation
-  specialCraftingWords();//TODO remove this rom item card builder
+  if (
+    craftIngredients.includes("Supersaturated") ||
+    craftIngredients.includes("Rube-Goldberg")
+  ) {
+    specialCraftingWords(); //Special Rules for these words
+  } else {
+    itemCardBuilder();
+  }
+}
+
+function itemCardBuilder() {
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
   console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
@@ -2595,7 +2605,6 @@ function blueprintRecipesCraft() {
 }
 
 //This function checks if Supersaturated or Rube-Goldberg are used
-//TODO buttons needed to trigger the change in the for Special Word
 function specialCraftingWords() {
   console.log("Checking Special Words");
   if (craftIngredients.includes(`Supersaturated`)) {
@@ -2689,17 +2698,17 @@ function specialCraftingWords() {
   replaceButton.addEventListener("click", replaceSpecialWord); //! "Replace" Modal Button
 }
 
-function noChangeButton(){
+function noChangeButton() {
   console.log("No Change button clicked"); // Confirmation
   itemCardBuilder();
 }
 
-
-function replaceSpecialWord(){
+function replaceSpecialWord() {
   console.log("Replace button clicked"); // Confirmation
+  //TODO add the replacement here
 
+  itemCardBuilder();
 }
-
 
 // Capitalize the User's Input
 function titleCase(myString) {

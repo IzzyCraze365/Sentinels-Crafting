@@ -1750,7 +1750,7 @@ function addItem() {
     console.log("Add Item button clicked"); // Confirmation
     let itemSearcher = document.querySelector("#searched-item"); // Search Bar
     let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
-    //console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
+    console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
     if (wordIndex !== -1) {
       //If the Word in the Search Bar is not on the list then nothing happens
       workBench.style.display = "block"; //This makes the Crafting Table Appear
@@ -2013,7 +2013,7 @@ function identifyCraftingNumber() {
   let craftNumber = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
     craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
-    //console.log(craftNumber, "CraftNumber)"); //! TEST
+    console.log(craftNumber, "CraftNumber)"); //! TEST
   }
   craftingNumberValue.innerHTML = craftNumber;
 }
@@ -2150,7 +2150,7 @@ function effectDescription() {
     tag5.innerHTML = ", Heavy";
   }
   if (craftIngredients.includes("Mutagenic")) {
-    tag5.innerHTML = ", Mutagenic";
+    tag5.innerHTML = ", Extract";
   }
 
   //! This determines the Damage Types of the Item
@@ -2607,13 +2607,16 @@ function blueprintRecipesCraft() {
 //This function checks if Supersaturated or Rube-Goldberg are used
 function specialCraftingWords() {
   console.log("Checking Special Words");
-  if (craftIngredients.includes(`Supersaturated`)) {
+  if (craftIngredients.length > 5) {
+    indexCard.style.display = "none"; //Invisible Index Card
+    alert(
+      `Sorry, a maximum of 5 items can be used when Crafting. Please remove an item before adding another.`
+    );
+  } else if (craftIngredients.includes(`Supersaturated`)) {
     console.log(
       `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
     );
-    alert(
-      `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
-    );
+    //alert(`Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`);
     modalTitle.innerHTML = `Supersaturated`;
     modal.style.display = "block";
     let searchChemicalWords = Object.entries(craftingWordList).map(
@@ -2654,9 +2657,7 @@ function specialCraftingWords() {
     console.log(
       `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
     );
-    alert(
-      `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
-    );
+    //alert(`Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`);
     modalTitle.innerHTML = `Rube-Goldberg`;
     modal.style.display = "block";
     let searchMechanicalWords = Object.entries(craftingWordList).map(
@@ -2694,19 +2695,32 @@ function specialCraftingWords() {
     ); //! TEST
     dropdownMenu(rubeGoldbergOptions);
   }
-  continueButton.addEventListener("click", itemCardBuilder); //! "No Change" Modal Button
+  continueButton.addEventListener("click", noChangeButton); //! "No Change" Modal Button
   replaceButton.addEventListener("click", replaceSpecialWord); //! "Replace" Modal Button
 }
 
 function noChangeButton() {
   console.log("No Change button clicked"); // Confirmation
+  modal.style.display = "none";
   itemCardBuilder();
 }
 
 function replaceSpecialWord() {
   console.log("Replace button clicked"); // Confirmation
-  //TODO add the replacement here
+  console.log("Replacement craftIngredients", craftIngredients); //! TEST
 
+  let selectedWord = searchCraftingWords.indexOf(modalSearch.value);
+  console.log("Selected Word", modalSearch.value); //! TEST
+
+  if (selectedWord !== -1) {
+    //If the Word in the Search Bar is not on the list then nothing happens
+    searchCraftingWords.splice(selectedWord, 1); //Removed Item from Drop Down list
+    craftIngredients.push(modalSearch.value); //This adds the searched word to the table
+  }
+  console.log("End of Replacement craftIngredients", craftIngredients); //! TEST
+  modal.style.display = "none";
+  dropdownMenu(searchCraftingWords);
+  populateTable(craftIngredients);
   itemCardBuilder();
 }
 

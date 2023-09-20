@@ -1421,6 +1421,23 @@ const craftingItems = [
     consumedBacklash: 0,
     effect: "Potency -1, Uses +1",
   },
+  {
+    itemName: "Legacy-line Blood",
+    craftingWord: "Legacy-line Blood",
+    craftingType: "Special",
+    itemType: "special",
+    craftingNumber: 0,
+    actionTime: "",
+    damageType: "",
+    uses: 0,
+    potency: 0,
+    targets: 0,
+    backlash: 0,
+    turns: 0,
+    collateralDamage: 0,
+    consumedBacklash: 0,
+    effect: "Special! Needed for Specific Recipe",
+  },
 ];
 
 export default craftingItems;

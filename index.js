@@ -1460,6 +1460,25 @@ const WindUp = new craftingWordAndItem({
   consumedBacklash: 0,
   effect: "Potency -1, Uses +1",
 });
+const LegacyLineBlood = new craftingWordAndItem({
+  // NOTE could not add the dash
+  itemName: "Legacy-line Blood",
+  craftingWord: "Legacy-line Blood",
+  craftingType: "Special",
+  itemType: "special",
+  craftingNumber: 0,
+  actionTime: "",
+  damageType: "",
+  uses: 0,
+  potency: 0,
+  targets: 0,
+  backlash: 0,
+  turns: 0,
+  collateralDamage: 0,
+  consumedBacklash: 0,
+  effect:
+    "Special! Needed for Specific Recipe",
+});
 
 const craftingWordList = {
   Active: Active,
@@ -1545,6 +1564,7 @@ const craftingWordList = {
   Vibrating: Vibrating,
   Virtual: Virtual,
   "Wind-Up": WindUp,
+  "Legacy-line Blood":LegacyLineBlood,
 };
 
 // Created a new Matrix using the Constructors Crafting Words
@@ -1562,6 +1582,7 @@ let addButton = document.querySelector("#addItemButton");
 const searchInput = document.querySelector("[data-search]"); // Search Field
 let createButton = document.querySelector("#createButton");
 let resetButton = document.querySelector("#resetButton");
+let recipeBlueprintButton = document.querySelector("#recipeBlueprintButton");
 
 //! Index Card Queries
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -1585,6 +1606,7 @@ dropdownMenu(searchCraftingWords); //Call the drop down
 workBench.style.display = "none"; //Invisible Crafting Table
 createButton.style.display = "none"; //Invisible Button
 resetButton.style.display = "none"; //Invisible Button
+recipeBlueprintButton.style.display = "none"; //Invisible Button
 indexCard.style.display = "none"; //Invisible Index Card
 
 // Input field value is read here.
@@ -1647,6 +1669,8 @@ function addItem() {
       craftIngredients.push(itemSearcher.value); //This adds the searched word to the table
     }
     console.log("craftIngredients added to the Table", craftIngredients); //! Verify
+    recipeBlueprintButton.style.display = "none"; //Invisible Button
+    recipeChecker();//This checks the specific Recipes in Game
     dropdownModifyRemove(itemSearcher.value);
     itemSearcher.value = ""; //Resets the Search Bar
     populateTable(craftIngredients); //Function Call to add item to the table
@@ -1661,6 +1685,7 @@ function removeRow(index, selectedCW) {
   console.log("Remove button clicked"); //Confirmation
   document.querySelector(".craftTable").deleteRow(index);
   craftIngredients;
+  recipeBlueprintButton.style.display = "none"; //Invisible Button
   let selectedWord = selectedCW.craftingWord;
   //console.log("selectedWord", selectedWord); //! Verify
   let indexWord = craftIngredients.indexOf(selectedWord);
@@ -1669,10 +1694,13 @@ function removeRow(index, selectedCW) {
     craftIngredients.splice(indexWord, 1);
     searchCraftingWords.push(selectedWord);
     searchCraftingWords = searchCraftingWords.sort();
+    recipeChecker();//This checks the specific Recipes in Game
     dropdownMenu(searchCraftingWords);
   }
   populateTable(craftIngredients);
   if (craftIngredients.length == 0) {
+    createButton.style.display = "none"; //Makes the Craft item Button Disappear
+    resetButton.style.display = "none"; //Makes the Reset Button Disappear
     workBench.style.display = "none"; //Hides the Crafting Table
   }
 }
@@ -1744,6 +1772,7 @@ function resetTable() {
   workBench.style.display = "none"; //Makes the Crafting Table Disappear
   createButton.style.display = "none"; //Makes the Craft item Button Disappear
   resetButton.style.display = "none"; //Makes the Reset Button Disappear
+  recipeBlueprintButton.style.display = "none"; //Makes the Reset Button Disappear
   indexCard.style.display = "none"; //Makes the Index Card Disappear
 }
 
@@ -1802,7 +1831,6 @@ function itemCardBuilder() {
     console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
   }
   specialCraftingWords(); //Checks the Special Words
-  blueprintRecipes(); //This checks the specific Recipes in Game
   identifyDeviceOrMixture(chemCT, mechCT); //Mixture or Device
 }
 
@@ -2246,8 +2274,23 @@ function effectDescription() {
 }
 
 //This checks the specific Recipes in Game that break the normal crafting rules
-function blueprintRecipes() {
-  console.log("Checking Recipies");
+function recipeChecker(){
+  if(craftIngredients.length == 4 && craftIngredients.includes("Personal") && craftIngredients.includes("Pneumatic") && craftIngredients.includes("Prototype") && craftIngredients.includes("Virtual")){
+    console.log("Recipe for Mirco Targeting Computer");
+    recipeBlueprintButton.innerHTML="Blueprint: Mirco Targeting Computer"
+    recipeBlueprintButton.style.display = "block"; //This makes the Recipe Button Appear
+    //How do I stop this from continuing
+  }
+  //TODO finish this
+}
+
+
+recipeBlueprintButton.addEventListener("click", blueprintRecipesCraft); //! "Blueprint Crafting" Button
+
+//Creats Recipes from Blueprinces when the Craft Recipe Button is pushed
+function blueprintRecipesCraft() {
+  console.log("Craft Recipe button clicked");
+
   //TODO finish this
 }
 

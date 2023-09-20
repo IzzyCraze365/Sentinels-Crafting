@@ -41,6 +41,12 @@ body {
   min-width: 25%;
 }
 
+#recipeBlueprintButton {
+  border-radius: 10px 10px 10px 10px;
+  background: blue;
+  min-width: 50%;
+}
+
 .lineBTN {
   border: none;
   padding: 0.5rem;

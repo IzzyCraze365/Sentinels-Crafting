@@ -53,6 +53,32 @@ Coded by John 'Izzy' Isabella
           Blueprint Recipe
         </button>
       </div>
+
+      <!-- Adding a Modal for Special Words -->
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <h3 id="modal-title">Supersaturated or Rube-Goldberg</h3>
+          <div class="userInput">
+            <label id="modal-name">Special Words:</label>
+            <!-- This code allows the player to input an answer -->
+            <input
+            type="search"
+            list="crafting-words"
+            id="searched-item"
+            class="search-input dropdownMenu"
+            placeholder="Replacement Crafting Word"
+            data-search=""
+          />
+          </div>
+
+          <div text-align=center>
+            <button class="button" id="continueButton">No Change</button>
+            <button class="button" id="replaceButton">Replace</button>
+          </div>
+          <!-- Addition for Modal -->
+        </div>
+      </div>
+
       <!--  Below displays the finished Item Card -->
       <div class="card">
         <div class="card-header">

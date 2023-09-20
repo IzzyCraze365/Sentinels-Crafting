@@ -258,3 +258,44 @@ tr:nth-child(even) {
 ul {
   text-align: center;
 }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.35); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  color: yellow;
+  background-color: purple;
+  text-align: center;
+  font-size: larger;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 5px solid yellow;
+  border-radius: 90px 90px 90px 90px;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+
+#continueButton {
+  font-size: larger;
+  border-radius: 0px 0px 0px 25px;
+  background: red;
+  min-width: 25%;
+}
+
+#replaceButton {
+  font-size: larger;
+  border-radius: 0px 0px 25px 0px;
+  color: purple;
+  background: rgb(113, 255, 113);
+  min-width: 25%;
+}

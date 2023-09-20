@@ -1669,6 +1669,8 @@ const searchInput = document.querySelector("[data-search]"); // Search Field
 let createButton = document.querySelector("#createButton");
 let resetButton = document.querySelector("#resetButton");
 let recipeBlueprintButton = document.querySelector("#recipeBlueprintButton");
+let modal = document.querySelector("#modal");
+let modalTitle = document.querySelector("#modal-title");
 
 //! Index Card Queries
 let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -1726,8 +1728,7 @@ function dropdownClear() {
 function dropdownModifyRemove(removedItem) {
   let dropdownList = document.getElementById("crafting-words");
   for (let i = 0; i < dropdownList.children.length; i++) {
-    if (removedItem === dropdownList.children[i].value) {
-      dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
+    if (removedItem === dropdownList.children[i].value) {dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
     }
   }
 }
@@ -2599,6 +2600,8 @@ function specialCraftingWords() {
     alert(
       `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
     );
+    modalTitle.innerHTML=`Supersaturated`;
+    modal.style.display = "block";
     //Todo add code to select a replacement word here
   } else if (craftIngredients.includes(`Rube-Goldberg`)) {
     console.log(
@@ -2607,6 +2610,8 @@ function specialCraftingWords() {
     alert(
       `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
     );
+    modalTitle.innerHTML=`Rube-Goldberg`;
+    modal.style.display = "block";
     //Todo add code to select a replacement word here
   }
 }

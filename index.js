@@ -1801,8 +1801,8 @@ function itemCardBuilder() {
     }
     console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
   }
-  specialCraftingWords();//Checks the Special Words
-  blueprintRecipes();//This checks the specific Recipes in Game
+  specialCraftingWords(); //Checks the Special Words
+  blueprintRecipes(); //This checks the specific Recipes in Game
   identifyDeviceOrMixture(chemCT, mechCT); //Mixture or Device
 }
 
@@ -1812,63 +1812,70 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
   if (chemCT >= 2 && mechCT == 0) {
     console.log("This is a crafted Chemical Mixture"); //! TEST
     let solution1 = 0;
-    let compound2=0
-    for (let i = 0; i < craftIngredients.length; i++){
-      if(craftingWordList[craftIngredients[i]].itemType == "1-Solution"){
-        solution1++
-      }else if(craftingWordList[craftIngredients[i]].itemType == "2-Compound"){
+    let compound2 = 0;
+    for (let i = 0; i < craftIngredients.length; i++) {
+      if (craftingWordList[craftIngredients[i]].itemType == "1-Solution") {
+        solution1++;
+      } else if (
+        craftingWordList[craftIngredients[i]].itemType == "2-Compound"
+      ) {
         compound2++;
       }
     }
-    if(solution1 == 0){
+    if (solution1 == 0) {
       alert("This Chemical Mixture needs a Solution."); // ALERT
-    }else if(solution1 > 1){
+    } else if (solution1 > 1) {
       alert("This Chemical Mixture can only have 1 Solution."); // ALERT
-    }else if(compound2 ==0){
+    } else if (compound2 == 0) {
       alert("This Chemical Mixture needs at least 1 Compound."); // ALERT
-    }else{
-    itemName.innerHTML = `Crafted Chemical Mixture`;
-    cardFooterItemType.innerHTML = `(Mixture:`;
-    numberOfUses.innerHTML = craftingWordList[craftIngredients[0]].uses;
-    itemUsesTime.innerHTML = `(after consumption)`;
-    identifyCraftingNumber(); // Adds up Crafting Number
-    effectDescription();
-    if (craftIngredients.includes(`Mutagenic`)) {
-      //This is a Special Case
-      usesWords.innerHTML = `This is a Permanent Ability.`;
-      numberOfUses.innerHTML = ``;
-      itemUsesTime.innerHTML = ``;
+    } else {
+      itemName.innerHTML = `Crafted Chemical Mixture`;
+      cardFooterItemType.innerHTML = `(Mixture:`;
+      numberOfUses.innerHTML = craftingWordList[craftIngredients[0]].uses;
+      itemUsesTime.innerHTML = `(after consumption)`;
+      identifyCraftingNumber(); // Adds up Crafting Number
+      effectDescription();
+      if (craftIngredients.includes(`Mutagenic`)) {
+        //This is a Special Case
+        usesWords.innerHTML = `This is a Permanent Ability.`;
+        numberOfUses.innerHTML = ``;
+        itemUsesTime.innerHTML = ``;
+      }
+      indexCard.style.display = "block"; //This makes the Index Card Appear
     }
-    indexCard.style.display = "block"; //This makes the Index Card Appear
-  } }else if (mechCT >= 2 && chemCT == 0) {
+  } else if (mechCT >= 2 && chemCT == 0) {
     console.log("This is a crafted Mechanical Device"); //! TEST
     let frame1 = 0;
-    let mechanism2=0
-    for (let i = 0; i < craftIngredients.length; i++){
-      if(craftingWordList[craftIngredients[i]].itemType == "1-Frame"){
-        frame1++
-      }else if(craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"){
+    let mechanism2 = 0;
+    for (let i = 0; i < craftIngredients.length; i++) {
+      if (craftingWordList[craftIngredients[i]].itemType == "1-Frame") {
+        frame1++;
+      } else if (
+        craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
+      ) {
         mechanism2++;
       }
     }
-if(frame1 == 0){
-  alert("This Mechanical Device needs a Frame."); // ALERT
-}else if(frame1 > 1){
-  alert("This Mechanical Device can only have 1 Frame."); // ALERT
-}else if(mechanism2==0){
-  alert("This Mechanical Device needs at least 1 Mechanism."); // ALERT
-}else{
-    itemName.innerHTML = `Crafted Mechanical Device`;
-    cardFooterItemType.innerHTML = `(Device:`;
-    identifyCraftingNumber(); // Adds up Crafting Number
-    deviceUses(); // Adds up Item Uses
-    effectDescription();
-    indexCard.style.display = "block"; //This makes the Index Card Appear
-}
-  } else if(mechCT >= 1 && chemCT >= 1) {
-    console.log("Crafted Item cannot have both Chemical AND Mechanial Components."); //! TEST
+    if (frame1 == 0) {
+      alert("This Mechanical Device needs a Frame."); // ALERT
+    } else if (frame1 > 1) {
+      alert("This Mechanical Device can only have 1 Frame."); // ALERT
+    } else if (mechanism2 == 0) {
+      alert("This Mechanical Device needs at least 1 Mechanism."); // ALERT
+    } else {
+      itemName.innerHTML = `Crafted Mechanical Device`;
+      cardFooterItemType.innerHTML = `(Device:`;
+      identifyCraftingNumber(); // Adds up Crafting Number
+      deviceUses(); // Adds up Item Uses
+      effectDescription();
+      indexCard.style.display = "block"; //This makes the Index Card Appear
+    }
+  } else if (mechCT >= 1 && chemCT >= 1) {
+    console.log(
+      "Crafted Item cannot have both Chemical AND Mechanial Components."
+    ); //! TEST
     alert("Crafted Item cannot have both Chemical AND Mechanial Components."); // ALERT
-  }else{
+  } else {
     alert("You need at least 2 ingredients to craft an item."); // ALERT
   }
 }
@@ -1907,8 +1914,8 @@ function effectDescription() {
   let totalTurns = 0;
   let totalCollateralDamage = 0;
   let totalConsumedBacklash = 0;
-  let totalDamageTypes = ``;// Lists different types of damages
-  let totalDamageWords = ``;//Potency + Damage Types
+  let totalDamageTypes = ``; // Lists different types of damages
+  let totalDamageWords = ``; //Potency + Damage Types
   let count2 = 0; //Tracks how many 2-Compound or 2-Mechanism are in the Item
 
   for (let i = 0; i < craftIngredients.length; i++) {
@@ -1962,11 +1969,11 @@ function effectDescription() {
     thatThoseTargets = "those targets";
   }
 
-//! Total Consumed Backlash Damage
-let consumedBacklashWords=``;//If the number is 0 this is unchanged.
-if(totalConsumedBacklash>0){
-  consumedBacklashWords=`If you consume this mixture take ${totalConsumedBacklash} Toxic backlash damage and gain the following ability: `;
-}
+  //! Total Consumed Backlash Damage
+  let consumedBacklashWords = ``; //If the number is 0 this is unchanged.
+  if (totalConsumedBacklash > 0) {
+    consumedBacklashWords = `If you consume this mixture take ${totalConsumedBacklash} Toxic backlash damage and gain the following ability: `;
+  }
 
   //! Item's Damage Types Description
   let debuffWords = ""; //This only works for Direct Powers
@@ -2043,7 +2050,8 @@ if(totalConsumedBacklash>0){
         damageTypeCount2 == 1 &&
         craftingWordList[craftIngredients[i]].damageType != "Debuff"
       ) {
-        totalDamageWords = `${totalPotency} ` + craftingWordList[craftIngredients[i]].damageType;
+        totalDamageWords =
+          `${totalPotency} ` + craftingWordList[craftIngredients[i]].damageType;
         totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
         damageTypeCount2++;
         console.log("first damage type");
@@ -2052,7 +2060,7 @@ if(totalConsumedBacklash>0){
         craftingWordList[craftIngredients[i]].damageType != "Debuff"
       ) {
         totalDamageWords =
-        totalDamageWords +
+          totalDamageWords +
           ` & ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
         totalDamageTypes =
@@ -2063,7 +2071,7 @@ if(totalConsumedBacklash>0){
         console.log("Final damage type");
       } else if (craftingWordList[craftIngredients[i]].damageType != "Debuff") {
         totalDamageWords =
-        totalDamageWords +
+          totalDamageWords +
           `, ${totalPotency} ` +
           craftingWordList[craftIngredients[i]].damageType;
         totalDamageTypes =
@@ -2076,7 +2084,12 @@ if(totalConsumedBacklash>0){
         damageTypeCount2++;
       }
     }
-    console.log("Total Damage Type", totalDamageTypes, "Total Damage Words", totalDamageWords); //! TEST
+    console.log(
+      "Total Damage Type",
+      totalDamageTypes,
+      "Total Damage Words",
+      totalDamageWords
+    ); //! TEST
   }
 
   //! Backlash Damage Description
@@ -2233,13 +2246,13 @@ if(totalConsumedBacklash>0){
 }
 
 //This checks the specific Recipes in Game that break the normal crafting rules
-function blueprintRecipes(){
+function blueprintRecipes() {
   console.log("Checking Recipies");
   //TODO finish this
 }
 
 //This function checks if Supersaturated or Rube-Goldberg are used
-function specialCraftingWords(){
+function specialCraftingWords() {
   console.log("Checking Special Words");
   //TODO finish this
 }

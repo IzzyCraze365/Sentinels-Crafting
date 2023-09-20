@@ -1801,7 +1801,9 @@ function itemCardBuilder() {
     }
     console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
   }
-  identifyDeviceOrMixture(chemCT, mechCT); // Mixture or Device
+  specialCraftingWords();//Checks the Special Words
+  blueprintRecipes();//This checks the specific Recipes in Game
+  identifyDeviceOrMixture(chemCT, mechCT); //Mixture or Device
 }
 
 // This function checks to make sure proper items are being mixed.
@@ -1809,6 +1811,22 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
   console.log("Inside function deviceOrMixture"); //! TEST
   if (chemCT >= 2 && mechCT == 0) {
     console.log("This is a crafted Chemical Mixture"); //! TEST
+    let solution1 = 0;
+    let compound2=0
+    for (let i = 0; i < craftIngredients.length; i++){
+      if(craftingWordList[craftIngredients[i]].itemType == "1-Solution"){
+        solution1++
+      }else if(craftingWordList[craftIngredients[i]].itemType == "2-Compound"){
+        compound2++;
+      }
+    }
+    if(solution1 == 0){
+      alert("This Chemical Mixture needs a Solution."); // ALERT
+    }else if(solution1 > 1){
+      alert("This Chemical Mixture can only have 1 Solution."); // ALERT
+    }else if(compound2 ==0){
+      alert("This Chemical Mixture needs at least 1 Compound."); // ALERT
+    }else{
     itemName.innerHTML = `Crafted Chemical Mixture`;
     cardFooterItemType.innerHTML = `(Mixture:`;
     numberOfUses.innerHTML = craftingWordList[craftIngredients[0]].uses;
@@ -1822,17 +1840,36 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
       itemUsesTime.innerHTML = ``;
     }
     indexCard.style.display = "block"; //This makes the Index Card Appear
-  } else if (mechCT >= 2 && chemCT == 0) {
+  } }else if (mechCT >= 2 && chemCT == 0) {
     console.log("This is a crafted Mechanical Device"); //! TEST
+    let frame1 = 0;
+    let mechanism2=0
+    for (let i = 0; i < craftIngredients.length; i++){
+      if(craftingWordList[craftIngredients[i]].itemType == "1-Frame"){
+        frame1++
+      }else if(craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"){
+        mechanism2++;
+      }
+    }
+if(frame1 == 0){
+  alert("This Mechanical Device needs a Frame."); // ALERT
+}else if(frame1 > 1){
+  alert("This Mechanical Device can only have 1 Frame."); // ALERT
+}else if(mechanism2==0){
+  alert("This Mechanical Device needs at least 1 Mechanism."); // ALERT
+}else{
     itemName.innerHTML = `Crafted Mechanical Device`;
     cardFooterItemType.innerHTML = `(Device:`;
     identifyCraftingNumber(); // Adds up Crafting Number
     deviceUses(); // Adds up Item Uses
     effectDescription();
     indexCard.style.display = "block"; //This makes the Index Card Appear
-  } else {
-    console.log("This is Item cannot be crafted"); //! TEST
-    alert("This item is not viable to be crafted."); // ALERT
+}
+  } else if(mechCT >= 1 && chemCT >= 1) {
+    console.log("Crafted Item cannot have both Chemical AND Mechanial Components."); //! TEST
+    alert("Crafted Item cannot have both Chemical AND Mechanial Components."); // ALERT
+  }else{
+    alert("You need at least 2 ingredients to craft an item."); // ALERT
   }
 }
 
@@ -1861,9 +1898,6 @@ function deviceUses() {
     itemUsesTime.innerHTML = `uses before the Device breaks.`; // Basic
   }
 }
-
-//TODO Need to add Code for Recipies
-//TODO Need to add code to the special choose a word Supersaturated & Rube-Goldberg
 
 function effectDescription() {
   let totalPotency = 0;
@@ -2196,6 +2230,18 @@ if(totalConsumedBacklash>0){
       }
     }
   }
+}
+
+//This checks the specific Recipes in Game that break the normal crafting rules
+function blueprintRecipes(){
+  console.log("Checking Recipies");
+  //TODO finish this
+}
+
+//This function checks if Supersaturated or Rube-Goldberg are used
+function specialCraftingWords(){
+  console.log("Checking Special Words");
+  //TODO finish this
 }
 
 // Capitalize the User's Input

@@ -6,6 +6,7 @@ class craftingWordAndItem {
   constructor({
     itemName,
     craftingWord,
+    idKeyword,
     craftingType,
     itemType,
     craftingNumber,
@@ -22,6 +23,7 @@ class craftingWordAndItem {
   }) {
     this.itemName = itemName;
     this.craftingWord = craftingWord;
+    this.idKeyword = idKeyword;
     this.craftingType = craftingType;
     this.itemType = itemType;
     this.craftingNumber = craftingNumber;
@@ -42,6 +44,7 @@ class craftingWordAndItem {
 const Active = new craftingWordAndItem({
   itemName: "Coffee",
   craftingWord: "Active",
+  idKeyword: "Active",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 1,
@@ -59,6 +62,7 @@ const Active = new craftingWordAndItem({
 const Continuous = new craftingWordAndItem({
   itemName: "Amazonian Flowers",
   craftingWord: "Continuous",
+  idKeyword: "Continuous",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 3,
@@ -76,6 +80,7 @@ const Continuous = new craftingWordAndItem({
 const Crystalized = new craftingWordAndItem({
   itemName: "Sodium",
   craftingWord: "Crystalized",
+  idKeyword: "Crystalized",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 2,
@@ -93,6 +98,7 @@ const Crystalized = new craftingWordAndItem({
 const Lubricant = new craftingWordAndItem({
   itemName: "Grease",
   craftingWord: "Lubricant",
+  idKeyword: "Lubricant",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 2,
@@ -110,6 +116,7 @@ const Lubricant = new craftingWordAndItem({
 const Preserving = new craftingWordAndItem({
   itemName: "Formaldihide",
   craftingWord: "Preserving",
+  idKeyword: "Preserving",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 5,
@@ -127,6 +134,7 @@ const Preserving = new craftingWordAndItem({
 const Product = new craftingWordAndItem({
   itemName: "Ammonia",
   craftingWord: "Product",
+  idKeyword: "Product",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 4,
@@ -144,6 +152,7 @@ const Product = new craftingWordAndItem({
 const Reactant = new craftingWordAndItem({
   itemName: "Chlorine",
   craftingWord: "Reactant",
+  idKeyword: "Reactant",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 4,
@@ -161,6 +170,7 @@ const Reactant = new craftingWordAndItem({
 const Residual = new craftingWordAndItem({
   itemName: "Ethanol",
   craftingWord: "Residual",
+  idKeyword: "Residual",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 3,
@@ -178,6 +188,7 @@ const Residual = new craftingWordAndItem({
 const Spasmodic = new craftingWordAndItem({
   itemName: "Ethanol",
   craftingWord: "Spasmodic",
+  idKeyword: "Spasmodic",
   craftingType: "Chemical",
   itemType: "1-Solution",
   craftingNumber: 4,
@@ -195,6 +206,7 @@ const Spasmodic = new craftingWordAndItem({
 const Acidic = new craftingWordAndItem({
   itemName: "Sulfuric Acid",
   craftingWord: "Acidic",
+  idKeyword: "Acidic",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 3,
@@ -212,6 +224,7 @@ const Acidic = new craftingWordAndItem({
 const Coagulated = new craftingWordAndItem({
   itemName: "Growth Hormones",
   craftingWord: "Coagulated",
+  idKeyword: "Coagulated",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 1,
@@ -229,6 +242,7 @@ const Coagulated = new craftingWordAndItem({
 const Corrupted = new craftingWordAndItem({
   itemName: "Abiotic",
   craftingWord: "Corrupted",
+  idKeyword: "Corrupted",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 3,
@@ -246,6 +260,7 @@ const Corrupted = new craftingWordAndItem({
 const Debilitating = new craftingWordAndItem({
   itemName: "Paint Thinner",
   craftingWord: "Debilitating",
+  idKeyword: "Debilitating",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 4,
@@ -263,6 +278,7 @@ const Debilitating = new craftingWordAndItem({
 const Distilled = new craftingWordAndItem({
   itemName: "Purified Water",
   craftingWord: "Distilled",
+  idKeyword: "Distilled",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 3,
@@ -280,6 +296,7 @@ const Distilled = new craftingWordAndItem({
 const Endothermic = new craftingWordAndItem({
   itemName: "AntiFreeze",
   craftingWord: "Endothermic",
+  idKeyword: "Endothermic",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 2,
@@ -297,6 +314,7 @@ const Endothermic = new craftingWordAndItem({
 const Exothermic = new craftingWordAndItem({
   itemName: "Glycerol",
   craftingWord: "Exothermic",
+  idKeyword: "Exothermic",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 2,
@@ -314,6 +332,7 @@ const Exothermic = new craftingWordAndItem({
 const Flammable = new craftingWordAndItem({
   itemName: "Tobacco",
   craftingWord: "Flammable",
+  idKeyword: "Flammable",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 2,
@@ -331,6 +350,7 @@ const Flammable = new craftingWordAndItem({
 const Galvanic = new craftingWordAndItem({
   itemName: "Iodine",
   craftingWord: "Galvanic",
+  idKeyword: "Galvanic",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 2,
@@ -348,6 +368,7 @@ const Galvanic = new craftingWordAndItem({
 const Injected = new craftingWordAndItem({
   itemName: "Ink",
   craftingWord: "Injected",
+  idKeyword: "Injected",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 1,
@@ -365,6 +386,7 @@ const Injected = new craftingWordAndItem({
 const Neural = new craftingWordAndItem({
   itemName: "Crystalized Myelin",
   craftingWord: "Neural",
+  idKeyword: "Neural",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 3,
@@ -382,6 +404,7 @@ const Neural = new craftingWordAndItem({
 const Pulsating = new craftingWordAndItem({
   itemName: "Acitone",
   craftingWord: "Pulsating",
+  idKeyword: "Pulsating",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 3,
@@ -399,6 +422,7 @@ const Pulsating = new craftingWordAndItem({
 const Supersaturated = new craftingWordAndItem({
   itemName: "Chemical X",
   craftingWord: "Supersaturated",
+  idKeyword: "Supersaturated",
   craftingType: "Chemical",
   itemType: "varies",
   craftingNumber: 6,
@@ -417,6 +441,7 @@ const Supersaturated = new craftingWordAndItem({
 const Sweet = new craftingWordAndItem({
   itemName: "Honey",
   craftingWord: "Sweet",
+  idKeyword: "Sweet",
   craftingType: "Chemical",
   itemType: "2-Compound",
   craftingNumber: 4,
@@ -434,6 +459,7 @@ const Sweet = new craftingWordAndItem({
 const Alkaline = new craftingWordAndItem({
   itemName: "Industrial Cleaner",
   craftingWord: "Alkaline",
+  idKeyword: "Alkaline",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -451,6 +477,7 @@ const Alkaline = new craftingWordAndItem({
 const Concentrated = new craftingWordAndItem({
   itemName: "Caster Oil",
   craftingWord: "Concentrated",
+  idKeyword: "Concentrated",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -468,6 +495,7 @@ const Concentrated = new craftingWordAndItem({
 const Congealed = new craftingWordAndItem({
   itemName: "Cloroform",
   craftingWord: "Congealed",
+  idKeyword: "Congealed",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -485,6 +513,7 @@ const Congealed = new craftingWordAndItem({
 const Convulsive = new craftingWordAndItem({
   itemName: "Laughing Gas",
   craftingWord: "Convulsive",
+  idKeyword: "Convulsive",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 1,
@@ -502,6 +531,7 @@ const Convulsive = new craftingWordAndItem({
 const Crude = new craftingWordAndItem({
   itemName: "Oil",
   craftingWord: "Crude",
+  idKeyword: "Crude",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 1,
@@ -519,6 +549,7 @@ const Crude = new craftingWordAndItem({
 const Dehydrated = new craftingWordAndItem({
   itemName: "Aerosol",
   craftingWord: "Dehydrated",
+  idKeyword: "Dehydrated",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 1,
@@ -536,6 +567,7 @@ const Dehydrated = new craftingWordAndItem({
 const Explosive = new craftingWordAndItem({
   itemName: "Nitro Glycerine",
   craftingWord: "Explosive",
+  idKeyword: "Explosive",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -553,6 +585,7 @@ const Explosive = new craftingWordAndItem({
 const Hazardous = new craftingWordAndItem({
   itemName: "Turpentine",
   craftingWord: "Hazardous",
+  idKeyword: "Hazardous",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 3,
@@ -570,6 +603,7 @@ const Hazardous = new craftingWordAndItem({
 const Ionic = new craftingWordAndItem({
   itemName: "Methanol",
   craftingWord: "Ionic",
+  idKeyword: "Ionic",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 3,
@@ -587,6 +621,7 @@ const Ionic = new craftingWordAndItem({
 const Mutagenic = new craftingWordAndItem({
   itemName: "Mutant Fungus",
   craftingWord: "Mutagenic",
+  idKeyword: "Mutagenic",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 3,
@@ -605,6 +640,7 @@ const Mutagenic = new craftingWordAndItem({
 const Saturated = new craftingWordAndItem({
   itemName: "Adrenaline",
   craftingWord: "Saturated",
+  idKeyword: "Saturated",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -622,6 +658,7 @@ const Saturated = new craftingWordAndItem({
 const Unsaturated = new craftingWordAndItem({
   itemName: "Saline",
   craftingWord: "Unsaturated",
+  idKeyword: "Unsaturated",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -639,6 +676,7 @@ const Unsaturated = new craftingWordAndItem({
 const Unstable = new craftingWordAndItem({
   itemName: "Liquid Krypton",
   craftingWord: "Unstable",
+  idKeyword: "Unstable",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 2,
@@ -656,6 +694,7 @@ const Unstable = new craftingWordAndItem({
 const Violent = new craftingWordAndItem({
   itemName: "Hydrogen Peroxide",
   craftingWord: "Violent",
+  idKeyword: "Violent",
   craftingType: "Chemical",
   itemType: "3-Catalyst",
   craftingNumber: 5,
@@ -674,6 +713,7 @@ const Violent = new craftingWordAndItem({
 const Assisting = new craftingWordAndItem({
   itemName: "Scrap Metal",
   craftingWord: "Assisting",
+  idKeyword: "Assisting",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 2,
@@ -691,6 +731,7 @@ const Assisting = new craftingWordAndItem({
 const Automatic = new craftingWordAndItem({
   itemName: "Expresso Machine",
   craftingWord: "Automatic",
+  idKeyword: "Automatic",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 4,
@@ -708,6 +749,7 @@ const Automatic = new craftingWordAndItem({
 const Auxiliary = new craftingWordAndItem({
   itemName: "Computer",
   craftingWord: "Auxiliary",
+  idKeyword: "Auxiliary",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 4,
@@ -725,6 +767,7 @@ const Auxiliary = new craftingWordAndItem({
 const Cordless = new craftingWordAndItem({
   itemName: "Scrap Electronics",
   craftingWord: "Cordless",
+  idKeyword: "Cordless",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 1,
@@ -742,6 +785,7 @@ const Cordless = new craftingWordAndItem({
 const Personal = new craftingWordAndItem({
   itemName: "Goggles",
   craftingWord: "Personal",
+  idKeyword: "Personal",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 5,
@@ -760,6 +804,7 @@ const SpringLoaded = new craftingWordAndItem({
   // NOTE could not add the dash
   itemName: "Hair Dryer",
   craftingWord: "Spring-Loaded",
+  idKeyword: "SpringLoaded",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 3,
@@ -777,6 +822,7 @@ const SpringLoaded = new craftingWordAndItem({
 const Sturdy = new craftingWordAndItem({
   itemName: "Freedom Tower Door",
   craftingWord: "Sturdy",
+  idKeyword: "Sturdy",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 3,
@@ -794,6 +840,7 @@ const Sturdy = new craftingWordAndItem({
 const Triggered = new craftingWordAndItem({
   itemName: "Plasma TV",
   craftingWord: "Triggered",
+  idKeyword: "Triggered",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 4,
@@ -811,6 +858,7 @@ const Triggered = new craftingWordAndItem({
 const Welding = new craftingWordAndItem({
   itemName: "Duct Tape",
   craftingWord: "Welding",
+  idKeyword: "Welding",
   craftingType: "Mechanical",
   itemType: "1-Frame",
   craftingNumber: 2,
@@ -828,6 +876,7 @@ const Welding = new craftingWordAndItem({
 const Coolant = new craftingWordAndItem({
   itemName: "Fan",
   craftingWord: "Coolant",
+  idKeyword: "Coolant",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 2,
@@ -845,6 +894,7 @@ const Coolant = new craftingWordAndItem({
 const Corrosive = new craftingWordAndItem({
   itemName: "Car Battery",
   craftingWord: "Corrosive",
+  idKeyword: "Corrosive",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 3,
@@ -862,6 +912,7 @@ const Corrosive = new craftingWordAndItem({
 const Digital = new craftingWordAndItem({
   itemName: "Circuit Board",
   craftingWord: "Digital",
+  idKeyword: "Digital",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 2,
@@ -879,6 +930,7 @@ const Digital = new craftingWordAndItem({
 const Halogen = new craftingWordAndItem({
   itemName: "Laser Pointer",
   craftingWord: "Halogen",
+  idKeyword: "Halogen",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 3,
@@ -896,6 +948,7 @@ const Halogen = new craftingWordAndItem({
 const Inhibitor = new craftingWordAndItem({
   itemName: "Capacitor",
   craftingWord: "Inhibitor",
+  idKeyword: "Inhibitor",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 4,
@@ -913,6 +966,7 @@ const Inhibitor = new craftingWordAndItem({
 const Irradiated = new craftingWordAndItem({
   itemName: "Uranium",
   craftingWord: "Irradiated",
+  idKeyword: "Irradiated",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 4,
@@ -930,6 +984,7 @@ const Irradiated = new craftingWordAndItem({
 const Magnetic = new craftingWordAndItem({
   itemName: "Battery",
   craftingWord: "Magnetic",
+  idKeyword: "Magnetic",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 2,
@@ -947,6 +1002,7 @@ const Magnetic = new craftingWordAndItem({
 const Pneumatic = new craftingWordAndItem({
   itemName: "Air Horn",
   craftingWord: "Pneumatic",
+  idKeyword: "Pneumatic",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 1,
@@ -964,6 +1020,7 @@ const Pneumatic = new craftingWordAndItem({
 const Repairing = new craftingWordAndItem({
   itemName: "Superglue",
   craftingWord: "Repairing",
+  idKeyword: "Repairing",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 4,
@@ -982,6 +1039,7 @@ const RubeGoldberg = new craftingWordAndItem({
   // NOTE could not add the dash
   itemName: "Rubber Ducky",
   craftingWord: "Rube-Goldberg",
+  idKeyword: "RubeGoldberg",
   craftingType: "Mechanical",
   itemType: "varies",
   craftingNumber: 6,
@@ -1000,6 +1058,7 @@ const RubeGoldberg = new craftingWordAndItem({
 const Seismic = new craftingWordAndItem({
   itemName: "Speaker",
   craftingWord: "Seismic",
+  idKeyword: "Seismic",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 3,
@@ -1017,6 +1076,7 @@ const Seismic = new craftingWordAndItem({
 const Sharp = new craftingWordAndItem({
   itemName: "Metal Shards",
   craftingWord: "Sharp",
+  idKeyword: "Sharp",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 1,
@@ -1034,6 +1094,7 @@ const Sharp = new craftingWordAndItem({
 const Thermal = new craftingWordAndItem({
   itemName: "Bunsen Burner",
   craftingWord: "Thermal",
+  idKeyword: "Thermal",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 2,
@@ -1051,6 +1112,7 @@ const Thermal = new craftingWordAndItem({
 const Wireless = new craftingWordAndItem({
   itemName: "V.R. Helmet",
   craftingWord: "Wireless",
+  idKeyword: "Wireless",
   craftingType: "Mechanical",
   itemType: "2-Mechanism",
   craftingNumber: 3,
@@ -1068,6 +1130,7 @@ const Wireless = new craftingWordAndItem({
 const Bulky = new craftingWordAndItem({
   itemName: "Barrel",
   craftingWord: "Bulky",
+  idKeyword: "Bulky",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 3,
@@ -1085,6 +1148,7 @@ const Bulky = new craftingWordAndItem({
 const Compressed = new craftingWordAndItem({
   itemName: "Micro-Fusion Cell",
   craftingWord: "Compressed",
+  idKeyword: "Compressed",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 3,
@@ -1102,6 +1166,7 @@ const Compressed = new craftingWordAndItem({
 const Dangerous = new craftingWordAndItem({
   itemName: "Gun Powder",
   craftingWord: "Dangerous",
+  idKeyword: "Dangerous",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 1,
@@ -1119,6 +1184,7 @@ const Dangerous = new craftingWordAndItem({
 const Diesel = new craftingWordAndItem({
   itemName: "Engine",
   craftingWord: "Diesel",
+  idKeyword: "Diesel",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1136,6 +1202,7 @@ const Diesel = new craftingWordAndItem({
 const Efficient = new craftingWordAndItem({
   itemName: "Engine",
   craftingWord: "Efficient",
+  idKeyword: "Efficient",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 5,
@@ -1153,6 +1220,7 @@ const Efficient = new craftingWordAndItem({
 const Golem = new craftingWordAndItem({
   itemName: "Unity's Power",
   craftingWord: "Golem",
+  idKeyword: "Golem",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 0,
@@ -1172,6 +1240,7 @@ const HighMaintenance = new craftingWordAndItem({
   // NOTE could not add the dash
   itemName: "Broken Laser Turret",
   craftingWord: "High-Maintenance",
+  idKeyword: "HighMaintenance",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 1,
@@ -1189,6 +1258,7 @@ const HighMaintenance = new craftingWordAndItem({
 const Incandescent = new craftingWordAndItem({
   itemName: "Infrared Sensor",
   craftingWord: "Incandescent",
+  idKeyword: "Incandescent",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1206,6 +1276,7 @@ const Incandescent = new craftingWordAndItem({
 const Manual = new craftingWordAndItem({
   itemName: "Focusing Lens",
   craftingWord: "Manual",
+  idKeyword: "Manual",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1223,6 +1294,7 @@ const Manual = new craftingWordAndItem({
 const Module = new craftingWordAndItem({
   itemName: "Om-X Power",
   craftingWord: "Module",
+  idKeyword: "Module",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 0,
@@ -1240,6 +1312,7 @@ const Module = new craftingWordAndItem({
 const Motorized = new craftingWordAndItem({
   itemName: "Servos",
   craftingWord: "Motorized",
+  idKeyword: "Motorized",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 3,
@@ -1257,6 +1330,7 @@ const Motorized = new craftingWordAndItem({
 const Overclocked = new craftingWordAndItem({
   itemName: "Projector",
   craftingWord: "Overclocked",
+  idKeyword: "Overclocked",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1274,6 +1348,7 @@ const Overclocked = new craftingWordAndItem({
 const Precision = new craftingWordAndItem({
   itemName: "Centrifuge",
   craftingWord: "Precision",
+  idKeyword: "Precision",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 6,
@@ -1291,6 +1366,7 @@ const Precision = new craftingWordAndItem({
 const Prototype = new craftingWordAndItem({
   itemName: "Fuel Cell",
   craftingWord: "Prototype",
+  idKeyword: "Prototype",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 4,
@@ -1308,6 +1384,7 @@ const Prototype = new craftingWordAndItem({
 const Reliable = new craftingWordAndItem({
   itemName: "Rope",
   craftingWord: "Reliable",
+  idKeyword: "Reliable",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 3,
@@ -1325,6 +1402,7 @@ const Reliable = new craftingWordAndItem({
 const Rigid = new craftingWordAndItem({
   itemName: "Processed Alloy",
   craftingWord: "Rigid",
+  idKeyword: "Rigid",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 3,
@@ -1342,6 +1420,7 @@ const Rigid = new craftingWordAndItem({
 const Ruinous = new craftingWordAndItem({
   itemName: "Giant Saw Blade",
   craftingWord: "Ruinous",
+  idKeyword: "Ruinous",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1359,6 +1438,7 @@ const Ruinous = new craftingWordAndItem({
 const Supercharged = new craftingWordAndItem({
   itemName: "Gyroscope",
   craftingWord: "Supercharged",
+  idKeyword: "Supercharged",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 3,
@@ -1376,6 +1456,7 @@ const Supercharged = new craftingWordAndItem({
 const Targeting = new craftingWordAndItem({
   itemName: "Binoculars",
   craftingWord: "Targeting",
+  idKeyword: "Targeting",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1394,6 +1475,7 @@ const UserFriendly = new craftingWordAndItem({
   // NOTE could not add the dash
   itemName: "Old Costume",
   craftingWord: "User-Friendly",
+  idKeyword: "UserFriendly",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1411,6 +1493,7 @@ const UserFriendly = new craftingWordAndItem({
 const Vibrating = new craftingWordAndItem({
   itemName: "Joystick",
   craftingWord: "Vibrating",
+  idKeyword: "Vibrating",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 1,
@@ -1428,6 +1511,7 @@ const Vibrating = new craftingWordAndItem({
 const Virtual = new craftingWordAndItem({
   itemName: "Video Game",
   craftingWord: "Virtual",
+  idKeyword: "Virtual",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 6,
@@ -1446,6 +1530,7 @@ const WindUp = new craftingWordAndItem({
   // NOTE could not add the dash
   itemName: "Drill",
   craftingWord: "Wind-Up",
+  idKeyword: "WindUp",
   craftingType: "Mechanical",
   itemType: "3-Component",
   craftingNumber: 2,
@@ -1464,6 +1549,7 @@ const LegacyLineBlood = new craftingWordAndItem({
   // NOTE could not add the dash
   itemName: "Legacy-line Blood",
   craftingWord: "Legacy-line Blood",
+  idKeyword: "LegacyLineBlood",
   craftingType: "Special",
   itemType: "special",
   craftingNumber: 0,
@@ -1687,9 +1773,9 @@ function removeRow(index, selectedCW) {
   craftIngredients;
   recipeBlueprintButton.style.display = "none"; //Invisible Button
   let selectedWord = selectedCW.craftingWord;
-  //console.log("selectedWord", selectedWord); //! Verify
+  console.log("selectedWord", selectedWord); //! Verify
   let indexWord = craftIngredients.indexOf(selectedWord);
-  //console.log("indexWord", indexWord); //! Verify
+  console.log("indexWord", indexWord); //! Verify
   if (indexWord !== -1) {
     craftIngredients.splice(indexWord, 1);
     searchCraftingWords.push(selectedWord);
@@ -1749,7 +1835,7 @@ function populateTable(craftWords) {
       craftingWordList[craftWords[i]].effect
     }</td>
   <td><button onclick="removeRow(${i + 1}, ${
-      craftingWordList[craftWords[i]].craftingWord
+      craftingWordList[craftWords[i]].idKeyword
     })" class="button lineBTN" id="removeItemBtn${i + 1}" >Remove</button></td>
   </tr>`;
     table.innerHTML += template; //onclick="removeLine(i)"
@@ -1795,7 +1881,7 @@ createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
 
 function itemCardBuilder() {
   console.log("Craft Item button clicked"); //Confirmation
-
+  specialCraftingWords();
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
   console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
@@ -1831,7 +1917,6 @@ function itemCardBuilder() {
     }
     console.log("chemCT =", chemCT, "& mechCT =", mechCT); //Step by Step Confirmation
   }
-  specialCraftingWords(); //Checks the Special Words
   identifyDeviceOrMixture(chemCT, mechCT); //Mixture or Device
 }
 
@@ -2507,7 +2592,23 @@ function blueprintRecipesCraft() {
 //This function checks if Supersaturated or Rube-Goldberg are used
 function specialCraftingWords() {
   console.log("Checking Special Words");
-  //TODO finish this
+  if (craftIngredients.includes(`Supersaturated`)) {
+    console.log(
+      `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
+    );
+    alert(
+      `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
+    );
+    //Todo add code to select a replacement word here
+  } else if (craftIngredients.includes(`Rube-Goldberg`)) {
+    console.log(
+      `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
+    );
+    alert(
+      `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
+    );
+    //Todo add code to select a replacement word here
+  }
 }
 
 // Capitalize the User's Input

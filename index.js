@@ -1780,6 +1780,7 @@ function resetTable() {
 function resetItemCard() {
   itemName.innerHTML = `Item Name`;
   itemDescription.innerHTML = `This Item does a Thing`;
+  usesWords.innerHTML = `Uses:`;
   numberOfUses.innerHTML = `X`;
   itemUsesTime.innerHTML = `per combat`;
   tag1.innerHTML = `[ Tag 1, Tag 2,`;
@@ -2282,7 +2283,7 @@ function recipeChecker() {
     craftIngredients.includes("Prototype") &&
     craftIngredients.includes("Virtual")
   ) {
-    blueprint = "Mirco Targeting Computer";
+    blueprint = "Micro Targeting Computer";
   } else if (
     craftIngredients.length == 4 &&
     craftIngredients.includes("Assisting") &&
@@ -2368,16 +2369,139 @@ function recipeChecker() {
     recipeBlueprintButton.innerHTML = `Blueprint: ${blueprint}`;
     recipeBlueprintButton.style.display = "block";
   }
-  //TODO finish this
 }
 
 recipeBlueprintButton.addEventListener("click", blueprintRecipesCraft); //! "Blueprint Crafting" Button
 
 //Creats Recipes from Blueprinces when the Craft Recipe Button is pushed
 function blueprintRecipesCraft() {
+  indexCard.style.display = "block"; //This makes the Index Card Appear
   console.log(`Craft Recipe button clicked for ${blueprint}`);
-
-  //TODO finish this
+  if ((blueprint = "Micro Targeting Computer")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `You deal +2 projectile damage.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Wraith, Combat,`;
+    tag3.innerHTML = `Ongoing,`;
+    tag4.innerHTML = `Projectile`;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `20`;
+  } else if ((blueprint = "Utility Belt")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `You may use an additional Power on your turn if both powers are found on items.  You may not use the same power more than once per turn.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Wraith, Combat,`;
+    tag3.innerHTML = `Ongoing,`;
+    tag4.innerHTML = ``;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `20`;
+  } else if ((blueprint = "Bee Bot")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `You may redirect an attack that would deal damage to an allied target to Bee Bot. Bee Bot has 1 HP and deals 2 projectile damage to anyone who hits it.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Golem, Combat,`;
+    tag3.innerHTML = `Reaction,`;
+    tag4.innerHTML = `Projectile`;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `5`;
+  } else if ((blueprint = "Platform Bot")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `A floating robot with 3 HP.  At the start of your turn, Platform Bot may deal 1 target 3 energy damage. Reduce damage dealt to Platform Bot by 1.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Golem, Combat,`;
+    tag3.innerHTML = `Start,`;
+    tag4.innerHTML = `Energy`;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `11`;
+  } else if ((blueprint = "Raptor Bot")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `A dinosaur robot with 2 HP.  At the end of your turn Raptor Bot may deal 1 target 5 melee damage.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Golem, Combat,`;
+    tag3.innerHTML = `End,`;
+    tag4.innerHTML = `Melee`;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `11`;
+  } else if ((blueprint = "Focused Plasma Cannon")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `At the start of your turn deal 1 target 2 irreducible fire damage.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Module, Combat,`;
+    tag3.innerHTML = `Start,`;
+    tag4.innerHTML = `Fire`;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `13`;
+  } else if ((blueprint = "Temporal Shielding Plating")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `Reduce [Psychic], [Infernal], [Radiant], and [Sonic] damage dealt to you by 2.  Prevents a singularity when 2 version of the same individual come into contact.`;
+    usesWords.innerHTML = ``;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Module, Combat,`;
+    tag3.innerHTML = `Ongoing,`;
+    tag4.innerHTML = ``;
+    tag5.innerHTML = `Heavy / Plating`;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `17`;
+  } else if ((blueprint = "Death Ray")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `Deal 1 target 5 irreducible energy damage.`;
+    usesWords.innerHTML = `Uses: `;
+    numberOfUses.innerHTML = ``;
+    itemUsesTime.innerHTML = `3 per combat`;
+    tag1.innerHTML = `[ Baron Blade, Combat,`;
+    tag3.innerHTML = `Power,`;
+    tag4.innerHTML = `Energy`;
+    tag5.innerHTML = ``;
+    cardFooterItemType.innerHTML = `(Recipe Device: `;
+    craftingNumberValue.innerHTML = `20`;
+  } else if ((blueprint = "Regression Serum")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `When used, it denies the Legacy-line the use of their abilities for 5 minutes. (This mixture is poured on a target)
+    `;
+    usesWords.innerHTML = `Uses: `;
+    numberOfUses.innerHTML = `1`;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Baron Blade, Combat,`;
+    tag3.innerHTML = `Power,`;
+    tag4.innerHTML = ``;
+    tag5.innerHTML = `Specialty`;
+    cardFooterItemType.innerHTML = `(Recipe Mixture: `;
+    craftingNumberValue.innerHTML = `22`;
+  } else if ((blueprint = "Thermo-Pulse Explosive")) {
+    itemName.innerHTML = blueprint;
+    itemDescription.innerHTML = `Deal 2 fire damage to all targets and 20 collateral damage to the room.`;
+    usesWords.innerHTML = `Uses: `;
+    numberOfUses.innerHTML = `1`;
+    itemUsesTime.innerHTML = ``;
+    tag1.innerHTML = `[ Baron Blade, Combat,`;
+    tag3.innerHTML = `Power,`;
+    tag4.innerHTML = `Fire,`;
+    tag5.innerHTML = `Heavy`;
+    cardFooterItemType.innerHTML = `(Recipe Device/Mixture: `;
+    craftingNumberValue.innerHTML = `15`;
+  } else {
+    indexCard.style.display = "none"; //This makes the Index Card disappear
+    console.log("There is no Recipe Present, something went wrong...");
+  }
 }
 
 //This function checks if Supersaturated or Rube-Goldberg are used

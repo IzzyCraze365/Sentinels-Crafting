@@ -12,8 +12,6 @@ Coded by John 'Izzy' Isabella
 
 body {
   background: rgb(65, 25, 65);
-  background-image: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w);
-  /* Online Image (above) vs Locally Saved Image (below)*/
   background-image: url(./Sentinels-Wallpaper.jpg);
   background-size: cover;
   overflow: scroll;
@@ -85,8 +83,6 @@ body {
 
 .card {
   /* We are trying to mimic a 3" by 5" index card*/
-  /* background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png); */
-  /* TODO Make this with CSS, don't use an image OR save image locally*/
   background-size: cover;
   background-color: white;
   padding: 1rem;

@@ -1750,7 +1750,6 @@ function addItem() {
     console.log("Add Item button clicked"); // Confirmation
     let itemSearcher = document.querySelector("#searched-item"); // Search Bar
     let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
-    console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
     if (wordIndex !== -1) {
       //If the Word in the Search Bar is not on the list then nothing happens
       workBench.style.display = "block"; //This makes the Crafting Table Appear
@@ -1778,9 +1777,7 @@ function removeRow(index, selectedCW) {
   craftIngredients;
   recipeBlueprintButton.style.display = "none"; //Invisible Button
   let selectedWord = selectedCW.craftingWord;
-  console.log("selectedWord", selectedWord); //! Verify
   let indexWord = craftIngredients.indexOf(selectedWord);
-  console.log("indexWord", indexWord); //! Verify
   if (indexWord !== -1) {
     craftIngredients.splice(indexWord, 1);
     searchCraftingWords.push(selectedWord);
@@ -1799,14 +1796,10 @@ function removeRow(index, selectedCW) {
 // This function populates the table
 function populateTable(craftWords) {
   let table = document.querySelector("#tableAdd");
-  //console.log("In Populate Table", craftWords, "Length =", craftWords.length); //! TEST
-
   // This section automatically sorts the table by its Item Type
   craftIngredients.sort((a, b) => {
     const itemA = craftingWordList[a].itemType;
     const itemB = craftingWordList[b].itemType;
-    //const itemA = a.itemType.toUpperCase();
-    //const itemB = b.itemType.toUpperCase();
     if (craftingWordList[a].itemType < craftingWordList[b].itemType) {
       //no constants needed with these variables
       return -1;
@@ -1899,7 +1892,6 @@ function itemCrafter() {
 function itemCardBuilder() {
   let chemCT = 0; //Chemical Crafting Type
   let mechCT = 0; //Mechanical Crafting Type
-  console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
 
   for (let i = 0; i < craftIngredients.length; i++) {
     console.log(
@@ -1937,9 +1929,8 @@ function itemCardBuilder() {
 
 // This function checks to make sure proper items are being mixed.
 function identifyDeviceOrMixture(chemCT, mechCT) {
-  console.log("Inside function deviceOrMixture"); //! TEST
   if (chemCT >= 2 && mechCT == 0) {
-    console.log("This is a crafted Chemical Mixture"); //! TEST
+    console.log("This is a crafted Chemical Mixture"); //! Verify
     let solution1 = 0;
     let compound2 = 0;
     for (let i = 0; i < craftIngredients.length; i++) {
@@ -1973,7 +1964,7 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
       indexCard.style.display = "block"; //This makes the Index Card Appear
     }
   } else if (mechCT >= 2 && chemCT == 0) {
-    console.log("This is a crafted Mechanical Device"); //! TEST
+    console.log("This is a crafted Mechanical Device"); //! Verify
     let frame1 = 0;
     let mechanism2 = 0;
     for (let i = 0; i < craftIngredients.length; i++) {
@@ -2000,9 +1991,6 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
       indexCard.style.display = "block"; //This makes the Index Card Appear
     }
   } else if (mechCT >= 1 && chemCT >= 1) {
-    console.log(
-      "Crafted Item cannot have both Chemical AND Mechanial Components."
-    ); //! TEST
     alert("Crafted Item cannot have both Chemical AND Mechanial Components."); // ALERT
   } else {
     alert("You need at least 2 ingredients to craft an item."); // ALERT
@@ -2013,7 +2001,7 @@ function identifyCraftingNumber() {
   let craftNumber = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
     craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
-    console.log(craftNumber, "CraftNumber)"); //! TEST
+    console.log(craftNumber, "CraftNumber)"); //! Verify
   }
   craftingNumberValue.innerHTML = craftNumber;
 }
@@ -2022,7 +2010,7 @@ function deviceUses() {
   let totalUses = 0;
   for (let i = 0; i < craftIngredients.length; i++) {
     totalUses += craftingWordList[craftIngredients[i]].uses;
-    console.log(totalUses, "Item Uses)"); //! TEST
+    console.log(totalUses, "Item Uses)"); //! Verify
   }
   numberOfUses.innerHTML = totalUses;
   if (craftIngredients.includes("Golem")) {
@@ -2056,7 +2044,6 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].collateralDamage;
     totalConsumedBacklash +=
       craftingWordList[craftIngredients[i]].consumedBacklash;
-    console.log(craftingWordList[craftIngredients[i]]); //Verify
     console.log(
       `After adding ${
         craftingWordList[craftIngredients[i]].craftingWord
@@ -2068,7 +2055,7 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
       count2++;
-      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`); // !TEST
+      console.log(`There's ${count2} 2-Mechanism / 2-Compound(s) being used.`); // !Verify
     }
   }
 
@@ -2120,17 +2107,17 @@ function effectDescription() {
       if (damageTagCount == 1) {
         tag4Words = craftingWordList[craftIngredients[i]].damageType;
         damageTagCount++;
-        console.log("First Tag 4");
+        console.log("First Tag 4"); //Check
       } else if (damageTagCount == count2) {
         tag4Words =
           tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
         damageTagCount++;
-        console.log("Final Tag 4");
+        console.log("Final Tag 4"); //Check
       } else {
         tag4Words =
           tag4Words + "/" + craftingWordList[craftIngredients[i]].damageType;
         damageTagCount++;
-        console.log(damageTagCount, " Tag 4");
+        console.log(damageTagCount, " Tag 4"); //Check
       }
     }
   }
@@ -2162,7 +2149,7 @@ function effectDescription() {
       console.log("count2", count2);
       if (count2 > 1) {
         debuffWords = ` and reduce all damage dealt by ${thatThoseTargets} by ${totalPotency} for ${totalTurnsWords}`;
-        console.log("debuff words", debuffWords); //! TEST
+        console.log("debuff words", debuffWords); //! Verify
       } else if ((count2 = 1)) {
         debuffWords = `All damage dealt by ${totalTargetsWords} is reduced by ${totalPotency} damage for ${totalTurnsWords}`;
       }
@@ -2252,7 +2239,7 @@ function effectDescription() {
         console.log(damageTypeCount2, " damage type");
       }
     }
-    console.log("Backlash", backlashDamageType); //! TEST
+    console.log("Backlash", backlashDamageType); //! Verify
   }
 
   if (totalBacklash > 0) {
@@ -2616,7 +2603,6 @@ function specialCraftingWords() {
     console.log(
       `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
     );
-    //alert(`Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`);
     modalTitle.innerHTML = `Supersaturated`;
     modal.style.display = "block";
     let searchChemicalWords = Object.entries(craftingWordList).map(
@@ -2657,7 +2643,6 @@ function specialCraftingWords() {
     console.log(
       `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
     );
-    //alert(`Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`);
     modalTitle.innerHTML = `Rube-Goldberg`;
     modal.style.display = "block";
     let searchMechanicalWords = Object.entries(craftingWordList).map(
@@ -2707,17 +2692,12 @@ function noChangeButton() {
 
 function replaceSpecialWord() {
   console.log("Replace button clicked"); // Confirmation
-  console.log("Replacement craftIngredients", craftIngredients); //! TEST
-
   let selectedWord = searchCraftingWords.indexOf(modalSearch.value);
-  console.log("Selected Word", modalSearch.value); //! TEST
-
   if (selectedWord !== -1) {
     //If the Word in the Search Bar is not on the list then nothing happens
     searchCraftingWords.splice(selectedWord, 1); //Removed Item from Drop Down list
     craftIngredients.push(modalSearch.value); //This adds the searched word to the table
   }
-  console.log("End of Replacement craftIngredients", craftIngredients); //! TEST
   modal.style.display = "none";
   dropdownMenu(searchCraftingWords);
   populateTable(craftIngredients);

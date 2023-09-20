@@ -3,6 +3,7 @@ Sentinel Comics Issue #404: Lock Down
 Crafting Aid Helper Tool
 Coded by John 'Izzy' Isabella
 -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,8 +20,6 @@ Coded by John 'Izzy' Isabella
 
       body {
         background: rgb(65, 25, 65);
-        background-image: url(https://images.squarespace-cdn.com/content/v1/578fb42e59cc681e6e244789/1557760191040-6H696FZQTPRLJBCYSJ9W/wallpaper-complete-nologo.jpg?format=2500w);
-        /* Online Image (above) vs Locally Saved Image (below)*/
         background-image: url(./Sentinels-Wallpaper.jpg);
         background-size: cover;
         overflow: scroll;
@@ -92,13 +91,11 @@ Coded by John 'Izzy' Isabella
 
       .card {
         /* We are trying to mimic a 3" by 5" index card*/
-        /* background-image: url(https://i.pinimg.com/originals/b5/e8/58/b5e858e124eadcf7a9010d67137501bf.png); */
-        /* TODO Make this with CSS, don't use an image OR save image locally*/
         background-size: cover;
         background-color: white;
         padding: 1rem;
         width: 1000px;
-        height: 600px;
+        height: 60%;
         box-shadow: 0px 10px 40px -10px;
         border-radius: 5px;
         font-weight: bold;
@@ -267,7 +264,49 @@ Coded by John 'Izzy' Isabella
       ul {
         text-align: center;
       }
+
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.35); /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        color: yellow;
+        background-color: purple;
+        text-align: center;
+        font-size: larger;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 5px solid yellow;
+        border-radius: 90px 90px 90px 90px;
+        width: 60%; /* Could be more or less, depending on screen size */
+      }
+
+      #continueButton {
+        font-size: larger;
+        border-radius: 0px 0px 0px 25px;
+        background: red;
+        min-width: 25%;
+      }
+
+      #replaceButton {
+        font-size: larger;
+        border-radius: 0px 0px 25px 0px;
+        color: purple;
+        background: rgb(113, 255, 113);
+        min-width: 25%;
+      }
     </style>
+    >
   </head>
   <body>
     <div class="container">
@@ -288,7 +327,6 @@ Coded by John 'Izzy' Isabella
       <div class="crafting-table">
         <h2 class="tabletop">Items to the Crafting Table</h2>
         <table class="craftTable">
-          <!-- I may not need this class -->
           <tr>
             <th>Crafting Type</th>
             <th>Crafting Word</th>
@@ -310,6 +348,30 @@ Coded by John 'Izzy' Isabella
           Blueprint Recipe
         </button>
       </div>
+
+      <!-- Adding a Modal for Special Words -->
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <h3 id="modal-title">Supersaturated or Rube-Goldberg</h3>
+          <div class="userInput">
+            <label id="modal-name">Special Words:</label>
+            <input
+              type="search"
+              list="crafting-words"
+              id="modal-search"
+              class="search-input dropdownMenu"
+              placeholder="Replacement Crafting Word"
+              data-search=""
+            />
+          </div>
+
+          <div text-align="center">
+            <button class="button" id="continueButton">No Change</button>
+            <button class="button" id="replaceButton">Replace</button>
+          </div>
+        </div>
+      </div>
+
       <!--  Below displays the finished Item Card -->
       <div class="card">
         <div class="card-header">
@@ -2024,6 +2086,11 @@ Coded by John 'Izzy' Isabella
       let recipeBlueprintButton = document.querySelector(
         "#recipeBlueprintButton"
       );
+      let continueButton = document.querySelector("#continueButton"); //Modal button
+      let replaceButton = document.querySelector("#replaceButton"); //ModalButton
+      let modal = document.querySelector("#modal");
+      let modalTitle = document.querySelector("#modal-title");
+      let modalSearch = document.querySelector("#modal-search");
 
       //! Index Card Queries
       let nameLarp = document.querySelector(".nameLARP"); //Index Card Header
@@ -2100,7 +2167,6 @@ Coded by John 'Izzy' Isabella
           console.log("Add Item button clicked"); // Confirmation
           let itemSearcher = document.querySelector("#searched-item"); // Search Bar
           let wordIndex = searchCraftingWords.indexOf(itemSearcher.value);
-          //console.log("Word Index", wordIndex, itemSearcher.value); //! Double Check
           if (wordIndex !== -1) {
             //If the Word in the Search Bar is not on the list then nothing happens
             workBench.style.display = "block"; //This makes the Crafting Table Appear
@@ -2128,9 +2194,7 @@ Coded by John 'Izzy' Isabella
         craftIngredients;
         recipeBlueprintButton.style.display = "none"; //Invisible Button
         let selectedWord = selectedCW.craftingWord;
-        console.log("selectedWord", selectedWord); //! Verify
         let indexWord = craftIngredients.indexOf(selectedWord);
-        console.log("indexWord", indexWord); //! Verify
         if (indexWord !== -1) {
           craftIngredients.splice(indexWord, 1);
           searchCraftingWords.push(selectedWord);
@@ -2149,14 +2213,10 @@ Coded by John 'Izzy' Isabella
       // This function populates the table
       function populateTable(craftWords) {
         let table = document.querySelector("#tableAdd");
-        //console.log("In Populate Table", craftWords, "Length =", craftWords.length); //! TEST
-
         // This section automatically sorts the table by its Item Type
         craftIngredients.sort((a, b) => {
           const itemA = craftingWordList[a].itemType;
           const itemB = craftingWordList[b].itemType;
-          //const itemA = a.itemType.toUpperCase();
-          //const itemB = b.itemType.toUpperCase();
           if (craftingWordList[a].itemType < craftingWordList[b].itemType) {
             //no constants needed with these variables
             return -1;
@@ -2234,14 +2294,23 @@ Coded by John 'Izzy' Isabella
         craftingNumberValue.innerHTML = `000`;
       }
 
-      createButton.addEventListener("click", itemCardBuilder); //! "Craft Item" Button
+      createButton.addEventListener("click", itemCrafter); //! "Craft Item" Button
+
+      function itemCrafter() {
+        console.log("Craft Item button clicked"); //Confirmation
+        if (
+          craftIngredients.includes("Supersaturated") ||
+          craftIngredients.includes("Rube-Goldberg")
+        ) {
+          specialCraftingWords(); //Special Rules for these words
+        } else {
+          itemCardBuilder();
+        }
+      }
 
       function itemCardBuilder() {
-        console.log("Craft Item button clicked"); //Confirmation
-        specialCraftingWords();
         let chemCT = 0; //Chemical Crafting Type
         let mechCT = 0; //Mechanical Crafting Type
-        console.log("chemCT =", chemCT, "& mechCT =", mechCT); // Begining Confirmation
 
         for (let i = 0; i < craftIngredients.length; i++) {
           console.log(
@@ -2281,9 +2350,8 @@ Coded by John 'Izzy' Isabella
 
       // This function checks to make sure proper items are being mixed.
       function identifyDeviceOrMixture(chemCT, mechCT) {
-        console.log("Inside function deviceOrMixture"); //! TEST
         if (chemCT >= 2 && mechCT == 0) {
-          console.log("This is a crafted Chemical Mixture"); //! TEST
+          console.log("This is a crafted Chemical Mixture"); //! Verify
           let solution1 = 0;
           let compound2 = 0;
           for (let i = 0; i < craftIngredients.length; i++) {
@@ -2319,7 +2387,7 @@ Coded by John 'Izzy' Isabella
             indexCard.style.display = "block"; //This makes the Index Card Appear
           }
         } else if (mechCT >= 2 && chemCT == 0) {
-          console.log("This is a crafted Mechanical Device"); //! TEST
+          console.log("This is a crafted Mechanical Device"); //! Verify
           let frame1 = 0;
           let mechanism2 = 0;
           for (let i = 0; i < craftIngredients.length; i++) {
@@ -2346,9 +2414,6 @@ Coded by John 'Izzy' Isabella
             indexCard.style.display = "block"; //This makes the Index Card Appear
           }
         } else if (mechCT >= 1 && chemCT >= 1) {
-          console.log(
-            "Crafted Item cannot have both Chemical AND Mechanial Components."
-          ); //! TEST
           alert(
             "Crafted Item cannot have both Chemical AND Mechanial Components."
           ); // ALERT
@@ -2361,7 +2426,7 @@ Coded by John 'Izzy' Isabella
         let craftNumber = 0;
         for (let i = 0; i < craftIngredients.length; i++) {
           craftNumber += craftingWordList[craftIngredients[i]].craftingNumber;
-          //console.log(craftNumber, "CraftNumber)"); //! TEST
+          console.log(craftNumber, "CraftNumber)"); //! Verify
         }
         craftingNumberValue.innerHTML = craftNumber;
       }
@@ -2370,7 +2435,7 @@ Coded by John 'Izzy' Isabella
         let totalUses = 0;
         for (let i = 0; i < craftIngredients.length; i++) {
           totalUses += craftingWordList[craftIngredients[i]].uses;
-          console.log(totalUses, "Item Uses)"); //! TEST
+          console.log(totalUses, "Item Uses)"); //! Verify
         }
         numberOfUses.innerHTML = totalUses;
         if (craftIngredients.includes("Golem")) {
@@ -2404,7 +2469,6 @@ Coded by John 'Izzy' Isabella
             craftingWordList[craftIngredients[i]].collateralDamage;
           totalConsumedBacklash +=
             craftingWordList[craftIngredients[i]].consumedBacklash;
-          console.log(craftingWordList[craftIngredients[i]]); //Verify
           console.log(
             `After adding ${
               craftingWordList[craftIngredients[i]].craftingWord
@@ -2418,7 +2482,7 @@ Coded by John 'Izzy' Isabella
             count2++;
             console.log(
               `There's ${count2} 2-Mechanism / 2-Compound(s) being used.`
-            ); // !TEST
+            ); // !Verify
           }
         }
 
@@ -2472,21 +2536,21 @@ Coded by John 'Izzy' Isabella
             if (damageTagCount == 1) {
               tag4Words = craftingWordList[craftIngredients[i]].damageType;
               damageTagCount++;
-              console.log("First Tag 4");
+              console.log("First Tag 4"); //Check
             } else if (damageTagCount == count2) {
               tag4Words =
                 tag4Words +
                 "/" +
                 craftingWordList[craftIngredients[i]].damageType;
               damageTagCount++;
-              console.log("Final Tag 4");
+              console.log("Final Tag 4"); //Check
             } else {
               tag4Words =
                 tag4Words +
                 "/" +
                 craftingWordList[craftIngredients[i]].damageType;
               damageTagCount++;
-              console.log(damageTagCount, " Tag 4");
+              console.log(damageTagCount, " Tag 4"); //Check
             }
           }
         }
@@ -2506,7 +2570,7 @@ Coded by John 'Izzy' Isabella
           tag5.innerHTML = ", Heavy";
         }
         if (craftIngredients.includes("Mutagenic")) {
-          tag5.innerHTML = ", Mutagenic";
+          tag5.innerHTML = ", Extract";
         }
 
         //! This determines the Damage Types of the Item
@@ -2518,7 +2582,7 @@ Coded by John 'Izzy' Isabella
             console.log("count2", count2);
             if (count2 > 1) {
               debuffWords = ` and reduce all damage dealt by ${thatThoseTargets} by ${totalPotency} for ${totalTurnsWords}`;
-              console.log("debuff words", debuffWords); //! TEST
+              console.log("debuff words", debuffWords); //! Verify
             } else if ((count2 = 1)) {
               debuffWords = `All damage dealt by ${totalTargetsWords} is reduced by ${totalPotency} damage for ${totalTurnsWords}`;
             }
@@ -2617,7 +2681,7 @@ Coded by John 'Izzy' Isabella
               console.log(damageTypeCount2, " damage type");
             }
           }
-          console.log("Backlash", backlashDamageType); //! TEST
+          console.log("Backlash", backlashDamageType); //! Verify
         }
 
         if (totalBacklash > 0) {
@@ -2980,23 +3044,120 @@ Coded by John 'Izzy' Isabella
       //This function checks if Supersaturated or Rube-Goldberg are used
       function specialCraftingWords() {
         console.log("Checking Special Words");
-        if (craftIngredients.includes(`Supersaturated`)) {
+        if (craftIngredients.length > 5) {
+          indexCard.style.display = "none"; //Invisible Index Card
+          alert(
+            `Sorry, a maximum of 5 items can be used when Crafting. Please remove an item before adding another.`
+          );
+        } else if (craftIngredients.includes(`Supersaturated`)) {
           console.log(
             `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
           );
-          alert(
-            `Supersaturated is a Special Word.  Player can replace it with any Chemical Crafting Word they know.`
+          modalTitle.innerHTML = `Supersaturated`;
+          modal.style.display = "block";
+          let searchChemicalWords = Object.entries(craftingWordList).map(
+            (craftWords) => craftWords[1].craftingWord
           );
-          //Todo add code to select a replacement word here
+          searchChemicalWords = searchChemicalWords.sort();
+          let supersaturatedOptions = [];
+          for (let i = 0; i < searchChemicalWords.length; i++) {
+            if (
+              craftIngredients.includes(
+                craftingWordList[searchChemicalWords[i]].craftingWord
+              )
+            ) {
+              console.log(
+                `Skipping ${
+                  craftingWordList[searchChemicalWords[i]].craftingWord
+                }`
+              );
+            } else if (
+              craftingWordList[searchChemicalWords[i]].craftingType ==
+              "Chemical"
+            ) {
+              console.log(
+                `Adding ${
+                  craftingWordList[searchChemicalWords[i]].craftingWord
+                } to search list`
+              );
+              supersaturatedOptions.push(
+                craftingWordList[searchChemicalWords[i]].craftingWord
+              );
+            }
+          }
+          supersaturatedOptions.sort();
+          console.log(
+            "supersaturatedOptions",
+            supersaturatedOptions.length,
+            supersaturatedOptions
+          ); //! TEST
+          dropdownMenu(supersaturatedOptions);
         } else if (craftIngredients.includes(`Rube-Goldberg`)) {
           console.log(
             `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
           );
-          alert(
-            `Rube-Goldberg is a Special Word.  Player can replace it with any Mechanical Crafting Word they know.`
+          modalTitle.innerHTML = `Rube-Goldberg`;
+          modal.style.display = "block";
+          let searchMechanicalWords = Object.entries(craftingWordList).map(
+            (craftWords) => craftWords[1].craftingWord
           );
-          //Todo add code to select a replacement word here
+          searchMechanicalWords = searchMechanicalWords.sort();
+          let rubeGoldbergOptions = [];
+          for (let i = 0; i < searchMechanicalWords.length; i++) {
+            if (
+              craftIngredients.includes(
+                craftingWordList[searchMechanicalWords[i]].craftingWord
+              )
+            ) {
+              console.log(
+                `Skipping ${
+                  craftingWordList[searchMechanicalWords[i]].craftingWord
+                }`
+              );
+            } else if (
+              craftingWordList[searchMechanicalWords[i]].craftingType ==
+              "Mechanical"
+            ) {
+              console.log(
+                `Adding ${
+                  craftingWordList[searchMechanicalWords[i]].craftingWord
+                } to search list`
+              );
+              rubeGoldbergOptions.push(
+                craftingWordList[searchMechanicalWords[i]].craftingWord
+              );
+            }
+          }
+          rubeGoldbergOptions.sort();
+          console.log(
+            "rubeGoldbergOptions",
+            rubeGoldbergOptions.length,
+            rubeGoldbergOptions
+          ); //! TEST
+          dropdownMenu(rubeGoldbergOptions);
         }
+        continueButton.addEventListener("click", noChangeButton); //! "No Change" Modal Button
+        replaceButton.addEventListener("click", replaceSpecialWord); //! "Replace" Modal Button
+      }
+
+      function noChangeButton() {
+        console.log("No Change button clicked"); // Confirmation
+        modal.style.display = "none";
+        itemCardBuilder();
+      }
+
+      function replaceSpecialWord() {
+        console.log("Replace button clicked"); // Confirmation
+        let selectedWord = searchCraftingWords.indexOf(modalSearch.value);
+        if (selectedWord !== -1) {
+          //If the Word in the Search Bar is not on the list then nothing happens
+          searchCraftingWords.splice(selectedWord, 1); //Removed Item from Drop Down list
+          craftIngredients.push(modalSearch.value); //This adds the searched word to the table
+        }
+        modal.style.display = "none";
+        dropdownMenu(searchCraftingWords);
+        populateTable(craftIngredients);
+        itemCardBuilder();
       }
 
       // Capitalize the User's Input

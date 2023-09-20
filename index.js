@@ -1476,8 +1476,7 @@ const LegacyLineBlood = new craftingWordAndItem({
   turns: 0,
   collateralDamage: 0,
   consumedBacklash: 0,
-  effect:
-    "Special! Needed for Specific Recipe",
+  effect: "Special - Needed for Specific Recipe",
 });
 
 const craftingWordList = {
@@ -1564,7 +1563,7 @@ const craftingWordList = {
   Vibrating: Vibrating,
   Virtual: Virtual,
   "Wind-Up": WindUp,
-  "Legacy-line Blood":LegacyLineBlood,
+  "Legacy-line Blood": LegacyLineBlood,
 };
 
 // Created a new Matrix using the Constructors Crafting Words
@@ -1574,6 +1573,7 @@ const craftingWordMatrix = Object.entries(craftingWordList).map(
 
 let searchCraftingWords = craftingWordMatrix.sort();
 let craftIngredients = []; // This is the matrix that starts off empty and will store the Crafting Words we are adding to the table.
+let blueprint = "nada";
 
 //! Buttons - Query Selectors
 let workBench = document.querySelector(".crafting-table");
@@ -1670,7 +1670,7 @@ function addItem() {
     }
     console.log("craftIngredients added to the Table", craftIngredients); //! Verify
     recipeBlueprintButton.style.display = "none"; //Invisible Button
-    recipeChecker();//This checks the specific Recipes in Game
+    recipeChecker(); //This checks the specific Recipes in Game
     dropdownModifyRemove(itemSearcher.value);
     itemSearcher.value = ""; //Resets the Search Bar
     populateTable(craftIngredients); //Function Call to add item to the table
@@ -1694,7 +1694,7 @@ function removeRow(index, selectedCW) {
     craftIngredients.splice(indexWord, 1);
     searchCraftingWords.push(selectedWord);
     searchCraftingWords = searchCraftingWords.sort();
-    recipeChecker();//This checks the specific Recipes in Game
+    recipeChecker(); //This checks the specific Recipes in Game
     dropdownMenu(searchCraftingWords);
   }
   populateTable(craftIngredients);
@@ -2274,22 +2274,108 @@ function effectDescription() {
 }
 
 //This checks the specific Recipes in Game that break the normal crafting rules
-function recipeChecker(){
-  if(craftIngredients.length == 4 && craftIngredients.includes("Personal") && craftIngredients.includes("Pneumatic") && craftIngredients.includes("Prototype") && craftIngredients.includes("Virtual")){
-    console.log("Recipe for Mirco Targeting Computer");
-    recipeBlueprintButton.innerHTML="Blueprint: Mirco Targeting Computer"
-    recipeBlueprintButton.style.display = "block"; //This makes the Recipe Button Appear
-    //How do I stop this from continuing
+function recipeChecker() {
+  if (
+    craftIngredients.length == 4 &&
+    craftIngredients.includes("Personal") &&
+    craftIngredients.includes("Pneumatic") &&
+    craftIngredients.includes("Prototype") &&
+    craftIngredients.includes("Virtual")
+  ) {
+    blueprint = "Mirco Targeting Computer";
+  } else if (
+    craftIngredients.length == 4 &&
+    craftIngredients.includes("Assisting") &&
+    craftIngredients.includes("Compressed") &&
+    craftIngredients.includes("Magnetic") &&
+    craftIngredients.includes("Spring-Loaded")
+  ) {
+    blueprint = "Utility Belt";
+  } else if (
+    craftIngredients.length == 4 &&
+    craftIngredients.includes("Golem") &&
+    craftIngredients.includes("Overclocked") &&
+    craftIngredients.includes("Pneumatic") &&
+    craftIngredients.includes("Triggered")
+  ) {
+    blueprint = "Bee Bot";
+  } else if (
+    craftIngredients.length == 5 &&
+    craftIngredients.includes("Golem") &&
+    craftIngredients.includes("Automatic") &&
+    craftIngredients.includes("Digital") &&
+    craftIngredients.includes("Sturdy") &&
+    craftIngredients.includes("User-Friendly")
+  ) {
+    blueprint = "Platform Bot";
+  } else if (
+    craftIngredients.length == 5 &&
+    craftIngredients.includes("Golem") &&
+    craftIngredients.includes("Auxiliary") &&
+    craftIngredients.includes("Bulky") &&
+    craftIngredients.includes("Prototype") &&
+    craftIngredients.includes("Sharp")
+  ) {
+    blueprint = "Raptor Bot";
+  } else if (
+    craftIngredients.length == 4 &&
+    craftIngredients.includes("Module") &&
+    craftIngredients.includes("Automatic") &&
+    craftIngredients.includes("Precision") &&
+    craftIngredients.includes("Thermal")
+  ) {
+    blueprint = "Focused Plasma Cannon";
+  } else if (
+    craftIngredients.length == 5 &&
+    craftIngredients.includes("Module") &&
+    craftIngredients.includes("Bulky") &&
+    craftIngredients.includes("Halogen") &&
+    craftIngredients.includes("Irradiated") &&
+    craftIngredients.includes("Sturdy")
+  ) {
+    blueprint = "Temporal Shielding Plating";
+  } else if (
+    craftIngredients.length == 4 &&
+    craftIngredients.includes("Compressed") &&
+    craftIngredients.includes("Halogen") &&
+    craftIngredients.includes("Overclocked") &&
+    craftIngredients.includes("Personal")
+  ) {
+    blueprint = "Death Ray";
+  } else if (
+    craftIngredients.length == 5 &&
+    craftIngredients.includes("Convulsive") &&
+    craftIngredients.includes("Debilitating") &&
+    craftIngredients.includes("Preserving") &&
+    craftIngredients.includes("Spasmodic") &&
+    craftIngredients.includes("Legacy-line Blood")
+  ) {
+    blueprint = "Regression Serum";
+  } else if (
+    craftIngredients.length == 4 &&
+    craftIngredients.includes("Diesel") &&
+    craftIngredients.includes("Exothermic") &&
+    craftIngredients.includes("Explosive") &&
+    craftIngredients.includes("Triggered")
+  ) {
+    blueprint = "Thermo-Pulse Explosive";
+  } else {
+    blueprint = "nada";
+  }
+  if (blueprint != "nada") {
+    //This makes the Recipe Button Appear
+    console.log(`Recipe for ${blueprint}`);
+    recipeBlueprintButton.innerHTML = `Blueprint: ${blueprint}`;
+    recipeBlueprintButton.style.display = "block";
   }
   //TODO finish this
 }
-
 
 recipeBlueprintButton.addEventListener("click", blueprintRecipesCraft); //! "Blueprint Crafting" Button
 
 //Creats Recipes from Blueprinces when the Craft Recipe Button is pushed
 function blueprintRecipesCraft() {
-  console.log("Craft Recipe button clicked");
+  console.log(`Craft Recipe button clicked for ${blueprint}`);
 
   //TODO finish this
 }

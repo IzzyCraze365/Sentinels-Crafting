@@ -1477,7 +1477,7 @@ const LegacyLineBlood = new craftingWordAndItem({
   turns: 0,
   collateralDamage: 0,
   consumedBacklash: 0,
-  effect: "Special! Needed for Specific Recipe",
+  effect: "Special - Needed for Specific Recipe",
 });
 
 const craftingWordList = {

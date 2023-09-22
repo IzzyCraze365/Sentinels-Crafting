@@ -2358,12 +2358,12 @@ function effectDescription() {
         if (totalTargetsWords == `everyone`) {
           itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
             2 + totalPotency
-          } ${totalDamageTypes} damage you would take to any number of targets of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+          } ${totalDamageTypes} damage you would take to any number of targets of your choice (or turn that damage into collateral damage)${totalBacklashWords}${totalCollateralDamageWords}.`;
           tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
         } else {
           itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
             2 + totalPotency
-          } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+          } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice (or turn that damage into collateral damage)${totalBacklashWords}${totalCollateralDamageWords}.`;
           tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
         }
       }

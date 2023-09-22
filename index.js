@@ -2065,6 +2065,11 @@ function effectDescription() {
     }
   }
 
+  //! Total Potency
+  if (totalPotency < 0) {
+    totalPotency = 0; //Potency cannot be less than 0
+  }
+
   //! Total Turns
   let totalTurnsWords = "X turns";
   if (totalTurns == 1) {

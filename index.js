@@ -2355,10 +2355,17 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Spasmodic" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Triggered"
       ) {
-        itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
-          2 + totalPotency
-        } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
-        tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+        if (totalTargetsWords == `everyone`) {
+          itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
+            2 + totalPotency
+          } ${totalDamageTypes} damage you would take to any number of targets of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+          tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
+            2 + totalPotency
+          } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice or turn that damage into collateral damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+          tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+        }
       }
       //in case the Code Breaks
       else {

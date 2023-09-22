@@ -1936,6 +1936,7 @@ function identifyDeviceOrMixture(chemCT, mechCT) {
     for (let i = 0; i < craftIngredients.length; i++) {
       if (craftingWordList[craftIngredients[i]].itemType == "1-Solution") {
         solution1++;
+        numberOfUses;
       } else if (
         craftingWordList[craftIngredients[i]].itemType == "2-Compound"
       ) {
@@ -2011,6 +2012,11 @@ function deviceUses() {
   for (let i = 0; i < craftIngredients.length; i++) {
     totalUses += craftingWordList[craftIngredients[i]].uses;
     console.log(totalUses, "Item Uses)"); //! Verify
+  }
+  if (totalUses <= 0) {
+    //If the Device has 0 Uses then it breaks
+    totalUses = 0;
+    alert("This Device IMMEDIATELY BREAKS (if it has 0 Uses).");
   }
   numberOfUses.innerHTML = totalUses;
   if (craftIngredients.includes("Golem")) {

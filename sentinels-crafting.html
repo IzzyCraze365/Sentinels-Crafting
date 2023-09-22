@@ -2437,6 +2437,11 @@ Coded by John 'Izzy' Isabella
           totalUses += craftingWordList[craftIngredients[i]].uses;
           console.log(totalUses, "Item Uses)"); //! Verify
         }
+        if (totalUses <= 0) {
+          //If the Device has 0 Uses then it breaks
+          totalUses = 0;
+          alert("This Device IMMEDIATELY BREAKS (if it has 0 Uses).");
+        }
         numberOfUses.innerHTML = totalUses;
         if (craftIngredients.includes("Golem")) {
           usesWords.innerHTML = `Health:`;

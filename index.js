@@ -2173,47 +2173,50 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
-      if(craftingWordList[craftIngredients[i]].damageType == "Debuff")
-      {}
-      else{
-      if (
-        damageTypeCount2 == 1 &&
-        craftingWordList[craftIngredients[i]].damageType != "Debuff"
-      ) {
-        totalDamageWords =
-          `${totalPotency} ` + craftingWordList[craftIngredients[i]].damageType;
-        totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log("first damage type");
-      } else if (
-        damageTypeCount2 == count2 &&
-        craftingWordList[craftIngredients[i]].damageType != "Debuff"
-      ) {
-        totalDamageWords =
-          totalDamageWords +
-          ` & ${totalPotency} ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        totalDamageTypes =
-          totalDamageTypes +
-          ` & ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log("Final damage type");
-      } else if (craftingWordList[craftIngredients[i]].damageType != "Debuff") {
-        totalDamageWords =
-          totalDamageWords +
-          `, ${totalPotency} ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        totalDamageTypes =
-          totalDamageTypes +
-          `, ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        damageTypeCount2++;
-        console.log(damageTypeCount2, " damage type");
+      if (craftingWordList[craftIngredients[i]].damageType == "Debuff") {
       } else {
-        damageTypeCount2++;
+        if (
+          damageTypeCount2 == 1 &&
+          craftingWordList[craftIngredients[i]].damageType != "Debuff"
+        ) {
+          totalDamageWords =
+            `${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          totalDamageTypes = craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log("first damage type");
+        } else if (
+          damageTypeCount2 == count2 &&
+          craftingWordList[craftIngredients[i]].damageType != "Debuff"
+        ) {
+          totalDamageWords =
+            totalDamageWords +
+            ` & ${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          totalDamageTypes =
+            totalDamageTypes +
+            ` & ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log("Final damage type");
+        } else if (
+          craftingWordList[craftIngredients[i]].damageType != "Debuff"
+        ) {
+          totalDamageWords =
+            totalDamageWords +
+            `, ${totalPotency} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          totalDamageTypes =
+            totalDamageTypes +
+            `, ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          damageTypeCount2++;
+          console.log(damageTypeCount2, " damage type");
+        } else {
+          damageTypeCount2++;
+        }
       }
-    }}
+    }
     console.log(
       "Total Damage Type",
       totalDamageTypes,
@@ -2233,30 +2236,29 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
-      if(craftingWordList[craftIngredients[i]].damageType == "Debuff")
-      {}
-      else{
-      if (damageTypeBacklashCount2 == 1) {
-        backlashDamageType = craftingWordList[craftIngredients[i]].damageType;
-        damageTypeBacklashCount2++;
-        console.log("first damage type");
-      } else if (damageTypeBacklashCount2 == count2) {
-        backlashDamageType =
-          backlashDamageType +
-          ` & deal ${totalBacklash} ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        console.log("Final damage type");
-        damageTypeBacklashCount2++;
+      if (craftingWordList[craftIngredients[i]].damageType == "Debuff") {
       } else {
-        backlashDamageType =
-          backlashDamageType +
-          `, ${totalBacklash} ` +
-          craftingWordList[craftIngredients[i]].damageType;
-        damageTypeBacklashCount2++;
-        console.log(damageTypeCount2, " damage type");
+        if (damageTypeBacklashCount2 == 1) {
+          backlashDamageType = craftingWordList[craftIngredients[i]].damageType;
+          damageTypeBacklashCount2++;
+          console.log("first damage type");
+        } else if (damageTypeBacklashCount2 == count2) {
+          backlashDamageType =
+            backlashDamageType +
+            ` & deal ${totalBacklash} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          console.log("Final damage type");
+          damageTypeBacklashCount2++;
+        } else {
+          backlashDamageType =
+            backlashDamageType +
+            `, ${totalBacklash} ` +
+            craftingWordList[craftIngredients[i]].damageType;
+          damageTypeBacklashCount2++;
+          console.log(damageTypeCount2, " damage type");
+        }
       }
     }
-  }
     console.log("Backlash", backlashDamageType); //! Verify
   }
 
@@ -2318,6 +2320,8 @@ function effectDescription() {
             craftIngredients.includes("Debilitating"))
         ) {
           itemDescription.innerHTML = `${consumedBacklashWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        } else if (totalTargetsWords == "everyone") {
+          itemDescription.innerHTML = `${consumedBacklashWords}For all targets, increase all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
         } else {
           itemDescription.innerHTML = `${consumedBacklashWords}Choose ${totalTargetsWords}, increase all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
         }

@@ -2331,51 +2331,93 @@ function effectDescription() {
         craftingWordList[craftIngredients[i]].craftingWord == "Continuous" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Personal"
       ) {
-        itemDescription.innerHTML = `${consumedBacklashWords}Increase all ${totalDamageTypes} damage by +${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          craftIngredients.includes(`Debilitating`) ||
+          craftIngredients.includes(`Inhibitor`)
+        ) {
+          debuffInvalid(craftingWordList[craftIngredients[0]].craftingWord);
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Increase all ${totalDamageTypes} damage by +${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //Ongoing – Armor (-1 effect received)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Preserving" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Sturdy"
       ) {
-        itemDescription.innerHTML = `${consumedBacklashWords}Reduce all ${totalDamageTypes} damage dealt to you by ${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          craftIngredients.includes(`Debilitating`) ||
+          craftIngredients.includes(`Inhibitor`)
+        ) {
+          debuffInvalid(craftingWordList[craftIngredients[0]].craftingWord);
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Reduce all ${totalDamageTypes} damage dealt to you by ${totalPotency}${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //Start - Direct (1 effect to 1 target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Reactant" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Automatic"
       ) {
-        itemDescription.innerHTML = `${consumedBacklashWords}At the start of your turn, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          craftIngredients.includes(`Debilitating`) ||
+          craftIngredients.includes(`Inhibitor`)
+        ) {
+          debuffInvalid(craftingWordList[craftIngredients[0]].craftingWord);
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}At the start of your turn, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //End - Direct (1 effect to 1 target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Product" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Auxiliary"
       ) {
-        itemDescription.innerHTML = `${consumedBacklashWords}At the end of your turn, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          craftIngredients.includes(`Debilitating`) ||
+          craftIngredients.includes(`Inhibitor`)
+        ) {
+          debuffInvalid(craftingWordList[craftIngredients[0]].craftingWord);
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}At the end of your turn, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       // Reaction - Direct (1 effect to 1 target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Residual" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Spring-Loaded"
       ) {
-        itemDescription.innerHTML = `${consumedBacklashWords}Whenever you are dealt damage, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        if (
+          craftIngredients.includes(`Debilitating`) ||
+          craftIngredients.includes(`Inhibitor`)
+        ) {
+          debuffInvalid(craftingWordList[craftIngredients[0]].craftingWord);
+        } else {
+          itemDescription.innerHTML = `${consumedBacklashWords}Whenever you are dealt damage, deal ${totalTargetsWords} ${totalDamageWords} damage${totalBacklashWords}${totalCollateralDamageWords}.`;
+        }
       }
       //Reaction - Redirect (Redirect the next 2+potency effect to target)
       else if (
         craftingWordList[craftIngredients[i]].craftingWord == "Spasmodic" ||
         craftingWordList[craftIngredients[i]].craftingWord == "Triggered"
       ) {
-        if (totalTargetsWords == `everyone`) {
-          itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
-            2 + totalPotency
-          } ${totalDamageTypes} damage you would take to any number of targets of your choice (or turn that damage into collateral damage)${totalBacklashWords}${totalCollateralDamageWords}.`;
-          tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+        if (
+          craftIngredients.includes(`Debilitating`) ||
+          craftIngredients.includes(`Inhibitor`)
+        ) {
+          debuffInvalid(craftingWordList[craftIngredients[0]].craftingWord);
         } else {
-          itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
-            2 + totalPotency
-          } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice (or turn that damage into collateral damage)${totalBacklashWords}${totalCollateralDamageWords}.`;
-          tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+          if (totalTargetsWords == `everyone`) {
+            itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
+              2 + totalPotency
+            } ${totalDamageTypes} damage you would take to any number of targets of your choice (or turn that damage into collateral damage)${totalBacklashWords}${totalCollateralDamageWords}.`;
+            tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+          } else {
+            itemDescription.innerHTML = `${consumedBacklashWords}Redirect the next ${
+              2 + totalPotency
+            } ${totalDamageTypes} damage you would take to ${totalTargetsWords} of your choice (or turn that damage into collateral damage)${totalBacklashWords}${totalCollateralDamageWords}.`;
+            tag4.innerHTML = "Redirect/" + tag4Words; // Adds Redirect to the Tag 4
+          }
         }
       }
       //in case the Code Breaks
@@ -2736,9 +2778,9 @@ function replaceSpecialWord() {
 // The Debuff "Damage Type" is only valid with a Power Item
 function debuffInvalid(solutionOrFrame) {
   if (craftIngredients.includes("Inhibitor")) {
-    itemDescription.innerHTML = `The "Inhibitor" crafting word is incompatible with the "${solutionOrFrame}" Frame.`;
+    itemDescription.innerHTML = `The "Inhibitor" Mechanism is incompatible with the "${solutionOrFrame}" Frame. Please Choose a Frame that provides the [Power] tag.`;
   } else if (craftIngredients.includes("Debilitating")) {
-    itemDescription.innerHTML = `The "Debilitating" crafting word is incompatible with the "${solutionOrFrame}" Solution.`;
+    itemDescription.innerHTML = `The "Debilitating" Compound is incompatible with the "${solutionOrFrame}" Solution. Please Choose a Frame that provides the [Power] tag.`;
   }
   itemName.innerHTML = "Invalid Item";
   usesWords.innerHTML = ``;

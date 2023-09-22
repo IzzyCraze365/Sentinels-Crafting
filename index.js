@@ -2173,6 +2173,9 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
+      if(craftingWordList[craftIngredients[i]].damageType == "Debuff")
+      {}
+      else{
       if (
         damageTypeCount2 == 1 &&
         craftingWordList[craftIngredients[i]].damageType != "Debuff"
@@ -2210,7 +2213,7 @@ function effectDescription() {
       } else {
         damageTypeCount2++;
       }
-    }
+    }}
     console.log(
       "Total Damage Type",
       totalDamageTypes,
@@ -2230,6 +2233,9 @@ function effectDescription() {
       craftingWordList[craftIngredients[i]].itemType == "2-Compound" ||
       craftingWordList[craftIngredients[i]].itemType == "2-Mechanism"
     ) {
+      if(craftingWordList[craftIngredients[i]].damageType == "Debuff")
+      {}
+      else{
       if (damageTypeBacklashCount2 == 1) {
         backlashDamageType = craftingWordList[craftIngredients[i]].damageType;
         damageTypeBacklashCount2++;
@@ -2250,6 +2256,7 @@ function effectDescription() {
         console.log(damageTypeCount2, " damage type");
       }
     }
+  }
     console.log("Backlash", backlashDamageType); //! Verify
   }
 
@@ -2312,7 +2319,7 @@ function effectDescription() {
         ) {
           itemDescription.innerHTML = `${consumedBacklashWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
         } else {
-          itemDescription.innerHTML = `${consumedBacklashWords}Choose ${totalTargetsWords}, incease all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+          itemDescription.innerHTML = `${consumedBacklashWords}Choose ${totalTargetsWords}, increase all ${totalDamageTypes} damage dealt by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
         }
       }
       //Ongoing – Buff (+1 effect)

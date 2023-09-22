@@ -2297,7 +2297,7 @@ function effectDescription() {
         ) {
           itemDescription.innerHTML = `${consumedBacklashWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
         } else {
-          itemDescription.innerHTML = `${consumedBacklashWords}Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency}for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
+          itemDescription.innerHTML = `${consumedBacklashWords}Reduce ${totalDamageTypes} damage dealt to ${totalTargetsWords} by ${totalPotency} for the next ${totalTurnsWords}${debuffWords}${totalBacklashWords}${totalCollateralDamageWords}.`;
         }
       }
       //Power – Buff (+1 effect to 1 target for 2 turns)

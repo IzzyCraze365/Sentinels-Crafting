@@ -2733,6 +2733,25 @@ function replaceSpecialWord() {
   itemCardBuilder();
 }
 
+// The Debuff "Damage Type" is only valid with a Power Item
+function debuffInvalid(solutionOrFrame) {
+  if (craftIngredients.includes("Inhibitor")) {
+    itemDescription.innerHTML = `The "Inhibitor" crafting word is incompatible with the "${solutionOrFrame}" Frame.`;
+  } else if (craftIngredients.includes("Debilitating")) {
+    itemDescription.innerHTML = `The "Debilitating" crafting word is incompatible with the "${solutionOrFrame}" Solution.`;
+  }
+  itemName.innerHTML = "Invalid Item";
+  usesWords.innerHTML = ``;
+  numberOfUses.innerHTML = ``;
+  itemUsesTime.innerHTML = ``;
+  tag4.innerHTML = `DEBUFF!!!`;
+  cardFooterItemType.innerHTML = `(Invalid Item: `;
+  craftingNumberValue.innerHTML = `Error`;
+  alert(
+    "INVALID ITEM, [Debuffs] can only be crafted in items with Action Timing [POWER]"
+  );
+}
+
 // Capitalize the User's Input
 function titleCase(myString) {
   return myString

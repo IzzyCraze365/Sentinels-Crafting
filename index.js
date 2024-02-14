@@ -1756,6 +1756,7 @@ itemListButton.addEventListener("click", itemListUnused); //! "Item List" BUTTON
 function itemListUnused(){
   console.log("Item list Clicked")
   itemList.style.display="block";
+  
 }
 
 closeList.addEventListener("click", exitModals); //! Closes all Modals

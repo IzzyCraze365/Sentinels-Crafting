@@ -1671,6 +1671,12 @@ let resetButton = document.querySelector("#resetButton");
 let recipeBlueprintButton = document.querySelector("#recipeBlueprintButton");
 let continueButton = document.querySelector("#continueButton"); //Modal button
 let replaceButton = document.querySelector("#replaceButton"); //ModalButton
+let infoButton = document.querySelector("#infoButton");
+let gameInformation = document.querySelector("#gameInformation");
+let closeInfo = document.querySelector("#closeInfo");
+let itemListButton = document.querySelector("#itemListButton");
+let itemList = document.querySelector("#itemList");
+let closeList = document.querySelector("#closeList");
 let modal = document.querySelector("#modal");
 let modalTitle = document.querySelector("#modal-title");
 let modalSearch = document.querySelector("#modal-search");
@@ -1735,6 +1741,30 @@ function dropdownModifyRemove(removedItem) {
       dropdownList.children[i].remove(); //! THIS WILL REMOVE THE HTML ELEMENT
     }
   }
+}
+
+infoButton.addEventListener("click", gameInfo); //! "Info" BUTTON
+
+function gameInfo(){
+// This function opens a modal with the Game Information
+console.log("Info Clicked")
+gameInformation.style.display="block";
+}
+
+itemListButton.addEventListener("click", itemListUnused); //! "Item List" BUTTON
+
+function itemListUnused(){
+  console.log("Item list Clicked")
+  itemList.style.display="block";
+}
+
+closeList.addEventListener("click", exitModals); //! Closes all Modals
+closeInfo.addEventListener("click", exitModals); //! Closes all Modals
+
+function exitModals(){ // Closes all Modals
+  console.log("Closing")
+  itemList.style.display="none";
+  gameInformation.style.display="none";
 }
 
 addButton.addEventListener("click", addItem); //! "Add Item" BUTTON

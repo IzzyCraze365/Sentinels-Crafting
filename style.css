@@ -35,6 +35,18 @@ body {
   background: #2e66b9;
 }
 
+#infoButton {
+  border-radius: 15px 15px 15px 15px;
+  background: purple;
+  color: yellow;
+}
+
+#itemListButton {
+  border-radius: 15px 15px 15px 15px;
+  background: purple;
+  color: yellow;
+}
+
 #createButton {
   border-radius: 5px 0px 0px 5px;
   background: green;
@@ -281,6 +293,22 @@ ul {
   border: 5px solid yellow;
   border-radius: 90px 90px 90px 90px;
   width: 60%; /* Could be more or less, depending on screen size */
+}
+
+#itemList {
+  width: 90%;
+}
+
+.exitModal {
+  position: fixed;
+  right: 0;
+  justify-content: end;
+  align-items: end;
+  color: yellow;
+  background-color: purple;
+  border: solid 3px;
+  border-color: yellow;
+  border-radius: 90px 90px 90px 90px;
 }
 
 #continueButton {

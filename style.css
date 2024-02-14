@@ -65,6 +65,8 @@ body {
   background: purple;
   color: yellow;
   border-radius: 15px;
+  border: solid 2px;
+  border-color: yellow;
 }
 
 #resetButton {

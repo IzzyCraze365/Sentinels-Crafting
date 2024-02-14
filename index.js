@@ -1767,7 +1767,14 @@ function itemListUnused(craftWords) {
     }
     return 0;
   });
-  tableList.innerHTML = ""; // This resets the table before rebuilding it
+  tableList.innerHTML = tableList.innerHTML = `<tr>
+  <th>Crafting Type</th>
+  <th>Crafting Word</th>
+  <th>Item Name</th>
+  <th>Item Type</th>
+  <th>Crafting Number</th>
+  <th>Effect Description</th>
+</tr>`;; // This resets the table before rebuilding it
   // This loops through the craftWords Matrix and builds the table
   for (let i = 0; i < craftWords.length; i++) {
     let template = `<tr id="tableRow${i + 1}" class="tableRow">
@@ -1793,6 +1800,65 @@ function itemListUnused(craftWords) {
     tableList.innerHTML += template;
   }
 }
+
+// "Item List" BUTTON has an OnClick*/
+function itemListHelp(craftWords) {
+  console.log("Help Button Clicked");
+  itemList.style.display = "block";
+  let tableList = document.querySelector("#tableAddList");
+  // This section automatically sorts the table by its Item Type
+  craftIngredients.sort((a, b) => {
+    const itemA = craftingWordList[a].itemType;
+    const itemB = craftingWordList[b].itemType;
+    if (craftingWordList[a].itemType < craftingWordList[b].itemType) {
+      //no constants needed with these variables
+      return -1;
+    }
+    if (itemA > itemB) {
+      //if you want to use the constants
+      return 1;
+    }
+    return 0;
+  });
+  tableList.innerHTML = `<tr>
+  <th>Crafting Type</th>
+  <th>Crafting Word</th>
+  <th>Item Name</th>
+  <th>Item Type</th>
+  <th>Crafting Number</th>
+  <th>Effect Description</th>
+  <th>Use this Item</th>
+</tr>`; // This resets the table before rebuilding it
+  // This loops through the craftWords Matrix and builds the table
+  for (let i = 0; i < craftWords.length; i++) {
+    let template = `
+    <tr id="tableRow${i + 1}" class="tableRow">
+    <td class="craftingWord" id="cWord${i + 1}">${
+      craftingWordList[craftWords[i]].craftingWord
+    }</td>
+    <td class="craftItemName" id="cItem${i + 1}">${
+      craftingWordList[craftWords[i]].itemName
+    }</td>
+    <td class="craftingType" id="cType${i + 1}">${
+      craftingWordList[craftWords[i]].craftingType
+    }</td>
+  <td class="craftItemType" id="cItemType${i + 1}">${
+      craftingWordList[craftWords[i]].itemType
+    }</td>
+  <td class="craftNum" id="cNum${i + 1}">${
+      craftingWordList[craftWords[i]].craftingNumber
+    }</td>
+  <td class="addedItemEffect" id="cEffect${i + 1}">${
+      craftingWordList[craftWords[i]].effect
+    }</td>
+    <td><button onclick="removeRow(${i + 1}, ${
+      craftingWordList[craftWords[i]].idKeyword
+    })" class="button lineBTN" id="removeItemBtn${i + 1}" >Replace</button></td>
+  </tr>`;
+    tableList.innerHTML += template;
+  }
+}
+
 
 closeList.addEventListener("click", exitModals); //! Closes all Modals
 closeInfo.addEventListener("click", exitModals); //! Closes all Modals

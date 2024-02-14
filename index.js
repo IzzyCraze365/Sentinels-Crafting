@@ -1671,10 +1671,8 @@ let resetButton = document.querySelector("#resetButton");
 let recipeBlueprintButton = document.querySelector("#recipeBlueprintButton");
 let continueButton = document.querySelector("#continueButton"); //Modal button
 let replaceButton = document.querySelector("#replaceButton"); //ModalButton
-let infoButton = document.querySelector("#infoButton");
 let gameInformation = document.querySelector("#gameInformation");
 let closeInfo = document.querySelector("#closeInfo");
-let itemListButton = document.querySelector("#itemListButton");
 let itemList = document.querySelector("#itemList");
 let closeList = document.querySelector("#closeList");
 let modal = document.querySelector("#modal");
@@ -1743,29 +1741,67 @@ function dropdownModifyRemove(removedItem) {
   }
 }
 
-infoButton.addEventListener("click", gameInfo); //! "Info" BUTTON
-
-function gameInfo(){
-// This function opens a modal with the Game Information
-console.log("Info Clicked")
-gameInformation.style.display="block";
+// "Info" BUTTON has an OnClick*/
+function gameInfo() {
+  // This function opens a modal with the Game Information
+  console.log("Info Clicked");
+  gameInformation.style.display = "block";
 }
 
-itemListButton.addEventListener("click", itemListUnused); //! "Item List" BUTTON
-
-function itemListUnused(){
-  console.log("Item list Clicked")
-  itemList.style.display="block";
-  
+// "Item List" BUTTON has an OnClick*/
+function itemListUnused(craftWords) {
+  console.log("Item list Clicked");
+  itemList.style.display = "block";
+  let tableList = document.querySelector("#tableAddList");
+  // This section automatically sorts the table by its Item Type
+  craftIngredients.sort((a, b) => {
+    const itemA = craftingWordList[a].itemType;
+    const itemB = craftingWordList[b].itemType;
+    if (craftingWordList[a].itemType < craftingWordList[b].itemType) {
+      //no constants needed with these variables
+      return -1;
+    }
+    if (itemA > itemB) {
+      //if you want to use the constants
+      return 1;
+    }
+    return 0;
+  });
+  tableList.innerHTML = ""; // This resets the table before rebuilding it
+  // This loops through the craftWords Matrix and builds the table
+  for (let i = 0; i < craftWords.length; i++) {
+    let template = `<tr id="tableRow${i + 1}" class="tableRow">
+    <td class="craftingWord" id="cWord${i + 1}">${
+      craftingWordList[craftWords[i]].craftingWord
+    }</td>
+    <td class="craftItemName" id="cItem${i + 1}">${
+      craftingWordList[craftWords[i]].itemName
+    }</td>
+    <td class="craftingType" id="cType${i + 1}">${
+      craftingWordList[craftWords[i]].craftingType
+    }</td>
+  <td class="craftItemType" id="cItemType${i + 1}">${
+      craftingWordList[craftWords[i]].itemType
+    }</td>
+  <td class="craftNum" id="cNum${i + 1}">${
+      craftingWordList[craftWords[i]].craftingNumber
+    }</td>
+  <td class="addedItemEffect" id="cEffect${i + 1}">${
+      craftingWordList[craftWords[i]].effect
+    }</td>
+  </tr>`;
+    tableList.innerHTML += template;
+  }
 }
 
 closeList.addEventListener("click", exitModals); //! Closes all Modals
 closeInfo.addEventListener("click", exitModals); //! Closes all Modals
 
-function exitModals(){ // Closes all Modals
-  console.log("Closing")
-  itemList.style.display="none";
-  gameInformation.style.display="none";
+function exitModals() {
+  // Closes all Modals
+  console.log("Closing");
+  itemList.style.display = "none";
+  gameInformation.style.display = "none";
 }
 
 addButton.addEventListener("click", addItem); //! "Add Item" BUTTON
@@ -2739,7 +2775,7 @@ function specialCraftingWords() {
       "supersaturatedOptions",
       supersaturatedOptions.length,
       supersaturatedOptions
-    ); //! TEST
+      ); //! TEST
     dropdownMenu(supersaturatedOptions);
   } else if (craftIngredients.includes(`Rube-Goldberg`)) {
     console.log(
